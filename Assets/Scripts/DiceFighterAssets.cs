@@ -4,5 +4,13 @@ using UnityEngine;
 public class DiceFighterAssets : ScriptableObject
 {
     [SerializeField]
-    protected Sprite DiceFighterTexture;
+    private Sprite _fighterTexture;
+
+    public Sprite FighterTexture
+    {
+        get
+        {
+            return _fighterTexture;
+        }
+    }
 }
