@@ -2,11 +2,37 @@ using UnityEngine;
 
 public class DiceFighter : MonoBehaviour, IDiceRoller
 {
+    /*
+     * Instance variables
+     */
     [SerializeField]
     private DiceFighterAssets _diceRollerAssets;
     [SerializeField]
     private RollableDie _rollableDie;
 
+
+    /*
+     * Properties
+     */
+    protected DiceFighterAssets FighterAssets
+    {
+        get
+        {
+            return _diceRollerAssets;
+        }
+    }
+    protected RollableDie FighterDice
+    {
+        get
+        {
+            return _rollableDie;
+        }
+    }
+
+
+    /*
+     * Class methods
+     */
     protected void Awake()
     {
         if (_diceRollerAssets)
