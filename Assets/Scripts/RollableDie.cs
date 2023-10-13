@@ -3,9 +3,11 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "New RollableDie")]
 public class RollableDie : ScriptableObject, IRollable
 {
-    // Replace this variable type later
+    // Replace the variable type later
     [SerializeField]
-    protected string AttackAnimation;
+    protected string AttackAnimation1;
+    [SerializeField]
+    protected string AttackAnimation2;
 
     public int RolledValue { get; private set; }
 
@@ -30,12 +32,12 @@ public class RollableDie : ScriptableObject, IRollable
             case 1:
             case 2:
             case 3:
-                Debug.Log("Play animation #1");
+                Debug.Log($"Animation #1: {AttackAnimation1}");
                 return;
             case 4:
             case 5:
             case 6:
-                Debug.Log("Play animation #2");
+                Debug.Log($"Animation #2: {AttackAnimation2}");
                 return;
             default:
                 Debug.LogError($"Rolled value {RolledValue} is invalid");
