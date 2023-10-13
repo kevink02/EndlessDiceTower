@@ -7,7 +7,7 @@ public class DiceFighter : MonoBehaviour, IDiceRoller
     [SerializeField]
     private RollableDie _rollableDie;
 
-    private void Awake()
+    protected void Awake()
     {
         if (_diceRollerAssets)
         {
