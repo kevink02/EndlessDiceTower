@@ -11,6 +11,7 @@ public class DiceFighter : MonoBehaviour, IDiceRoller
     {
         if (_diceRollerAssets)
         {
+            GetComponent<SpriteRenderer>().sprite = _diceRollerAssets.FighterTexture;
         }
     }
 
