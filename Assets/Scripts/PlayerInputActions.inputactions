@@ -1,1 +1,76 @@
-{}
+{
+    "name": "PlayerInputActions",
+    "maps": [
+        {
+            "name": "DiceRolling",
+            "id": "c47206a5-695e-41ff-9a65-4c3b29212662",
+            "actions": [
+                {
+                    "name": "RollDice",
+                    "type": "Button",
+                    "id": "f2fa172b-12cf-423d-88bd-ea7587f9439d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Attack",
+                    "type": "Button",
+                    "id": "84834df7-25fc-4c19-9869-bfbfdf8f409b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "ff9c44e2-941f-4be3-a041-5eeef74f2010",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RollDice",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "22bc18b9-426c-4541-b79c-c20509d6f5de",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RollDice",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "67cd4d93-4a5e-4e01-a09a-749f2e513ad2",
+                    "path": "<Keyboard>/3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RollDice",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4bbe5494-24c9-40fc-a2ae-c53257cd143a",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

@@ -22,9 +22,84 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
     {
         asset = InputActionAsset.FromJson(@"{
     ""name"": ""PlayerInputActions"",
-    ""maps"": [],
+    ""maps"": [
+        {
+            ""name"": ""DiceRolling"",
+            ""id"": ""c47206a5-695e-41ff-9a65-4c3b29212662"",
+            ""actions"": [
+                {
+                    ""name"": ""RollDice"",
+                    ""type"": ""Button"",
+                    ""id"": ""f2fa172b-12cf-423d-88bd-ea7587f9439d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Attack"",
+                    ""type"": ""Button"",
+                    ""id"": ""84834df7-25fc-4c19-9869-bfbfdf8f409b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""ff9c44e2-941f-4be3-a041-5eeef74f2010"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RollDice"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""22bc18b9-426c-4541-b79c-c20509d6f5de"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RollDice"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""67cd4d93-4a5e-4e01-a09a-749f2e513ad2"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RollDice"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4bbe5494-24c9-40fc-a2ae-c53257cd143a"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        }
+    ],
     ""controlSchemes"": []
 }");
+        // DiceRolling
+        m_DiceRolling = asset.FindActionMap("DiceRolling", throwIfNotFound: true);
+        m_DiceRolling_RollDice = m_DiceRolling.FindAction("RollDice", throwIfNotFound: true);
+        m_DiceRolling_Attack = m_DiceRolling.FindAction("Attack", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -79,5 +154,51 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
     public int FindBinding(InputBinding bindingMask, out InputAction action)
     {
         return asset.FindBinding(bindingMask, out action);
+    }
+
+    // DiceRolling
+    private readonly InputActionMap m_DiceRolling;
+    private IDiceRollingActions m_DiceRollingActionsCallbackInterface;
+    private readonly InputAction m_DiceRolling_RollDice;
+    private readonly InputAction m_DiceRolling_Attack;
+    public struct DiceRollingActions
+    {
+        private @PlayerInputActions m_Wrapper;
+        public DiceRollingActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @RollDice => m_Wrapper.m_DiceRolling_RollDice;
+        public InputAction @Attack => m_Wrapper.m_DiceRolling_Attack;
+        public InputActionMap Get() { return m_Wrapper.m_DiceRolling; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(DiceRollingActions set) { return set.Get(); }
+        public void SetCallbacks(IDiceRollingActions instance)
+        {
+            if (m_Wrapper.m_DiceRollingActionsCallbackInterface != null)
+            {
+                @RollDice.started -= m_Wrapper.m_DiceRollingActionsCallbackInterface.OnRollDice;
+                @RollDice.performed -= m_Wrapper.m_DiceRollingActionsCallbackInterface.OnRollDice;
+                @RollDice.canceled -= m_Wrapper.m_DiceRollingActionsCallbackInterface.OnRollDice;
+                @Attack.started -= m_Wrapper.m_DiceRollingActionsCallbackInterface.OnAttack;
+                @Attack.performed -= m_Wrapper.m_DiceRollingActionsCallbackInterface.OnAttack;
+                @Attack.canceled -= m_Wrapper.m_DiceRollingActionsCallbackInterface.OnAttack;
+            }
+            m_Wrapper.m_DiceRollingActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @RollDice.started += instance.OnRollDice;
+                @RollDice.performed += instance.OnRollDice;
+                @RollDice.canceled += instance.OnRollDice;
+                @Attack.started += instance.OnAttack;
+                @Attack.performed += instance.OnAttack;
+                @Attack.canceled += instance.OnAttack;
+            }
+        }
+    }
+    public DiceRollingActions @DiceRolling => new DiceRollingActions(this);
+    public interface IDiceRollingActions
+    {
+        void OnRollDice(InputAction.CallbackContext context);
+        void OnAttack(InputAction.CallbackContext context);
     }
 }
