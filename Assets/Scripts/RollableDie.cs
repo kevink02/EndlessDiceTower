@@ -3,12 +3,19 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "New RollableDie")]
 public class RollableDie : ScriptableObject, IRollable
 {
+    /*
+     * Instance variables
+     */
     // Replace the variable type later
     [SerializeField]
     protected string AttackAnimation1;
     [SerializeField]
     protected string AttackAnimation2;
 
+
+    /*
+     * Properties
+     */
     public int RolledValue { get; private set; }
 
 

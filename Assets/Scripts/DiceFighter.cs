@@ -31,7 +31,7 @@ public class DiceFighter : MonoBehaviour, IDiceRoller
 
 
     /*
-     * Class methods
+     * Unity methods
      */
     protected void Awake()
     {
