@@ -28,9 +28,27 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
             ""id"": ""c47206a5-695e-41ff-9a65-4c3b29212662"",
             ""actions"": [
                 {
-                    ""name"": ""RollDice"",
+                    ""name"": ""RollDie1"",
                     ""type"": ""Button"",
                     ""id"": ""f2fa172b-12cf-423d-88bd-ea7587f9439d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""RollDie2"",
+                    ""type"": ""Button"",
+                    ""id"": ""d1f2eaf0-c565-4671-9cbe-fbacedb2bfd7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""RollDie3"",
+                    ""type"": ""Button"",
+                    ""id"": ""5dce52c0-b858-4d1c-bed8-0073fb2bf6ee"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -54,29 +72,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""RollDice"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""22bc18b9-426c-4541-b79c-c20509d6f5de"",
-                    ""path"": ""<Keyboard>/2"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""RollDice"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""67cd4d93-4a5e-4e01-a09a-749f2e513ad2"",
-                    ""path"": ""<Keyboard>/3"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""RollDice"",
+                    ""action"": ""RollDie1"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -90,6 +86,28 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""action"": ""Attack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c990423d-1550-42a4-b32d-a02d2b1dedc1"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RollDie2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""49573ef7-fe27-4860-8216-d73f6cb775e2"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RollDie3"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -98,7 +116,9 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
 }");
         // DiceRolling
         m_DiceRolling = asset.FindActionMap("DiceRolling", throwIfNotFound: true);
-        m_DiceRolling_RollDice = m_DiceRolling.FindAction("RollDice", throwIfNotFound: true);
+        m_DiceRolling_RollDie1 = m_DiceRolling.FindAction("RollDie1", throwIfNotFound: true);
+        m_DiceRolling_RollDie2 = m_DiceRolling.FindAction("RollDie2", throwIfNotFound: true);
+        m_DiceRolling_RollDie3 = m_DiceRolling.FindAction("RollDie3", throwIfNotFound: true);
         m_DiceRolling_Attack = m_DiceRolling.FindAction("Attack", throwIfNotFound: true);
     }
 
@@ -159,13 +179,17 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
     // DiceRolling
     private readonly InputActionMap m_DiceRolling;
     private IDiceRollingActions m_DiceRollingActionsCallbackInterface;
-    private readonly InputAction m_DiceRolling_RollDice;
+    private readonly InputAction m_DiceRolling_RollDie1;
+    private readonly InputAction m_DiceRolling_RollDie2;
+    private readonly InputAction m_DiceRolling_RollDie3;
     private readonly InputAction m_DiceRolling_Attack;
     public struct DiceRollingActions
     {
         private @PlayerInputActions m_Wrapper;
         public DiceRollingActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
-        public InputAction @RollDice => m_Wrapper.m_DiceRolling_RollDice;
+        public InputAction @RollDie1 => m_Wrapper.m_DiceRolling_RollDie1;
+        public InputAction @RollDie2 => m_Wrapper.m_DiceRolling_RollDie2;
+        public InputAction @RollDie3 => m_Wrapper.m_DiceRolling_RollDie3;
         public InputAction @Attack => m_Wrapper.m_DiceRolling_Attack;
         public InputActionMap Get() { return m_Wrapper.m_DiceRolling; }
         public void Enable() { Get().Enable(); }
@@ -176,9 +200,15 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         {
             if (m_Wrapper.m_DiceRollingActionsCallbackInterface != null)
             {
-                @RollDice.started -= m_Wrapper.m_DiceRollingActionsCallbackInterface.OnRollDice;
-                @RollDice.performed -= m_Wrapper.m_DiceRollingActionsCallbackInterface.OnRollDice;
-                @RollDice.canceled -= m_Wrapper.m_DiceRollingActionsCallbackInterface.OnRollDice;
+                @RollDie1.started -= m_Wrapper.m_DiceRollingActionsCallbackInterface.OnRollDie1;
+                @RollDie1.performed -= m_Wrapper.m_DiceRollingActionsCallbackInterface.OnRollDie1;
+                @RollDie1.canceled -= m_Wrapper.m_DiceRollingActionsCallbackInterface.OnRollDie1;
+                @RollDie2.started -= m_Wrapper.m_DiceRollingActionsCallbackInterface.OnRollDie2;
+                @RollDie2.performed -= m_Wrapper.m_DiceRollingActionsCallbackInterface.OnRollDie2;
+                @RollDie2.canceled -= m_Wrapper.m_DiceRollingActionsCallbackInterface.OnRollDie2;
+                @RollDie3.started -= m_Wrapper.m_DiceRollingActionsCallbackInterface.OnRollDie3;
+                @RollDie3.performed -= m_Wrapper.m_DiceRollingActionsCallbackInterface.OnRollDie3;
+                @RollDie3.canceled -= m_Wrapper.m_DiceRollingActionsCallbackInterface.OnRollDie3;
                 @Attack.started -= m_Wrapper.m_DiceRollingActionsCallbackInterface.OnAttack;
                 @Attack.performed -= m_Wrapper.m_DiceRollingActionsCallbackInterface.OnAttack;
                 @Attack.canceled -= m_Wrapper.m_DiceRollingActionsCallbackInterface.OnAttack;
@@ -186,9 +216,15 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
             m_Wrapper.m_DiceRollingActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @RollDice.started += instance.OnRollDice;
-                @RollDice.performed += instance.OnRollDice;
-                @RollDice.canceled += instance.OnRollDice;
+                @RollDie1.started += instance.OnRollDie1;
+                @RollDie1.performed += instance.OnRollDie1;
+                @RollDie1.canceled += instance.OnRollDie1;
+                @RollDie2.started += instance.OnRollDie2;
+                @RollDie2.performed += instance.OnRollDie2;
+                @RollDie2.canceled += instance.OnRollDie2;
+                @RollDie3.started += instance.OnRollDie3;
+                @RollDie3.performed += instance.OnRollDie3;
+                @RollDie3.canceled += instance.OnRollDie3;
                 @Attack.started += instance.OnAttack;
                 @Attack.performed += instance.OnAttack;
                 @Attack.canceled += instance.OnAttack;
@@ -198,7 +234,9 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
     public DiceRollingActions @DiceRolling => new DiceRollingActions(this);
     public interface IDiceRollingActions
     {
-        void OnRollDice(InputAction.CallbackContext context);
+        void OnRollDie1(InputAction.CallbackContext context);
+        void OnRollDie2(InputAction.CallbackContext context);
+        void OnRollDie3(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
     }
 }
