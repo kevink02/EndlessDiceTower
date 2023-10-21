@@ -8,15 +8,25 @@ public class RollableDie : ScriptableObject, IRollable
      */
     // Replace the variable type later
     [SerializeField]
-    protected string AttackAnimation1;
-    [SerializeField]
-    protected string AttackAnimation2;
+    protected string[] AttackAnimations;
 
 
     /*
      * Properties
      */
     public int RolledValue { get; private set; }
+
+
+    /*
+     * Unity methods
+     */
+    private void OnEnable()
+    {
+        if (AttackAnimations.Length != 2)
+        {
+            Debug.LogError("There are the incorrect amount of attack animations");
+        }
+    }
 
 
     /*
@@ -39,12 +49,12 @@ public class RollableDie : ScriptableObject, IRollable
             case 1:
             case 2:
             case 3:
-                Debug.Log($"Animation #1: {AttackAnimation1}");
+                Debug.Log($"Animation #1: {AttackAnimations[0]}");
                 return;
             case 4:
             case 5:
             case 6:
-                Debug.Log($"Animation #2: {AttackAnimation2}");
+                Debug.Log($"Animation #2: {AttackAnimations[1]}");
                 return;
             default:
                 Debug.LogError($"Rolled value {RolledValue} is invalid");

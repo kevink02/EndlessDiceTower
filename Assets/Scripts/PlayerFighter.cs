@@ -30,8 +30,6 @@ public class PlayerFighter : DiceFighter
 
     private void Start()
     {
-        // _playerInputActions.DiceRolling.RollDie1.performed += cxt => RollDie(cxt);
-        // Debug.Log($"keyBindingsArr: {_playerInputActions.DiceRolling.RollDice.bindings}");
         _playerInputActions.DiceRolling.RollDie1.performed += cxt => RollDie(0);
         _playerInputActions.DiceRolling.RollDie2.performed += cxt => RollDie(1);
         _playerInputActions.DiceRolling.RollDie3.performed += cxt => RollDie(2);
@@ -63,9 +61,6 @@ public class PlayerFighter : DiceFighter
         Debug.Log($"key: {context}");
         Debug.Log($"keyControl: {context.control}");
         // Debug.Log($"keyValue: {context.ReadValue<float>()}");
-
-        // Does work in checking if a specific key is pressed, but not flexible if wanting to rebind keys
-        // Debug.Log($"keyboardPress: {Keyboard.current.digit1Key.isPressed}");
 
         var arr = context.action.bindings;
         int index = 0;
