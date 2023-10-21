@@ -237,7 +237,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _diceRollerAssets: {fileID: 11400000, guid: 26a47128333912e46a6abc44d6a8a49d, type: 2}
-  _rollableDie: {fileID: 11400000, guid: 5f389430f5d725f478a1d672dcf05432, type: 2}
+  _rollableDice:
+  - {fileID: 11400000, guid: 5f389430f5d725f478a1d672dcf05432, type: 2}
+  - {fileID: 11400000, guid: 5f389430f5d725f478a1d672dcf05432, type: 2}
+  - {fileID: 11400000, guid: 5f389430f5d725f478a1d672dcf05432, type: 2}
 --- !u!212 &1027007073
 SpriteRenderer:
   m_ObjectHideFlags: 0
