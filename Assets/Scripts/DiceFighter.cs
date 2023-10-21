@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class DiceFighter : MonoBehaviour, IDiceRoller
+public abstract class DiceFighter : MonoBehaviour, IDiceRoller
 {
     /*
      * Instance variables
@@ -8,7 +8,7 @@ public class DiceFighter : MonoBehaviour, IDiceRoller
     [SerializeField]
     private DiceFighterAssets _diceRollerAssets;
     [SerializeField]
-    private RollableDie _rollableDie;
+    private RollableDie[] _rollableDice;
 
 
     /*
@@ -21,11 +21,11 @@ public class DiceFighter : MonoBehaviour, IDiceRoller
             return _diceRollerAssets;
         }
     }
-    protected RollableDie FighterDice
+    protected RollableDie[] FighterDice
     {
         get
         {
-            return _rollableDie;
+            return _rollableDice;
         }
     }
 
@@ -45,12 +45,17 @@ public class DiceFighter : MonoBehaviour, IDiceRoller
     /*
      * Interface methods
      */
-    public void RollDie()
+    public void RollDie(int index)
     {
-        if (_rollableDie)
+        if (_rollableDice != null && index >= 0 && index < _rollableDice.Length && _rollableDice[index])
         {
-            _rollableDie.SetRolledValue();
-            _rollableDie.PlayAnimation();
+            _rollableDice[index].SetRolledValue();
+            _rollableDice[index].PlayAnimation();
         }
+    }
+
+    public void RollAllDice()
+    {
+        throw new System.NotImplementedException();
     }
 }

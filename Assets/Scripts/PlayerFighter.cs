@@ -51,11 +51,6 @@ public class PlayerFighter : DiceFighter
 
     }
 
-    private void RollDie(int index)
-    {
-        Debug.Log($"{name}: Rolling die #{index}");
-    }
-
     private void RollDie(InputAction.CallbackContext context)
     {
         Debug.Log($"key: {context}");
