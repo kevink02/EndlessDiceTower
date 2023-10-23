@@ -46,11 +46,6 @@ public class PlayerFighter : DiceFighter
     /*
      * Instance methods
      */
-    private void TempFunction()
-    {
-
-    }
-
     private void RollDie(InputAction.CallbackContext context)
     {
         Debug.Log($"key: {context}");
