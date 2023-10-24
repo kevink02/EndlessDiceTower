@@ -20,7 +20,7 @@ public class FloorManager : BasicSingleton<TurnManager>, IManager, ISingletonUse
         base.Awake();
 
         _currentFloor = 0;
-        _turnManager.ResetState();
+        // _turnManager.ResetState();
     }
 
 
