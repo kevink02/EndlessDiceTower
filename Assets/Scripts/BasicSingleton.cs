@@ -31,18 +31,22 @@ public abstract class BasicSingleton<T> : MonoBehaviour where T : ISingletonUser
             }
             return _instance;
         }
-        set
+        protected set
         {
             if (_instance == null)
             {
                 _instance = value;
+            }
+            else if (_instance.Equals(value))
+            {
+                Debug.LogWarning($"The singleton instance of type {_instance.GetType()} has already been set to object {value}");
             }
             // If setting the singleton instance to another object when it has already been set, destroy the new object trying to be set to the instance
             else if (!_instance.Equals(value))
             {
                 if (value is MonoBehaviour)
                 {
-                    Debug.LogError($"The singleton instance of type {value.GetType()} has already been set. The alternate instance {value} is unneeded.");
+                    Debug.LogError($"The singleton instance of type {_instance.GetType()} has already been set and could not be reset to object {value}");
                     // Extra instances of a class type should be disabled as well as destroyed
                     // Disabling prevents the rest of Awake() from running (disabled objects in the hierarchy do not run)
                     // Destroying them is not immediate (objects marked for destruction can still finish executing their Awake())
