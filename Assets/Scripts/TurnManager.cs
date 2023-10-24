@@ -31,8 +31,15 @@ public class TurnManager : BasicSingleton<TurnManager>, IManager, ISingletonUser
 
     private void Start()
     {
-        Debug.Log($"Turn Manager Singleton: {BasicSingleton<TurnManager>.Instance}");
-        Debug.Log($"Floor Manager Singleton: {BasicSingleton<FloorManager>.Instance}");
+        Debug.Log($"{name}: Before Turn Manager Singleton: {BasicSingleton<TurnManager>.Instance}");
+        Debug.Log($"{name}: Before Floor Manager Singleton: {BasicSingleton<FloorManager>.Instance}");
+        if (name.Equals("TurnManager"))
+        {
+            GameObject temp = new GameObject("TestingTurnManager");
+            temp.AddComponent<TurnManager>().SetSingletonInstance();
+        }
+        Debug.Log($"{name}: After Turn Manager Singleton: {BasicSingleton<TurnManager>.Instance}");
+        Debug.Log($"{name}: After Floor Manager Singleton: {BasicSingleton<FloorManager>.Instance}");
     }
 
 
