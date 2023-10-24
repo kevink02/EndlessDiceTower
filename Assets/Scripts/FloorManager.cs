@@ -49,6 +49,6 @@ public class FloorManager : BasicSingleton<TurnManager>, IManager, ISingletonUse
 
     public void SetSingletonInstance()
     {
-        throw new System.NotImplementedException();
+        BasicSingleton<FloorManager>.Instance = this;
     }
 }

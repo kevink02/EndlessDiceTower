@@ -61,6 +61,6 @@ public class TurnManager : BasicSingleton<TurnManager>, IManager, ISingletonUser
 
     public void SetSingletonInstance()
     {
-        throw new NotImplementedException();
+        BasicSingleton<TurnManager>.Instance = this;
     }
 }
