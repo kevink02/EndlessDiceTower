@@ -1,0 +1,57 @@
+using UnityEngine;
+
+
+/*
+ * A generic base class for singleton classes to derive from, to avoid repeating singleton code in those classes
+ */
+
+public static class BasicSingleton<T> where T : ISingletonUser<T>
+{
+    /*
+     * Class variables
+     */
+    private static T _instance;
+
+
+    /*
+     * Properties
+     */
+    public static T Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                Debug.LogError($"The singleton instance of type {typeof(T)} is not set");
+            }
+            return _instance;
+        }
+        set
+        {
+            if (_instance == null)
+            {
+                _instance = value;
+            }
+            // If setting the singleton instance to another object when it has already been set, destroy the new object trying to be set to the instance
+            else if (!_instance.Equals(value))
+            {
+                if (value is MonoBehaviour)
+                {
+                    Debug.LogError($"The singleton instance of type {value.GetType()} has already been set. The alternate instance {value} is unneeded.");
+                    // Extra instances of a class type should be disabled as well as destroyed
+                    // Disabling prevents the rest of Awake() from running (disabled objects in the hierarchy do not run)
+                    // Destroying them is not immediate (objects marked for destruction can still finish executing their Awake())
+                    // ... but will still destroy clone instances to prevent any further execution on their part
+                    MonoBehaviour monoBehaviour = value as MonoBehaviour;
+                    GameObject gameObject = monoBehaviour.gameObject;
+                    gameObject.SetActive(false);
+                    Object.Destroy(gameObject);
+                }
+                else
+                {
+                    Debug.LogError($"The alternate singleton instance {value} could not be destroyed");
+                }
+            }
+        }
+    }
+}
