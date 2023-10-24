@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FloorManager : IManager
+public class FloorManager : BasicSingleton<TurnManager>, IManager, ISingletonUser
 {
     /*
      * Instance variables
@@ -15,8 +15,10 @@ public class FloorManager : IManager
     /*
      * Unity methods
      */
-    private void Awake()
+    private new void Awake()
     {
+        base.Awake();
+
         _currentFloor = 0;
         _turnManager.ResetState();
     }
@@ -36,6 +38,16 @@ public class FloorManager : IManager
     }
 
     public void ResetState()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public ISingletonUser GetSingletonInstance()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void SetSingletonInstance()
     {
         throw new System.NotImplementedException();
     }
