@@ -5,12 +5,14 @@ using UnityEngine;
  * A generic base class for singleton classes to derive from, to avoid repeating singleton code in those classes
  */
 
-public static class BasicSingleton<T> where T : ISingletonUser<T>
+public abstract class BasicSingleton<T> : MonoBehaviour where T : ISingletonUser
 {
     /*
      * Class variables
      */
     private static T _instance;
+
+    private ISingletonUser _singletonUser;
 
 
     /*
@@ -52,6 +54,26 @@ public static class BasicSingleton<T> where T : ISingletonUser<T>
                     Debug.LogError($"The alternate singleton instance {value} could not be destroyed");
                 }
             }
+        }
+    }
+
+
+    /*
+     * Unity methods
+     */
+    protected void Awake()
+    {
+        if (TryGetComponent<ISingletonUser>(out ISingletonUser singletonUser))
+        {
+            _singletonUser = singletonUser;
+        }
+        if (_singletonUser != null)
+        {
+            _singletonUser.SetSingletonInstance();
+        }
+        else
+        {
+            Debug.LogError($"Could not set singleton instance");
         }
     }
 }

@@ -1,9 +1,9 @@
-public interface ISingletonUser<T>
+public interface ISingletonUser
 {
     /*
      * Interface methods
      */
-    public T GetSingletonInstance();
+    public ISingletonUser GetSingletonInstance();
 
     public void SetSingletonInstance();
 }
