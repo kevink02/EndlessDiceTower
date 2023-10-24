@@ -4,7 +4,10 @@ using UnityEngine;
 /*
  * A generic base class for singleton classes to derive from, to avoid repeating singleton code in those classes
  */
-
+/// <summary>
+/// To use, have the singleton class derive from this class and have it implement the <seealso cref="ISingletonUser"/> interface
+/// </summary>
+/// <typeparam name="T"></typeparam>
 public abstract class BasicSingleton<T> : MonoBehaviour where T : ISingletonUser
 {
     /*
