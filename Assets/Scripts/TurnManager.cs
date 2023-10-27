@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -39,22 +38,22 @@ public class TurnManager : BasicSingleton<TurnManager>, IManager, ISingletonUser
      */
     public void ExecuteState()
     {
-        throw new NotImplementedException();
+        throw new System.NotImplementedException();
     }
 
     public void NextState()
     {
-        throw new NotImplementedException();
+        throw new System.NotImplementedException();
     }
 
     public void ResetState()
     {
-        throw new NotImplementedException();
+        throw new System.NotImplementedException();
     }
 
     public ISingletonUser GetSingletonInstance()
     {
-        throw new NotImplementedException();
+        return BasicSingleton<TurnManager>.Instance;
     }
 
     public void SetSingletonInstance()

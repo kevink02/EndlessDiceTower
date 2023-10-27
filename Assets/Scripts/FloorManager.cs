@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FloorManager : BasicSingleton<TurnManager>, IManager, ISingletonUser
+public class FloorManager : BasicSingleton<FloorManager>, IManager, ISingletonUser
 {
     /*
      * Instance variables
@@ -44,7 +44,7 @@ public class FloorManager : BasicSingleton<TurnManager>, IManager, ISingletonUse
 
     public ISingletonUser GetSingletonInstance()
     {
-        throw new System.NotImplementedException();
+        return BasicSingleton<FloorManager>.Instance;
     }
 
     public void SetSingletonInstance()
