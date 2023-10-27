@@ -15,8 +15,6 @@ public abstract class BasicSingleton<T> : MonoBehaviour where T : ISingletonUser
      */
     private static T _instance;
 
-    private ISingletonUser _singletonUser;
-
 
     /*
      * Properties
@@ -72,11 +70,11 @@ public abstract class BasicSingleton<T> : MonoBehaviour where T : ISingletonUser
     {
         if (TryGetComponent<ISingletonUser>(out ISingletonUser singletonUser))
         {
-            _singletonUser = singletonUser;
+            _instance = (T)singletonUser;
         }
-        if (_singletonUser != null)
+        if (_instance != null)
         {
-            _singletonUser.SetSingletonInstance();
+            _instance.SetSingletonInstance();
         }
         else
         {
