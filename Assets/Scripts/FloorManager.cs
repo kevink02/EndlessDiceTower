@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FloorManager : BasicSingleton<FloorManager>, IManager, ISingletonUser
+public class FloorManager : BasicSingleton<FloorManager>, ISingletonUser
 {
     /*
      * Instance variables
@@ -27,21 +27,6 @@ public class FloorManager : BasicSingleton<FloorManager>, IManager, ISingletonUs
     /*
      * Interface methods
      */
-    public void ExecuteState()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void NextState()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void ResetState()
-    {
-        throw new System.NotImplementedException();
-    }
-
     public ISingletonUser GetSingletonInstance()
     {
         return BasicSingleton<FloorManager>.Instance;

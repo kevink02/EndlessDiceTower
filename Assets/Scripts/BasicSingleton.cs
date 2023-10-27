@@ -3,6 +3,7 @@ using UnityEngine;
 
 /*
  * A generic base class for singleton classes to derive from, to avoid repeating singleton code in those classes
+ * This needs to be generic so the static variables are bound to a specific type of the singleton class and not to the entire class
  */
 /// <summary>
 /// To use, have the singleton class derive from this class and have it implement the <seealso cref="ISingletonUser"/> interface
