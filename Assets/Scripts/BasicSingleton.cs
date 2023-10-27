@@ -9,7 +9,7 @@ using UnityEngine;
 /// To use, have the singleton class derive from this class and have it implement the <seealso cref="ISingletonUser"/> interface
 /// </summary>
 /// <typeparam name="T"></typeparam>
-public abstract class BasicSingleton<T> : MonoBehaviour where T : ISingletonUser
+public abstract class BasicSingleton<T> : MonoBehaviour, ISingletonUser where T : ISingletonUser
 {
     /*
      * Class variables
@@ -82,4 +82,10 @@ public abstract class BasicSingleton<T> : MonoBehaviour where T : ISingletonUser
             Debug.LogError($"Could not set singleton instance");
         }
     }
+
+
+    /*
+     * Interface methods
+     */
+    public abstract void SetSingletonInstance();
 }

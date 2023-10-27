@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FloorManager : BasicSingleton<FloorManager>, ISingletonUser
+public class FloorManager : BasicSingleton<FloorManager>
 {
     /*
      * Instance variables
@@ -27,12 +27,7 @@ public class FloorManager : BasicSingleton<FloorManager>, ISingletonUser
     /*
      * Interface methods
      */
-    public ISingletonUser GetSingletonInstance()
-    {
-        return BasicSingleton<FloorManager>.Instance;
-    }
-
-    public void SetSingletonInstance()
+    public override void SetSingletonInstance()
     {
         BasicSingleton<FloorManager>.Instance = this;
     }

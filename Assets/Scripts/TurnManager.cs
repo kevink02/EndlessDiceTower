@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TurnManager : BasicSingleton<TurnManager>, ISingletonUser
+public class TurnManager : BasicSingleton<TurnManager>
 {
     /*
      * Instance variables
@@ -36,12 +36,7 @@ public class TurnManager : BasicSingleton<TurnManager>, ISingletonUser
     /*
      * Interface methods
      */
-    public ISingletonUser GetSingletonInstance()
-    {
-        return BasicSingleton<TurnManager>.Instance;
-    }
-
-    public void SetSingletonInstance()
+    public override void SetSingletonInstance()
     {
         BasicSingleton<TurnManager>.Instance = this;
     }
