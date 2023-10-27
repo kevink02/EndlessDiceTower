@@ -8,8 +8,12 @@ public class FloorManager : BasicSingleton<FloorManager>
      * Instance variables
      */
     private int _currentFloor;
-    [SerializeField]
-    private TurnManager _turnManager;
+
+
+    /*
+     * Delegates
+     */
+    public event System.Action OnCreateNewFloor;
 
 
     /*
@@ -20,7 +24,30 @@ public class FloorManager : BasicSingleton<FloorManager>
         base.Awake();
 
         _currentFloor = 0;
-        // _turnManager.ResetState();
+    }
+
+    private void OnEnable()
+    {
+        OnCreateNewFloor += IncrementFloorNumber;
+    }
+
+    private void Start()
+    {
+        OnCreateNewFloor?.Invoke();
+    }
+
+    private void OnDisable()
+    {
+        OnCreateNewFloor -= IncrementFloorNumber;
+    }
+
+
+    /*
+     * Instance methods
+     */
+    private void IncrementFloorNumber()
+    {
+        _currentFloor++;
     }
 
 

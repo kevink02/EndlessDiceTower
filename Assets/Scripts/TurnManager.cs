@@ -28,8 +28,30 @@ public class TurnManager : BasicSingleton<TurnManager>
         _fighterTurnQueue = new Queue<DiceFighter>();
     }
 
-    private void Start()
+    private void OnEnable()
     {
+        BasicSingleton<FloorManager>.Instance.OnCreateNewFloor += ResetTurnQueue;
+        BasicSingleton<FloorManager>.Instance.OnCreateNewFloor += AddToTurnQueue;
+    }
+
+    private void OnDisable()
+    {
+        BasicSingleton<FloorManager>.Instance.OnCreateNewFloor -= ResetTurnQueue;
+        BasicSingleton<FloorManager>.Instance.OnCreateNewFloor -= AddToTurnQueue;
+    }
+
+
+    /*
+     * Instance methods
+     */
+    private void ResetTurnQueue()
+    {
+        _fighterTurnQueue.Clear();
+    }
+
+    private void AddToTurnQueue()
+    {
+        Debug.Log("Adding fighters to turn queue...");
     }
 
 
