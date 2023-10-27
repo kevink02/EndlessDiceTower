@@ -12,6 +12,12 @@ public class RollableDie : ScriptableObject, IRollable
 
 
     /*
+     * Class variables
+     */
+    private const int AttackAnimationAmountPerDie = 2;
+
+
+    /*
      * Properties
      */
     public int RolledValue { get; private set; }
@@ -22,7 +28,7 @@ public class RollableDie : ScriptableObject, IRollable
      */
     private void OnEnable()
     {
-        if (AttackAnimations.Length != 2)
+        if (AttackAnimations.Length != AttackAnimationAmountPerDie)
         {
             Debug.LogError("There are the incorrect amount of attack animations");
         }
