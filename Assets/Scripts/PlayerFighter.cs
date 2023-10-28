@@ -28,8 +28,10 @@ public class PlayerFighter : DiceFighter
         _playerInputActions.DiceRolling.RollDie3.Enable();
     }
 
-    private void Start()
+    private new void Start()
     {
+        base.Start();
+
         _playerInputActions.DiceRolling.RollDie1.performed += cxt => RollDie(0);
         _playerInputActions.DiceRolling.RollDie2.performed += cxt => RollDie(1);
         _playerInputActions.DiceRolling.RollDie3.performed += cxt => RollDie(2);

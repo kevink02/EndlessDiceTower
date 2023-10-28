@@ -45,7 +45,11 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
         {
             GetComponent<SpriteRenderer>().sprite = _diceRollerAssets.FighterTexture;
         }
+    }
 
+    // Stuff that should be done once singletons and events are set up
+    protected void Start()
+    {
         BasicSingleton<TurnManager>.Instance.FighterTurnQueue.Enqueue(this);
     }
 
