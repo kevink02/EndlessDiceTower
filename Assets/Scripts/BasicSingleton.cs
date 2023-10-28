@@ -6,10 +6,10 @@ using UnityEngine;
  * This needs to be generic so the static variables are bound to a specific type of the singleton class and not to the entire class
  */
 /// <summary>
-/// To use, have the singleton class derive from this class and have it implement the <seealso cref="ISingletonUser"/> interface
+/// To use, have the singleton class derive from this class
 /// </summary>
 /// <typeparam name="T"></typeparam>
-public abstract class BasicSingleton<T> : MonoBehaviour, ISingletonUser where T : BasicSingleton<T>
+public abstract class BasicSingleton<T> : MonoBehaviour where T : BasicSingleton<T>
 {
     /*
      * Class variables
@@ -75,9 +75,10 @@ public abstract class BasicSingleton<T> : MonoBehaviour, ISingletonUser where T 
      */
     protected void Awake()
     {
-        if (TryGetComponent<ISingletonUser>(out ISingletonUser singletonUser))
+        // It seems other objects trying to access singletons too early cause their instances to be set before the singletons themselves can set them
+        if (TryGetComponent<T>(out T singletonUser))
         {
-            _instance = (T)singletonUser;
+            _instance = singletonUser;
         }
         if (_instance != null)
         {
