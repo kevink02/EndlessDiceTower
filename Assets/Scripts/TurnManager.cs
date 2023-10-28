@@ -58,13 +58,13 @@ public class TurnManager : BasicSingleton<TurnManager>
      */
     private void ResetTurnQueue()
     {
-        DiceFighter diceFighter = FighterTurnQueue.Peek();
-        if (diceFighter == null)
+        if (FighterTurnQueue.Count == 0)
         {
             Debug.LogWarning("The fighter queue is empty");
+            return;
         }
         // Rotate through the turn queue until the player is at the front
-        else if (!(diceFighter is PlayerFighter))
+        if (!(FighterTurnQueue.Peek() is PlayerFighter))
         {
             // In case the while-loop continues forever
             int whileBreaker = 0;
