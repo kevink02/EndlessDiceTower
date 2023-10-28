@@ -41,9 +41,9 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
      */
     protected void Awake()
     {
-        if (_diceRollerAssets)
+        if (FighterAssets)
         {
-            GetComponent<SpriteRenderer>().sprite = _diceRollerAssets.FighterTexture;
+            GetComponent<SpriteRenderer>().sprite = FighterAssets.FighterTexture;
         }
     }
 
@@ -59,10 +59,10 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
      */
     public void RollDie(int index)
     {
-        if (_rollableDice != null && index >= 0 && index < _rollableDice.Length && _rollableDice[index])
+        if (FighterDice != null && index >= 0 && index < FighterDice.Length && FighterDice[index])
         {
-            _rollableDice[index].SetRolledValue();
-            _rollableDice[index].PlayAnimation();
+            FighterDice[index].SetRolledValue();
+            FighterDice[index].PlayAnimation();
         }
     }
 
