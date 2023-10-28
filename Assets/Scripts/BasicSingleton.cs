@@ -9,7 +9,7 @@ using UnityEngine;
 /// To use, have the singleton class derive from this class and have it implement the <seealso cref="ISingletonUser"/> interface
 /// </summary>
 /// <typeparam name="T"></typeparam>
-public abstract class BasicSingleton<T> : MonoBehaviour, ISingletonUser where T : ISingletonUser
+public abstract class BasicSingleton<T> : MonoBehaviour, ISingletonUser where T : BasicSingleton<T>
 {
     /*
      * Class variables
@@ -24,9 +24,15 @@ public abstract class BasicSingleton<T> : MonoBehaviour, ISingletonUser where T 
     {
         get
         {
+            // If accessing singleton before it is set, find it in the scene and set it
             if (_instance == null)
             {
-                Debug.LogError($"The singleton instance of type {typeof(T)} is not set");
+                _instance = FindObjectOfType<T>();
+            }
+            // The singleton is not in the scene, so throw an error message
+            if (_instance == null)
+            {
+                throw new System.NullReferenceException($"The singleton instance of type {typeof(T)} is not set");
             }
             return _instance;
         }
