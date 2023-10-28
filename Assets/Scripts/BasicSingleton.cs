@@ -41,6 +41,7 @@ public abstract class BasicSingleton<T> : MonoBehaviour where T : BasicSingleton
             if (_instance == null)
             {
                 _instance = value;
+                Debug.Log($"The singleton instance of type {_instance.GetType()} has been set to object {value}");
             }
             else if (_instance.Equals(value))
             {
@@ -75,13 +76,11 @@ public abstract class BasicSingleton<T> : MonoBehaviour where T : BasicSingleton
      */
     protected void Awake()
     {
-        // It seems other objects trying to access singletons too early cause their instances to be set before the singletons themselves can set them
-        // If other objects are causing singleton instances to be set too soon, then this segment of code is unnecessary
         if (TryGetComponent<T>(out T singletonUser))
         {
             Instance = singletonUser;
         }
-        if (Instance != null)
+        else if (Instance != null)
         {
             Instance.SetSingletonInstance();
         }
