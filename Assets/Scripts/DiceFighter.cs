@@ -45,6 +45,8 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
         {
             GetComponent<SpriteRenderer>().sprite = _diceRollerAssets.FighterTexture;
         }
+
+        BasicSingleton<TurnManager>.Instance.FighterTurnQueue.Enqueue(this);
     }
 
 

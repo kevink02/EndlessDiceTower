@@ -6,7 +6,20 @@ public class TurnManager : BasicSingleton<TurnManager>
     /*
      * Instance variables
      */
+    private bool _isPlayerTurn;
     private Queue<DiceFighter> _fighterTurnQueue;
+
+
+    /*
+     * Properties
+     */
+    public Queue<DiceFighter> FighterTurnQueue
+    {
+        get
+        {
+            return _fighterTurnQueue;
+        }
+    }
 
 
     /*
@@ -25,19 +38,18 @@ public class TurnManager : BasicSingleton<TurnManager>
         /*
          * Initialize instance variables
          */
+        _isPlayerTurn = true;
         _fighterTurnQueue = new Queue<DiceFighter>();
     }
 
     private void OnEnable()
     {
         BasicSingleton<FloorManager>.Instance.OnCreateNewFloor += ResetTurnQueue;
-        BasicSingleton<FloorManager>.Instance.OnCreateNewFloor += AddToTurnQueue;
     }
 
     private void OnDisable()
     {
         BasicSingleton<FloorManager>.Instance.OnCreateNewFloor -= ResetTurnQueue;
-        BasicSingleton<FloorManager>.Instance.OnCreateNewFloor -= AddToTurnQueue;
     }
 
 
@@ -46,12 +58,24 @@ public class TurnManager : BasicSingleton<TurnManager>
      */
     private void ResetTurnQueue()
     {
-        _fighterTurnQueue.Clear();
-    }
+        DiceFighter diceFighter = FighterTurnQueue.Peek();
+        if (diceFighter == null)
+        {
+            Debug.LogWarning("The fighter queue is empty");
+        }
+        // Rotate through the turn queue until the player is at the front
+        else if (!(diceFighter is PlayerFighter))
+        {
+            // In case the while-loop continues forever
+            int whileBreaker = 0;
+            while (!(FighterTurnQueue.Peek() is PlayerFighter) && whileBreaker < 100)
+            {
+                DiceFighter dequeuedFighter = FighterTurnQueue.Dequeue();
+                FighterTurnQueue.Enqueue(dequeuedFighter);
 
-    private void AddToTurnQueue()
-    {
-        Debug.Log("Adding fighters to turn queue...");
+                whileBreaker++;
+            }
+        }
     }
 
 
