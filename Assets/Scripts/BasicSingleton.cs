@@ -76,13 +76,14 @@ public abstract class BasicSingleton<T> : MonoBehaviour where T : BasicSingleton
     protected void Awake()
     {
         // It seems other objects trying to access singletons too early cause their instances to be set before the singletons themselves can set them
+        // If other objects are causing singleton instances to be set too soon, then this segment of code is unnecessary
         if (TryGetComponent<T>(out T singletonUser))
         {
-            _instance = singletonUser;
+            Instance = singletonUser;
         }
-        if (_instance != null)
+        if (Instance != null)
         {
-            _instance.SetSingletonInstance();
+            Instance.SetSingletonInstance();
         }
         else
         {
