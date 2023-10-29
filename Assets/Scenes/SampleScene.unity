@@ -279,7 +279,7 @@ Transform:
   - {fileID: 2113439867}
   - {fileID: 458783837}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &812516651
 GameObject:
@@ -291,7 +291,6 @@ GameObject:
   m_Component:
   - component: {fileID: 812516655}
   - component: {fileID: 812516654}
-  - component: {fileID: 812516653}
   - component: {fileID: 812516652}
   m_Layer: 0
   m_Name: Enemy
@@ -312,24 +311,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5234be512550f8f458ea20c6f918315f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _diceRollerAssets: {fileID: 0}
-  _rollableDice:
-  - {fileID: 11400000, guid: 5f389430f5d725f478a1d672dcf05432, type: 2}
-  - {fileID: 11400000, guid: 5f389430f5d725f478a1d672dcf05432, type: 2}
-  - {fileID: 11400000, guid: 5f389430f5d725f478a1d672dcf05432, type: 2}
---- !u!114 &812516653
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 812516651}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c60bbd5496ab1fd4d948fcc939da84f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _diceRollerAssets: {fileID: 11400000, guid: 26a47128333912e46a6abc44d6a8a49d, type: 2}
+  _diceRollerAssets: {fileID: 11400000, guid: f694cf877653c464b973521db401a7de, type: 2}
   _rollableDice:
   - {fileID: 11400000, guid: 5f389430f5d725f478a1d672dcf05432, type: 2}
   - {fileID: 11400000, guid: 5f389430f5d725f478a1d672dcf05432, type: 2}
@@ -397,7 +379,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1027007071
 GameObject:
