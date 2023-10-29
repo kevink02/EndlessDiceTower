@@ -12,7 +12,7 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
 
 
     /*
-     * Class variables
+     * Constant variables
      */
     private const int MaxDicePerFighter = 3;
 

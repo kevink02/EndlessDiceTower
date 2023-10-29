@@ -12,7 +12,7 @@ public class RollableDie : ScriptableObject, IRollable
 
 
     /*
-     * Class variables
+     * Constant variables
      */
     private const int AttackAnimationAmountPerDie = 2;
 
