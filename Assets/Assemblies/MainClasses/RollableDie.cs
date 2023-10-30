@@ -40,7 +40,7 @@ public class RollableDie : ScriptableObject, IRollable
      */
     public void SetRolledValue()
     {
-        RolledValue = Random.Range(1, 7);
+        RolledValue = RandomGenerator.GetDieRoll();
     }
 
     public int GetRolledValue()

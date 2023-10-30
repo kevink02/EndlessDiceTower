@@ -29,4 +29,13 @@ public static class RandomGenerator
     {
         return (maxExc > minInc) ? Random.Range(minInc, maxExc) : minInc;
     }
+
+    /// <summary>
+    /// Returns a random value between 1 and 6, both inclusive
+    /// </summary>
+    /// <returns></returns>
+    public static int GetDieRoll()
+    {
+        return GetRandomInclusive(1, 6);
+    }
 }
