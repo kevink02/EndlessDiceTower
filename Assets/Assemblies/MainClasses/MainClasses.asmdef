@@ -1,9 +1,7 @@
 {
     "name": "MainClasses",
     "rootNamespace": "",
-    "references": [
-        "GUID:de24c36bf8f271847a9e6e3c5520e358"
-    ],
+    "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
