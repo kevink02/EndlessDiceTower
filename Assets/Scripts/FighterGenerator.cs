@@ -96,55 +96,51 @@ public class FighterGenerator : BasicSingleton<FighterGenerator>
     private void AddPlayerFightersToList()
     {
         Debug.Log($"{name}: Adding player fighters");
-        foreach (PlayerFighter pf in _playerFightersParent.transform.GetComponentsInChildren<PlayerFighter>())
+        // Remember to check for inactive objects, as they should be disabled prior to starting the game
+        foreach (PlayerFighter pf in _playerFightersParent.transform.GetComponentsInChildren<PlayerFighter>(true))
         {
             PlayerFighters.Add(pf);
+        }
+        if (PlayerFighters.Count != 1)
+        {
+            throw new Exception($"There should only be 1 player fighter object present, not {PlayerFighters.Count}");
         }
     }
 
     private void AddEnemyFightersToList()
     {
         Debug.Log($"{name}: Adding enemy fighters");
-        foreach (EnemyFighter ef in _enemyFightersParent.transform.GetComponentsInChildren<EnemyFighter>())
+        // Remember to check for inactive objects, as they should be disabled prior to starting the game
+        foreach (EnemyFighter ef in _enemyFightersParent.transform.GetComponentsInChildren<EnemyFighter>(true))
         {
             EnemyFighters.Add(ef);
+        }
+        if (EnemyFighters.Count == 0)
+        {
+            throw new Exception("There should be at least 1 enemy fighter object present, not 0");
         }
     }
 
     private void InitializePlayerFighter()
     {
-        if (PlayerFighters.Count != 1)
+        // Assuming the player object is inactive, which it should be
+        PlayerFighter playerFighter = PlayerFighters[0];
+        if (playerFighter != null)
         {
-            throw new Exception($"There should only be 1 player fighter object present, not {PlayerFighters.Count}");
-        }
-        else
-        {
-            // Assuming the player object is inactive, which it should be
-            PlayerFighter playerFighter = PlayerFighters[0];
-            if (playerFighter != null)
-            {
-                playerFighter.gameObject.SetActive(true);
-                Debug.Log($"{name}: Activating player {playerFighter}");
-            }
+            playerFighter.gameObject.SetActive(true);
+            Debug.Log($"{name}: Activating player {playerFighter}");
         }
     }
 
     private void InitializeEnemyFighter()
     {
-        if (EnemyFighters.Count == 0)
+        // Assuming all enemy objects are inactive, which they should be
+        // Pick a random enemy to make active
+        EnemyFighter enemyFighter = EnemyFighters[Random.Range(0, EnemyFighters.Count)];
+        if (enemyFighter != null)
         {
-            throw new Exception("There should be at least 1 enemy fighter object present, not 0");
-        }
-        else
-        {
-            // Assuming all enemy objects are inactive, which they should be
-            // Pick a random enemy to make active
-            EnemyFighter enemyFighter = EnemyFighters[Random.Range(0, EnemyFighters.Count)];
-            if (enemyFighter != null)
-            {
-                enemyFighter.gameObject.SetActive(true);
-                Debug.Log($"{name}: Activating enemy {enemyFighter}");
-            }
+            enemyFighter.gameObject.SetActive(true);
+            Debug.Log($"{name}: Activating enemy {enemyFighter}");
         }
     }
 }
