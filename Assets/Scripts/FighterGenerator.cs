@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class FighterGenerator : BasicSingleton<FighterGenerator>
 {
@@ -25,6 +26,7 @@ public class FighterGenerator : BasicSingleton<FighterGenerator>
      * Delegates
      */
     private event Action CreateFighters;
+    private event Action StartFirstFloor;
 
 
     /*
@@ -45,6 +47,18 @@ public class FighterGenerator : BasicSingleton<FighterGenerator>
         }
 
         /*
+         * Verifications
+         */
+        if (_enemyFightersParent.transform.childCount == 0)
+        {
+            throw new Exception("The enemy fighters parent object contains no child objects");
+        }
+        if (_playerFightersParent.transform.childCount == 0)
+        {
+            throw new Exception("The player fighters parent object contains no child objects");
+        }
+
+        /*
          * Initialization
          */
         EnemyFighters = new List<EnemyFighter>();
@@ -53,32 +67,84 @@ public class FighterGenerator : BasicSingleton<FighterGenerator>
 
     private void OnEnable()
     {
-        CreateFighters += CreatePlayerFighters;
-        CreateFighters += CreateEnemyFighters;
+        CreateFighters += AddPlayerFightersToList;
+        CreateFighters += AddEnemyFightersToList;
+
+        StartFirstFloor += InitializePlayerFighter;
+        StartFirstFloor += InitializeEnemyFighter;
     }
 
     private void Start()
     {
         CreateFighters?.Invoke();
+        StartFirstFloor?.Invoke();
     }
 
     private void OnDisable()
     {
-        CreateFighters -= CreatePlayerFighters;
-        CreateFighters -= CreateEnemyFighters;
+        CreateFighters -= AddPlayerFightersToList;
+        CreateFighters -= AddEnemyFightersToList;
+
+        StartFirstFloor -= InitializePlayerFighter;
+        StartFirstFloor -= InitializeEnemyFighter;
     }
 
 
     /*
      * Instance methods
      */
-    private void CreatePlayerFighters()
+    private void AddPlayerFightersToList()
     {
-        Debug.Log("${name}: Creating player fighters");
+        Debug.Log($"{name}: Adding player fighters");
+        foreach (PlayerFighter pf in _playerFightersParent.transform.GetComponentsInChildren<PlayerFighter>())
+        {
+            PlayerFighters.Add(pf);
+        }
     }
 
-    private void CreateEnemyFighters()
+    private void AddEnemyFightersToList()
     {
-        Debug.Log("${name}: Creating enemy fighters");
+        Debug.Log($"{name}: Adding enemy fighters");
+        foreach (EnemyFighter ef in _enemyFightersParent.transform.GetComponentsInChildren<EnemyFighter>())
+        {
+            EnemyFighters.Add(ef);
+        }
+    }
+
+    private void InitializePlayerFighter()
+    {
+        if (PlayerFighters.Count != 1)
+        {
+            throw new Exception($"There should only be 1 player fighter object present, not {PlayerFighters.Count}");
+        }
+        else
+        {
+            // Assuming the player object is inactive, which it should be
+            PlayerFighter playerFighter = PlayerFighters[0];
+            if (playerFighter != null)
+            {
+                playerFighter.gameObject.SetActive(true);
+                Debug.Log($"{name}: Activating player {playerFighter}");
+            }
+        }
+    }
+
+    private void InitializeEnemyFighter()
+    {
+        if (EnemyFighters.Count == 0)
+        {
+            throw new Exception("There should be at least 1 enemy fighter object present, not 0");
+        }
+        else
+        {
+            // Assuming all enemy objects are inactive, which they should be
+            // Pick a random enemy to make active
+            EnemyFighter enemyFighter = EnemyFighters[Random.Range(0, EnemyFighters.Count)];
+            if (enemyFighter != null)
+            {
+                enemyFighter.gameObject.SetActive(true);
+                Debug.Log($"{name}: Activating enemy {enemyFighter}");
+            }
+        }
     }
 }
