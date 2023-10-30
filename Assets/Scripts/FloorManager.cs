@@ -49,9 +49,4 @@ public class FloorManager : BasicSingleton<FloorManager>
     {
         _currentFloor++;
     }
-
-    public override void SetSingletonInstance()
-    {
-        BasicSingleton<FloorManager>.Instance = this;
-    }
 }

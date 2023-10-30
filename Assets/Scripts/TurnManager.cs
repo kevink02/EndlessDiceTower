@@ -77,9 +77,4 @@ public class TurnManager : BasicSingleton<TurnManager>
             }
         }
     }
-
-    public override void SetSingletonInstance()
-    {
-        BasicSingleton<TurnManager>.Instance = this;
-    }
 }

@@ -36,7 +36,7 @@ public abstract class BasicSingleton<T> : MonoBehaviour where T : BasicSingleton
             }
             return _instance;
         }
-        protected set
+        private set
         {
             if (_instance == null)
             {
@@ -79,20 +79,11 @@ public abstract class BasicSingleton<T> : MonoBehaviour where T : BasicSingleton
         if (TryGetComponent<T>(out T singletonUser))
         {
             Instance = singletonUser;
-        }
-        else if (Instance != null)
-        {
-            Instance.SetSingletonInstance();
+            //Debug.Log($"{name}: Setting singleton instance to {singletonUser}");
         }
         else
         {
             Debug.LogError($"Could not set singleton instance");
         }
     }
-
-
-    /*
-     * Interface methods
-     */
-    public abstract void SetSingletonInstance();
 }
