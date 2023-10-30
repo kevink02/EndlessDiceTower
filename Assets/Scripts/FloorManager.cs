@@ -50,10 +50,6 @@ public class FloorManager : BasicSingleton<FloorManager>
         _currentFloor++;
     }
 
-
-    /*
-     * Interface methods
-     */
     public override void SetSingletonInstance()
     {
         BasicSingleton<FloorManager>.Instance = this;

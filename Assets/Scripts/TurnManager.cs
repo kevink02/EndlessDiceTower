@@ -78,10 +78,6 @@ public class TurnManager : BasicSingleton<TurnManager>
         }
     }
 
-
-    /*
-     * Interface methods
-     */
     public override void SetSingletonInstance()
     {
         BasicSingleton<TurnManager>.Instance = this;
