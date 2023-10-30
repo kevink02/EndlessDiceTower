@@ -556,8 +556,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b6fa52c9c53f334ba2a2b2083efc852, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyFightersParent: {fileID: 0}
-  _playerFightersParent: {fileID: 0}
+  _enemyFightersParent: {fileID: 1132579977}
+  _playerFightersParent: {fileID: 1927150282}
 --- !u!1 &1927150282
 GameObject:
   m_ObjectHideFlags: 0
