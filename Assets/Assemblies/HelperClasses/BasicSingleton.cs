@@ -2,11 +2,11 @@ using UnityEngine;
 
 
 /*
- * A generic base class for singleton classes to derive from, to avoid repeating singleton code in those classes
  * This needs to be generic so the static variables are bound to a specific type of the singleton class and not to the entire class
+ * (ex: BasicSingleton<ClassA> is a different variable than BasicSingleton<ClassB>, even though BasicSingleton<T> is static
  */
 /// <summary>
-/// To use, have the singleton class derive from this class
+/// A generic base class for singleton classes to derive from, to avoid repeating singleton code in those classes.
 /// </summary>
 /// <typeparam name="T"></typeparam>
 public abstract class BasicSingleton<T> : MonoBehaviour where T : BasicSingleton<T>
