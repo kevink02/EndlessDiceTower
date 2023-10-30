@@ -31,10 +31,8 @@ public class TurnManager : BasicSingleton<TurnManager>
     /*
      * Unity methods
      */
-    private new void Awake()
+    private void Awake()
     {
-        base.Awake();
-
         /*
          * Initialize instance variables
          */

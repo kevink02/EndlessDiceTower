@@ -4,4 +4,11 @@ using UnityEngine;
 
 public class FighterGenerator : BasicSingleton<FighterGenerator>
 {
+    /*
+     * Unity methods
+     */
+    private void Awake()
+    {
+        
+    }
 }

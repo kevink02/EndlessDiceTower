@@ -19,10 +19,8 @@ public class FloorManager : BasicSingleton<FloorManager>
     /*
      * Unity methods
      */
-    private new void Awake()
+    private void Awake()
     {
-        base.Awake();
-
         _currentFloor = 0;
     }
 

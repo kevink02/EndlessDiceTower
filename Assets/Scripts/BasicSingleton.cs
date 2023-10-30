@@ -74,7 +74,7 @@ public abstract class BasicSingleton<T> : MonoBehaviour where T : BasicSingleton
     /*
      * Unity methods
      */
-    protected void Awake()
+    private void Awake()
     {
         if (TryGetComponent<T>(out T singletonUser))
         {
