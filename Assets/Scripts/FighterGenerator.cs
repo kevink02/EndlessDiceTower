@@ -6,6 +6,15 @@ using UnityEngine;
 public class FighterGenerator : BasicSingleton<FighterGenerator>
 {
     /*
+     * Instance variables
+     */
+    [SerializeField]
+    private GameObject _enemyFightersParent;
+    [SerializeField]
+    private GameObject _playerFightersParent;
+
+
+    /*
      * Properties
      */
     public List<EnemyFighter> EnemyFighters { get; private set; }
@@ -23,6 +32,21 @@ public class FighterGenerator : BasicSingleton<FighterGenerator>
      */
     private void Awake()
     {
+        /*
+         * Null checks
+         */
+        if (_enemyFightersParent == null)
+        {
+            throw new NullReferenceException("Enemy fighters parent object is not set");
+        }
+        if (_playerFightersParent == null)
+        {
+            throw new NullReferenceException("Player fighters parent object is not set");
+        }
+
+        /*
+         * Initialization
+         */
         EnemyFighters = new List<EnemyFighter>();
         PlayerFighters = new List<PlayerFighter>();
     }
