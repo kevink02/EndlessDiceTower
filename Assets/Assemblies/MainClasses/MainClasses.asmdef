@@ -2,7 +2,8 @@
     "name": "MainClasses",
     "rootNamespace": "",
     "references": [
-        "GUID:de24c36bf8f271847a9e6e3c5520e358"
+        "GUID:de24c36bf8f271847a9e6e3c5520e358",
+        "GUID:75469ad4d38634e559750d17036d5f7c"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
