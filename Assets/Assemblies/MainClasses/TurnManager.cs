@@ -23,12 +23,6 @@ public class TurnManager : BasicSingleton<TurnManager>
 
 
     /*
-     * Delegates
-     */
-    // public static event Action<DiceFighter> SetupTurnQueue;
-
-
-    /*
      * Unity methods
      */
     private void Awake()
@@ -56,6 +50,7 @@ public class TurnManager : BasicSingleton<TurnManager>
      */
     private void ResetTurnQueue()
     {
+        Debug.Log($"{name}: Resetting turn queue...");
         if (FighterTurnQueue.Count == 0)
         {
             Debug.LogWarning("The fighter queue is empty");

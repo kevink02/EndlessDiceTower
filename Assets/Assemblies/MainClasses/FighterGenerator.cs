@@ -23,20 +23,10 @@ public class FighterGenerator : BasicSingleton<FighterGenerator>
 
 
     /*
-     * Delegates
-     */
-    private event Action CreateFighters;
-    private event Action StartFirstFloor;
-
-
-    /*
      * Unity methods
      */
     private void Awake()
     {
-        /*
-         * Null checks
-         */
         if (_enemyFightersParent == null)
         {
             throw new NullReferenceException("Enemy fighters parent object is not set");
@@ -46,9 +36,6 @@ public class FighterGenerator : BasicSingleton<FighterGenerator>
             throw new NullReferenceException("Player fighters parent object is not set");
         }
 
-        /*
-         * Verifications
-         */
         if (_enemyFightersParent.transform.childCount == 0)
         {
             throw new Exception("The enemy fighters parent object contains no child objects");
@@ -58,35 +45,23 @@ public class FighterGenerator : BasicSingleton<FighterGenerator>
             throw new Exception("The player fighters parent object contains no child objects");
         }
 
-        /*
-         * Initialization
-         */
         EnemyFighters = new List<EnemyFighter>();
         PlayerFighters = new List<PlayerFighter>();
+
+        AddPlayerFightersToList();
+        AddEnemyFightersToList();
     }
 
     private void OnEnable()
     {
-        CreateFighters += AddPlayerFightersToList;
-        CreateFighters += AddEnemyFightersToList;
-
-        StartFirstFloor += InitializePlayerFighter;
-        StartFirstFloor += InitializeEnemyFighter;
-    }
-
-    private void Start()
-    {
-        CreateFighters?.Invoke();
-        StartFirstFloor?.Invoke();
+        BasicSingleton<FloorManager>.Instance.OnCreateFighters += InitializePlayerFighter;
+        BasicSingleton<FloorManager>.Instance.OnCreateFighters += InitializeEnemyFighter;
     }
 
     private void OnDisable()
     {
-        CreateFighters -= AddPlayerFightersToList;
-        CreateFighters -= AddEnemyFightersToList;
-
-        StartFirstFloor -= InitializePlayerFighter;
-        StartFirstFloor -= InitializeEnemyFighter;
+        BasicSingleton<FloorManager>.Instance.OnCreateFighters -= InitializePlayerFighter;
+        BasicSingleton<FloorManager>.Instance.OnCreateFighters -= InitializeEnemyFighter;
     }
 
 
