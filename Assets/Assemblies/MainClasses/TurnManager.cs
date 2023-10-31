@@ -7,19 +7,12 @@ public class TurnManager : BasicSingleton<TurnManager>
      * Instance variables
      */
     private bool _isPlayerTurn;
-    private Queue<DiceFighter> _fighterTurnQueue;
 
 
     /*
      * Properties
      */
-    public Queue<DiceFighter> FighterTurnQueue
-    {
-        get
-        {
-            return _fighterTurnQueue;
-        }
-    }
+    public Queue<DiceFighter> FighterTurnQueue { get; private set; }
 
 
     /*
@@ -31,16 +24,20 @@ public class TurnManager : BasicSingleton<TurnManager>
          * Initialize instance variables
          */
         _isPlayerTurn = true;
-        _fighterTurnQueue = new Queue<DiceFighter>();
+        FighterTurnQueue = new Queue<DiceFighter>();
     }
 
     private void OnEnable()
     {
+        BasicSingleton<FloorManager>.Instance.OnQueueFighters += AddFightersToTurnQueue;
+
         BasicSingleton<FloorManager>.Instance.OnCreateNewFloor += ResetTurnQueue;
     }
 
     private void OnDisable()
     {
+        BasicSingleton<FloorManager>.Instance.OnQueueFighters -= AddFightersToTurnQueue;
+
         BasicSingleton<FloorManager>.Instance.OnCreateNewFloor -= ResetTurnQueue;
     }
 
@@ -48,6 +45,18 @@ public class TurnManager : BasicSingleton<TurnManager>
     /*
      * Instance methods
      */
+    private void AddFightersToTurnQueue()
+    {
+        foreach (PlayerFighter pf in BasicSingleton<FighterGenerator>.Instance.PlayerFighters)
+        {
+            FighterTurnQueue.Enqueue(pf);
+        }
+        foreach (EnemyFighter ef in BasicSingleton<FighterGenerator>.Instance.EnemyFighters)
+        {
+            FighterTurnQueue.Enqueue(ef);
+        }
+    }
+
     private void ResetTurnQueue()
     {
         Debug.Log($"{name}: Resetting turn queue...");
@@ -68,6 +77,12 @@ public class TurnManager : BasicSingleton<TurnManager>
 
                 whileBreaker++;
             }
+        }
+
+        Debug.Log($"{name}: Checking turn queue...");
+        foreach (DiceFighter df in FighterTurnQueue)
+        {
+            Debug.Log($"Queue item: {df}");
         }
     }
 }

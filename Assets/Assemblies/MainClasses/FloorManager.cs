@@ -1,7 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+/// <summary>
+/// Manages the floors or levels of the game
+/// </summary>
 public class FloorManager : BasicSingleton<FloorManager>
 {
     /*
