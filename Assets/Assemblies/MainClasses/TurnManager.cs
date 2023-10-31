@@ -84,4 +84,20 @@ public class TurnManager : BasicSingleton<TurnManager>
             }
         }
     }
+
+    private void SwapTurns()
+    {
+        // Set to enemy's turn
+        if (_isPlayerTurn)
+        {
+            _isPlayerTurn = false;
+            _turnText.UpdateText("Turn: Enemy's turn");
+        }
+        // Set to player's turn
+        else
+        {
+            _isPlayerTurn = true;
+            _turnText.UpdateText("Turn: Player's turn");
+        }
+    }
 }

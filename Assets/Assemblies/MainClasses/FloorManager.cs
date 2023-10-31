@@ -63,5 +63,6 @@ public class FloorManager : BasicSingleton<FloorManager>
     private void IncrementFloorNumber()
     {
         _currentFloor++;
+        _floorText.UpdateText($"Floor {_currentFloor}");
     }
 }
