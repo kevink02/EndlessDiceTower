@@ -1,3 +1,6 @@
+using UnityEngine;
+using UnityEngine.UI;
+
 /// <summary>
 /// Manages the floors or levels of the game
 /// </summary>
@@ -6,6 +9,8 @@ public class FloorManager : BasicSingleton<FloorManager>
     /*
      * Instance variables
      */
+    [SerializeField]
+    private Text _floorText;
     private int _currentFloor;
 
 
@@ -23,6 +28,11 @@ public class FloorManager : BasicSingleton<FloorManager>
      */
     private void Awake()
     {
+        if (_floorText == null)
+        {
+            throw new System.NullReferenceException("Floor text object is not set");
+        }
+
         _currentFloor = 0;
     }
 

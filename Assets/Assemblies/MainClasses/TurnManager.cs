@@ -1,11 +1,14 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TurnManager : BasicSingleton<TurnManager>
 {
     /*
      * Instance variables
      */
+    [SerializeField]
+    private Text _turnText;
     private bool _isPlayerTurn;
 
 
@@ -20,6 +23,11 @@ public class TurnManager : BasicSingleton<TurnManager>
      */
     private void Awake()
     {
+        if (_turnText == null)
+        {
+            throw new System.NullReferenceException("Turn text object is not set");
+        }
+
         _isPlayerTurn = true;
         FighterTurnQueue = new Queue<DiceFighter>();
     }
