@@ -47,10 +47,8 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
         }
     }
 
-    // Stuff that should be done once singletons and events are set up
     protected void Start()
     {
-        BasicSingleton<TurnManager>.Instance.FighterTurnQueue.Enqueue(this);
     }
 
 
