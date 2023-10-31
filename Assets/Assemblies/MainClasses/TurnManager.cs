@@ -20,9 +20,6 @@ public class TurnManager : BasicSingleton<TurnManager>
      */
     private void Awake()
     {
-        /*
-         * Initialize instance variables
-         */
         _isPlayerTurn = true;
         FighterTurnQueue = new Queue<DiceFighter>();
     }
@@ -77,12 +74,6 @@ public class TurnManager : BasicSingleton<TurnManager>
 
                 whileBreaker++;
             }
-        }
-
-        Debug.Log($"{name}: Checking turn queue...");
-        foreach (DiceFighter df in FighterTurnQueue)
-        {
-            Debug.Log($"Queue item: {df}");
         }
     }
 }
