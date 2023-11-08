@@ -59,6 +59,14 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
 
 
     /*
+     * Instance methods
+     */
+    public abstract void StartTurn();
+
+    public abstract void EndTurn();
+
+
+    /*
      * Interface methods
      */
     public void RollDie(int index)

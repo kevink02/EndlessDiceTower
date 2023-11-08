@@ -16,4 +16,18 @@ public class EnemyFighter : DiceFighter
     {
         base.Start();
     }
+
+
+    /*
+     * Instance methods
+     */
+    public override void StartTurn()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void EndTurn()
+    {
+        throw new System.NotImplementedException();
+    }
 }

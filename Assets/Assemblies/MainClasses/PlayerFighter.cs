@@ -62,4 +62,14 @@ public class PlayerFighter : DiceFighter
             index++;
         }
     }
+
+    public override void StartTurn()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void EndTurn()
+    {
+        throw new System.NotImplementedException();
+    }
 }
