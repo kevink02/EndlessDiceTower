@@ -68,8 +68,8 @@ public class PlayerFighter : DiceFighter
         throw new System.NotImplementedException();
     }
 
-    public override void EndTurn()
+    public new void EndTurn()
     {
-        throw new System.NotImplementedException();
+        base.EndTurn();
     }
 }

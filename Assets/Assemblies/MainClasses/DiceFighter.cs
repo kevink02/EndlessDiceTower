@@ -63,7 +63,10 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
      */
     public abstract void StartTurn();
 
-    public abstract void EndTurn();
+    public void EndTurn()
+    {
+        OnFighterTurnEnd?.Invoke();
+    }
 
 
     /*
