@@ -9,7 +9,11 @@ public class TurnManager : BasicSingleton<TurnManager>
      */
     [SerializeField]
     private Text _turnText;
-    private bool _isPlayerTurn;
+    private TurnState _turnState;
+    private enum TurnState : int
+    {
+        PlayerTurn, EnemyTurn
+    }
 
 
     /*
@@ -28,7 +32,6 @@ public class TurnManager : BasicSingleton<TurnManager>
             throw new System.NullReferenceException("Turn text object is not set");
         }
 
-        _isPlayerTurn = true;
         FighterTurnQueue = new Queue<DiceFighter>();
     }
 
@@ -83,20 +86,22 @@ public class TurnManager : BasicSingleton<TurnManager>
                 whileBreaker++;
             }
         }
+
+        _turnState = TurnState.PlayerTurn;
     }
 
     private void SwapTurns()
     {
         // Set to enemy's turn
-        if (_isPlayerTurn)
+        if (_turnState == TurnState.PlayerTurn)
         {
-            _isPlayerTurn = false;
+            _turnState = TurnState.EnemyTurn;
             _turnText.UpdateText("Turn: Enemy's turn");
         }
         // Set to player's turn
-        else
+        else if (_turnState == TurnState.EnemyTurn)
         {
-            _isPlayerTurn = true;
+            _turnState = TurnState.PlayerTurn;
             _turnText.UpdateText("Turn: Player's turn");
         }
     }
