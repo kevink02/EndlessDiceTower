@@ -90,6 +90,18 @@ public class TurnManager : BasicSingleton<TurnManager>
         _turnState = TurnState.PlayerTurn;
     }
 
+    private void QueueNextFighter()
+    {
+        Debug.Log($"{name}: Getting next fighter in queue...");
+        if (FighterTurnQueue.Count == 0)
+        {
+            Debug.LogWarning("The fighter queue is empty");
+            return;
+        }
+        DiceFighter dequeuedFighter = FighterTurnQueue.Dequeue();
+        FighterTurnQueue.Enqueue(dequeuedFighter);
+    }
+
     private void SwapTurns()
     {
         // Set to enemy's turn
