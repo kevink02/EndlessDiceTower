@@ -40,6 +40,8 @@ public class TurnManager : BasicSingleton<TurnManager>
         BasicSingleton<FloorManager>.Instance.OnQueueFighters += AddFightersToTurnQueue;
 
         BasicSingleton<FloorManager>.Instance.OnCreateNewFloor += ResetTurnQueue;
+
+        DiceFighter.OnFighterTurnEnd += QueueNextFighter;
     }
 
     private void OnDisable()
@@ -47,6 +49,8 @@ public class TurnManager : BasicSingleton<TurnManager>
         BasicSingleton<FloorManager>.Instance.OnQueueFighters -= AddFightersToTurnQueue;
 
         BasicSingleton<FloorManager>.Instance.OnCreateNewFloor -= ResetTurnQueue;
+
+        DiceFighter.OnFighterTurnEnd -= QueueNextFighter;
     }
 
 

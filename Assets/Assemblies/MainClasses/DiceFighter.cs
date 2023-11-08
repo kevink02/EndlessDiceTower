@@ -37,6 +37,12 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
 
 
     /*
+     * Delegates
+     */
+    public static event System.Action OnFighterTurnEnd;
+
+
+    /*
      * Unity methods
      */
     protected void Awake()
