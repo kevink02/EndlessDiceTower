@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 014cd4dccb09f0b4ca8955ba2623d501, type: 3}
   m_Name: FireElement
   m_EditorClassIdentifier: 
+  _elementStrength: {fileID: 11400000, guid: d729a947746cbbb4caa2373cb7143323, type: 2}

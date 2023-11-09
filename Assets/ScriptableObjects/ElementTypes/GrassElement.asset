@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 014cd4dccb09f0b4ca8955ba2623d501, type: 3}
   m_Name: GrassElement
   m_EditorClassIdentifier: 
+  _elementStrength: {fileID: 11400000, guid: c1eb6294397f5344f899b5ca38850219, type: 2}
