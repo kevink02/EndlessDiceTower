@@ -63,6 +63,8 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
      */
     public abstract void StartTurn();
 
+    public abstract void DoTurn();
+
     public void EndTurn()
     {
         Debug.Log($"{name}: Ending turn...");

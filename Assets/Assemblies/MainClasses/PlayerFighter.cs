@@ -68,6 +68,11 @@ public class PlayerFighter : DiceFighter
         _playerInputActions.DiceRolling.Enable();
     }
 
+    public override void DoTurn()
+    {
+        throw new System.NotImplementedException();
+    }
+
     public new void EndTurn()
     {
         base.EndTurn();

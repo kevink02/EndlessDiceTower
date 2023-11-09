@@ -26,6 +26,11 @@ public class EnemyFighter : DiceFighter
         throw new System.NotImplementedException();
     }
 
+    public override void DoTurn()
+    {
+        throw new System.NotImplementedException();
+    }
+
     public new void EndTurn()
     {
         base.EndTurn();
