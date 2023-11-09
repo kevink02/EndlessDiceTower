@@ -23,9 +23,8 @@ public class PlayerFighter : DiceFighter
 
     private void OnEnable()
     {
-        _playerInputActions.DiceRolling.RollDie1.Enable();
-        _playerInputActions.DiceRolling.RollDie2.Enable();
-        _playerInputActions.DiceRolling.RollDie3.Enable();
+        _playerInputActions.DiceRolling.Enable();
+        _playerInputActions.DiceAttack.Enable();
     }
 
     private new void Start()
@@ -35,13 +34,14 @@ public class PlayerFighter : DiceFighter
         _playerInputActions.DiceRolling.RollDie1.performed += cxt => RollDie(0);
         _playerInputActions.DiceRolling.RollDie2.performed += cxt => RollDie(1);
         _playerInputActions.DiceRolling.RollDie3.performed += cxt => RollDie(2);
+
+        _playerInputActions.DiceAttack.Attack.performed += cxt => DoAttack();
     }
 
     private void OnDisable()
     {
-        _playerInputActions.DiceRolling.RollDie1.Disable();
-        _playerInputActions.DiceRolling.RollDie2.Disable();
-        _playerInputActions.DiceRolling.RollDie3.Disable();
+        _playerInputActions.DiceRolling.Disable();
+        _playerInputActions.DiceAttack.Disable();
     }
 
 
@@ -66,6 +66,7 @@ public class PlayerFighter : DiceFighter
     public override void StartTurn()
     {
         _playerInputActions.DiceRolling.Enable();
+        _playerInputActions.DiceAttack.Enable();
     }
 
     public override void DoTurn()
@@ -78,5 +79,11 @@ public class PlayerFighter : DiceFighter
         base.EndTurn();
 
         _playerInputActions.DiceRolling.Disable();
+        _playerInputActions.DiceAttack.Disable();
+    }
+
+    public override void DoAttack()
+    {
+        throw new System.NotImplementedException();
     }
 }

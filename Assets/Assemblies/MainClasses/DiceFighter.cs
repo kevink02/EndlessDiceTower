@@ -71,6 +71,8 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
         OnFighterTurnEnd?.Invoke();
     }
 
+    public abstract void DoAttack();
+
 
     /*
      * Interface methods
