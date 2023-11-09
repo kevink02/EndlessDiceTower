@@ -84,6 +84,29 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
 
     public abstract void DoAttack();
 
+    public void TakeDamage(int damageAmount, ElementType attackElement)
+    {
+        // Current element is the incoming attack's strength
+        if (_elementType == attackElement.ElementStrength)
+        {
+            _currentHealth -= 2 * damageAmount;
+        }
+        // Current element is the incoming attack's weakness
+        else if (_elementType.ElementStrength == attackElement)
+        {
+            _currentHealth -= damageAmount / 2;
+        }
+        else
+        {
+            _currentHealth -= damageAmount;
+        }
+
+        if (_currentHealth <= 0)
+        {
+            Debug.Log($"{name}: I am dead");
+        }
+    }
+
 
     /*
      * Interface methods
