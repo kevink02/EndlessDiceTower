@@ -71,7 +71,13 @@ public class PlayerFighter : DiceFighter
 
     public override void DoTurn()
     {
-        throw new System.NotImplementedException();
+        int totalDamage = 0;
+        foreach (RollableDie rollableDie in FighterDice)
+        {
+            totalDamage += rollableDie.RolledValue;
+        }
+        Debug.Log($"{name}: Doing a total of {totalDamage} damage");
+        BasicSingleton<FighterGenerator>.Instance.CurrentEnemyFighter.TakeDamage(default, default);
     }
 
     public new void EndTurn()
