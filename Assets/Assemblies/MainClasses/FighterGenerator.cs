@@ -20,6 +20,20 @@ public class FighterGenerator : BasicSingleton<FighterGenerator>
      */
     public List<EnemyFighter> EnemyFighters { get; private set; }
     public List<PlayerFighter> PlayerFighters { get; private set; }
+    public EnemyFighter CurrentEnemyFighter
+    {
+        get
+        {
+            foreach (EnemyFighter enemyFighter in EnemyFighters)
+            {
+                if (enemyFighter.gameObject.activeInHierarchy)
+                {
+                    return enemyFighter;
+                }
+            }
+            return null;
+        }
+    }
 
 
     /*
