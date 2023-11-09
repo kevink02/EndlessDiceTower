@@ -88,6 +88,7 @@ public class PlayerFighter : DiceFighter
         foreach (RollableDie rollableDie in FighterDice)
         {
             totalDamage += rollableDie.RolledValue;
+            Debug.Log($"{name}: {rollableDie} rolled a {rollableDie.RolledValue}");
         }
         Debug.Log($"{name}: Doing a total of {totalDamage} damage");
         BasicSingleton<FighterGenerator>.Instance.CurrentEnemyFighter.TakeDamage(totalDamage, FighterElement);
