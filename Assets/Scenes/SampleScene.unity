@@ -496,6 +496,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _diceRollerAssets: {fileID: 11400000, guid: f694cf877653c464b973521db401a7de, type: 2}
+  _elementType: {fileID: 11400000, guid: 64f33cc2f53e31f40adf32cbaba34963, type: 2}
   _rollableDice:
   - {fileID: 11400000, guid: 5f389430f5d725f478a1d672dcf05432, type: 2}
   - {fileID: 11400000, guid: 5f389430f5d725f478a1d672dcf05432, type: 2}
@@ -675,6 +676,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _diceRollerAssets: {fileID: 11400000, guid: 26a47128333912e46a6abc44d6a8a49d, type: 2}
+  _elementType: {fileID: 11400000, guid: 64f33cc2f53e31f40adf32cbaba34963, type: 2}
   _rollableDice:
   - {fileID: 11400000, guid: 5f389430f5d725f478a1d672dcf05432, type: 2}
   - {fileID: 11400000, guid: 5f389430f5d725f478a1d672dcf05432, type: 2}
