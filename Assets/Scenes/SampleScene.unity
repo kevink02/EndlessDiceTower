@@ -893,10 +893,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c817db24d7e40084cbb9536a010e523e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _fireElement: {fileID: 0}
-  _grassElement: {fileID: 0}
-  _neutralElement: {fileID: 0}
-  _waterElement: {fileID: 0}
+  _fireElement: {fileID: 11400000, guid: 7bcfc502ed0419c4fb21bb791df439ce, type: 2}
+  _grassElement: {fileID: 11400000, guid: d729a947746cbbb4caa2373cb7143323, type: 2}
+  _neutralElement: {fileID: 11400000, guid: 64f33cc2f53e31f40adf32cbaba34963, type: 2}
+  _waterElement: {fileID: 11400000, guid: c1eb6294397f5344f899b5ca38850219, type: 2}
 --- !u!1 &1459091567
 GameObject:
   m_ObjectHideFlags: 0
