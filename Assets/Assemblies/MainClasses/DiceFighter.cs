@@ -31,7 +31,7 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
             return _diceRollerAssets;
         }
     }
-    protected ElementType ElementType
+    protected ElementType FighterElement
     {
         get
         {
