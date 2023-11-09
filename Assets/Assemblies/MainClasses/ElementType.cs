@@ -1,10 +1,27 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// A Scriptable Object enum for categorizing element types
+/// </summary>
 [CreateAssetMenu(menuName = "New Element Type")]
 public class ElementType : ScriptableObject
 {
-    // This will be used instead of an enum for element types
-    // No variables or methods are needed as of now
+    /*
+     * Instance variables
+     */
+    [SerializeField]
+    // The element that would lose against this object's element type
+    private ElementType _elementStrength;
+
+
+    /*
+     * Unity methods
+     */
+    private void OnEnable()
+    {
+        if (_elementStrength == null)
+        {
+            throw new System.NullReferenceException("Element strength is not set");
+        }
+    }
 }
