@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -106,19 +107,21 @@ public class TurnManager : BasicSingleton<TurnManager>
         FighterTurnQueue.Enqueue(dequeuedFighter);
     }
 
-    private void SwapTurns()
+    private IEnumerator SwapTurns()
     {
         // Set to enemy's turn
         if (_turnState == TurnState.PlayerTurn)
         {
-            _turnState = TurnState.EnemyTurn;
             _turnText.UpdateText("Turn: Enemy's turn");
+            yield return new WaitForSeconds(2);
+            _turnState = TurnState.EnemyTurn;
         }
         // Set to player's turn
         else if (_turnState == TurnState.EnemyTurn)
         {
-            _turnState = TurnState.PlayerTurn;
             _turnText.UpdateText("Turn: Player's turn");
+            yield return new WaitForSeconds(2);
+            _turnState = TurnState.PlayerTurn;
         }
     }
 }

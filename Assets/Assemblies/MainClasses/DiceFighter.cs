@@ -65,6 +65,7 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
 
     public void EndTurn()
     {
+        Debug.Log($"{name}: Ending turn...");
         OnFighterTurnEnd?.Invoke();
     }
 
