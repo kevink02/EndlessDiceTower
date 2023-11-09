@@ -105,6 +105,13 @@ public class TurnManager : BasicSingleton<TurnManager>
         }
         DiceFighter dequeuedFighter = FighterTurnQueue.Dequeue();
         FighterTurnQueue.Enqueue(dequeuedFighter);
+        // Check if the next fighter in the queue is a different alliance than the previous fighter
+        // This indicates when it's time to swap which alliance's turn it is
+        if (dequeuedFighter.GetType() != FighterTurnQueue.Peek().GetType())
+        {
+            Debug.Log($"{name}: {dequeuedFighter.GetType()} is a different alliance than {FighterTurnQueue.Peek().GetType()}");
+            StartCoroutine(SwapTurns());
+        }
     }
 
     private IEnumerator SwapTurns()
