@@ -19,9 +19,5 @@ public class ElementType : ScriptableObject
      */
     private void OnEnable()
     {
-        if (_elementStrength == null)
-        {
-            throw new System.NullReferenceException("Element strength is not set");
-        }
     }
 }
