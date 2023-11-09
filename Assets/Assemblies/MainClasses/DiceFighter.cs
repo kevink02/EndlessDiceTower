@@ -31,6 +31,13 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
             return _diceRollerAssets;
         }
     }
+    protected ElementType ElementType
+    {
+        get
+        {
+            return _elementType;
+        }
+    }
     protected RollableDie[] FighterDice
     {
         get

@@ -77,7 +77,7 @@ public class PlayerFighter : DiceFighter
             totalDamage += rollableDie.RolledValue;
         }
         Debug.Log($"{name}: Doing a total of {totalDamage} damage");
-        BasicSingleton<FighterGenerator>.Instance.CurrentEnemyFighter.TakeDamage(default, default);
+        BasicSingleton<FighterGenerator>.Instance.CurrentEnemyFighter.TakeDamage(totalDamage, FighterElement);
     }
 
     public new void EndTurn()
