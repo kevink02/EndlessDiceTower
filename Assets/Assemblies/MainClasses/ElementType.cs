@@ -15,6 +15,18 @@ public class ElementType : ScriptableObject
 
 
     /*
+     * Properties
+     */
+    public ElementType ElementStrength
+    {
+        get
+        {
+            return _elementStrength;
+        }
+    }
+
+
+    /*
      * Unity methods
      */
     private void OnEnable()

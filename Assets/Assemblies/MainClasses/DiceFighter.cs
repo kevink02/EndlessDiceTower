@@ -8,7 +8,11 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
     [SerializeField]
     private DiceFighterAssets _diceRollerAssets;
     [SerializeField]
+    private ElementType _elementType;
+    [SerializeField]
     private RollableDie[] _rollableDice;
+    private int _currentHealth;
+    private int _maxHealth;
 
 
     /*
@@ -51,6 +55,13 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
         {
             GetComponent<SpriteRenderer>().sprite = FighterAssets.FighterTexture;
         }
+        if (_elementType == null)
+        {
+            throw new System.NullReferenceException("Element type is not set");
+        }
+
+        _maxHealth = 100;
+        _currentHealth = _maxHealth;
     }
 
     protected void Start()
