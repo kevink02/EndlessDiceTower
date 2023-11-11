@@ -22,6 +22,13 @@ public class RollableDie : ScriptableObject, IRollable
     /*
      * Properties
      */
+    public ElementType DieElement
+    {
+        get
+        {
+            return _elementType;
+        }
+    }
     public int RolledValue { get; private set; }
 
 

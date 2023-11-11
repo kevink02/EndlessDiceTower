@@ -147,7 +147,11 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
 
     private void AddDieRollToAttackList(int index)
     {
-
+        if (index >= 0 && index < FighterDice.Length && FighterDice[index])
+        {
+            FighterAttack fighterAttack = new FighterAttack(FighterDice[index].RolledValue, FighterDice[index].DieElement);
+            FighterAttacks.Add(fighterAttack);
+        }
     }
 
 
