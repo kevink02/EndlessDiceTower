@@ -35,7 +35,7 @@ public class PlayerFighter : DiceFighter
         _playerInputActions.DiceRolling.RollDie2.performed += cxt => RollDie(1);
         _playerInputActions.DiceRolling.RollDie3.performed += cxt => RollDie(2);
 
-        _playerInputActions.DiceAttack.Attack.performed += cxt => DoAttack();
+        _playerInputActions.DiceAttack.Attack.performed += cxt => DoTurn();
     }
 
     private void OnDisable()
@@ -71,7 +71,7 @@ public class PlayerFighter : DiceFighter
 
     public override void DoTurn()
     {
-        throw new System.NotImplementedException();
+        DoAttack();
     }
 
     public new void EndTurn()
