@@ -61,15 +61,30 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
      */
     protected void Awake()
     {
-        if (FighterAssets)
+        if (FighterAssets == null)
         {
-            GetComponent<SpriteRenderer>().sprite = FighterAssets.FighterTexture;
+            throw new System.NullReferenceException("Fighter's assets is not set");
         }
         if (_elementType == null)
         {
             throw new System.NullReferenceException("Element type is not set");
         }
+        if (FighterDice == null)
+        {
+            throw new System.NullReferenceException("Fighter's dice is not set");
+        }
+        else
+        {
+            foreach (RollableDie rollableDie in FighterDice)
+            {
+                if (rollableDie == null)
+                {
+                    throw new System.NullReferenceException("A fighter die is not set");
+                }
+            }
+        }
 
+        GetComponent<SpriteRenderer>().sprite = FighterAssets.FighterTexture;
         _maxHealth = 100;
         _currentHealth = _maxHealth;
         FighterAttacks = new List<FighterAttack>();
@@ -141,7 +156,7 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
      */
     public void RollDie(int index)
     {
-        if (FighterDice != null && index >= 0 && index < FighterDice.Length && FighterDice[index])
+        if (index >= 0 && index < FighterDice.Length && FighterDice[index])
         {
             FighterDice[index].SetRolledValue();
             Debug.Log($"{name}: Rolled a {FighterDice[index].GetRolledValue()} on die #{index}");
