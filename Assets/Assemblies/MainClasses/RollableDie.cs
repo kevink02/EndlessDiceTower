@@ -8,6 +8,8 @@ public class RollableDie : ScriptableObject, IRollable
      */
     // Replace the variable type later
     [SerializeField]
+    private ElementType _elementType;
+    [SerializeField]
     protected string[] AttackAnimations;
 
 

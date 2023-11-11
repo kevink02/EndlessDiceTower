@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class DiceFighter : MonoBehaviour, IDiceRoller
@@ -38,6 +39,7 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
             return _elementType;
         }
     }
+    protected List<FighterAttack> FighterAttacks { get; private set; }
     protected RollableDie[] FighterDice
     {
         get
@@ -50,6 +52,7 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
     /*
      * Delegates
      */
+    private event System.Action<int> OnDieRolled;
     public static event System.Action OnFighterTurnEnd;
 
 
@@ -69,10 +72,23 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
 
         _maxHealth = 100;
         _currentHealth = _maxHealth;
+        FighterAttacks = new List<FighterAttack>();
+    }
+
+    private void OnEnable()
+    {
+        OnDieRolled += RollDie;
+        OnDieRolled += AddDieRollToAttackList;
     }
 
     protected void Start()
     {
+    }
+
+    private void OnDisable()
+    {
+        OnDieRolled -= RollDie;
+        OnDieRolled -= AddDieRollToAttackList;
     }
 
 
@@ -112,6 +128,11 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
         {
             Debug.Log($"{name}: I am dead");
         }
+    }
+
+    private void AddDieRollToAttackList(int index)
+    {
+
     }
 
 
