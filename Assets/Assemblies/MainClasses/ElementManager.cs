@@ -7,15 +7,47 @@ public class ElementManager : BasicSingleton<ElementManager>
     /*
      * Instance variables
      */
-    // Replace these variable types with a Scriptable Object later
     [SerializeField]
-    private Object _fireElement;
+    private ElementType _fireElement;
     [SerializeField]
-    private Object _grassElement;
+    private ElementType _grassElement;
     [SerializeField]
-    private Object _neutralElement;
+    private ElementType _neutralElement;
     [SerializeField]
-    private Object _waterElement;
+    private ElementType _waterElement;
+
+
+    /*
+     * Properties
+     */
+    public ElementType FireElement
+    {
+        get
+        {
+            return _fireElement;
+        }
+    }
+    public ElementType GrassElement
+    {
+        get
+        {
+            return _grassElement;
+        }
+    }
+    public ElementType NeutralElement
+    {
+        get
+        {
+            return _neutralElement;
+        }
+    }
+    public ElementType WaterElement
+    {
+        get
+        {
+            return _waterElement;
+        }
+    }
 
 
     /*
