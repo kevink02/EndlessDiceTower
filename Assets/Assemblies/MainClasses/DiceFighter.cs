@@ -191,7 +191,6 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
         {
             FighterDice[index].SetRolledValue();
             Debug.Log($"{name}: Rolled a {FighterDice[index].GetRolledValue()} on die #{index}");
-            FighterDice[index].PlayAnimation();
         }
     }
 
