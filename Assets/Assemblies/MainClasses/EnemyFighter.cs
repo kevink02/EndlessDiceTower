@@ -32,11 +32,6 @@ public class EnemyFighter : DiceFighter
         throw new System.NotImplementedException();
     }
 
-    public new void EndTurn()
-    {
-        base.EndTurn();
-    }
-
     public override void DoAttack()
     {
         throw new System.NotImplementedException();
