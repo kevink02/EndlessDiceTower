@@ -21,8 +21,10 @@ public class PlayerFighter : DiceFighter
         _playerInputActions = new PlayerInputActions();
     }
 
-    private void OnEnable()
+    private new void OnEnable()
     {
+        base.OnEnable();
+
         _playerInputActions.DiceRolling.Enable();
         _playerInputActions.DiceAttack.Enable();
     }

@@ -12,6 +12,11 @@ public class EnemyFighter : DiceFighter
         base.Awake();
     }
 
+    private new void OnEnable()
+    {
+        base.OnEnable();
+    }
+
     private new void Start()
     {
         base.Start();

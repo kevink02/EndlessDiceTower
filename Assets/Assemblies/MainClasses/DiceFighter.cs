@@ -92,7 +92,7 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
         FighterAttacks = new List<FighterAttack>();
     }
 
-    private void OnEnable()
+    protected void OnEnable()
     {
         OnDieRolled += RollDie;
         OnDieRolled += AddDieRollToAttackList;
