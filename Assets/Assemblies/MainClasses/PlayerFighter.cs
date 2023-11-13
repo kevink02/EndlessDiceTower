@@ -73,6 +73,8 @@ public class PlayerFighter : DiceFighter
     public override void DoTurn()
     {
         OnAttackPerformed?.Invoke();
+
+        EndTurn();
     }
 
     public new void EndTurn()
@@ -81,6 +83,8 @@ public class PlayerFighter : DiceFighter
 
         _playerInputActions.DiceRolling.Disable();
         _playerInputActions.DiceAttack.Disable();
+
+        OnFighterTurnEnd?.Invoke();
     }
 
     public override void DoAttack()

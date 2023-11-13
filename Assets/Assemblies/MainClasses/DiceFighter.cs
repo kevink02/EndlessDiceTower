@@ -58,7 +58,8 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
     protected DieRolledEvent OnDieRolled;
     protected delegate void AttackPerformedEvent();
     protected AttackPerformedEvent OnAttackPerformed;
-    public static event System.Action OnFighterTurnEnd;
+    public delegate void FighterTurnEvent();
+    public static FighterTurnEvent OnFighterTurnEnd;
 
 
     /*
