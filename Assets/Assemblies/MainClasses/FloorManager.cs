@@ -10,6 +10,9 @@ public class FloorManager : BasicSingleton<FloorManager>
      * Instance variables
      */
     [SerializeField]
+    [Tooltip("The gameobjects that fighters will be positioned at in the scene view")]
+    private GameObject _leftFighterPosition, _rightFighterPosition;
+    [SerializeField]
     private Text _floorText;
     private int _currentFloor;
 
@@ -28,6 +31,10 @@ public class FloorManager : BasicSingleton<FloorManager>
      */
     private void Awake()
     {
+        if (_leftFighterPosition == null || _rightFighterPosition == null)
+        {
+            throw new System.NullReferenceException("Fighter position objects are not set");
+        }
         if (_floorText == null)
         {
             throw new System.NullReferenceException("Floor text object is not set");
@@ -39,6 +46,7 @@ public class FloorManager : BasicSingleton<FloorManager>
     private void OnEnable()
     {
         OnCreateNewFloor += IncrementFloorNumber;
+        OnCreateNewFloor += AssignFighterPositions;
     }
 
     private void Start()
@@ -54,6 +62,7 @@ public class FloorManager : BasicSingleton<FloorManager>
     private void OnDisable()
     {
         OnCreateNewFloor -= IncrementFloorNumber;
+        OnCreateNewFloor -= AssignFighterPositions;
     }
 
 
@@ -64,5 +73,11 @@ public class FloorManager : BasicSingleton<FloorManager>
     {
         _currentFloor++;
         _floorText.UpdateText($"Floor {_currentFloor}");
+    }
+
+    private void AssignFighterPositions()
+    {
+        BasicSingleton<FighterGenerator>.Instance.CurrentPlayerFighter.transform.position = _leftFighterPosition.transform.position;
+        BasicSingleton<FighterGenerator>.Instance.CurrentEnemyFighter.transform.position = _rightFighterPosition.transform.position;
     }
 }
