@@ -153,6 +153,7 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
         {
             FighterAttack fighterAttack = new FighterAttack(FighterDice[index].RolledValue, FighterDice[index].DieElement);
             FighterAttacks.Add(fighterAttack);
+            Debug.Log($"{name}: Added attack {fighterAttack}: {fighterAttack.AttackStrength}, {fighterAttack.AttackElement}");
         }
     }
 

@@ -33,9 +33,9 @@ public class PlayerFighter : DiceFighter
     {
         base.Start();
 
-        _playerInputActions.DiceRolling.RollDie1.performed += cxt => RollDie(0);
-        _playerInputActions.DiceRolling.RollDie2.performed += cxt => RollDie(1);
-        _playerInputActions.DiceRolling.RollDie3.performed += cxt => RollDie(2);
+        _playerInputActions.DiceRolling.RollDie1.performed += cxt => OnDieRolled?.Invoke(0);
+        _playerInputActions.DiceRolling.RollDie2.performed += cxt => OnDieRolled?.Invoke(1);
+        _playerInputActions.DiceRolling.RollDie3.performed += cxt => OnDieRolled?.Invoke(2);
 
         _playerInputActions.DiceAttack.Attack.performed += cxt => DoTurn();
     }
@@ -87,10 +87,10 @@ public class PlayerFighter : DiceFighter
     public override void DoAttack()
     {
         int totalDamage = 0;
-        foreach (RollableDie rollableDie in FighterDice)
+        foreach (FighterAttack fighterAttack in FighterAttacks)
         {
-            totalDamage += rollableDie.RolledValue;
-            Debug.Log($"{name}: {rollableDie} rolled a {rollableDie.RolledValue}");
+            totalDamage += fighterAttack.AttackStrength;
+            Debug.Log($"{name}: Added {fighterAttack.AttackStrength} {fighterAttack.AttackElement} damage");
         }
         Debug.Log($"{name}: Doing a total of {totalDamage} damage");
         BasicSingleton<FighterGenerator>.Instance.CurrentEnemyFighter.TakeDamage(totalDamage, FighterElement);
