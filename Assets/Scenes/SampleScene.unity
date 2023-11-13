@@ -384,6 +384,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1debd9d9adad744790fbed4feb2438f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _leftFighterPosition: {fileID: 267703321}
+  _rightFighterPosition: {fileID: 2101661297}
   _floorText: {fileID: 923014270}
 --- !u!1 &519420028
 GameObject:
