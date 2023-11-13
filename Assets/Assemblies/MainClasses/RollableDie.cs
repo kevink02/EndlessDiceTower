@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "New RollableDie")]
-public class RollableDie : ScriptableObject, IRollable
+public class RollableDie : ScriptableObject
 {
     /*
      * Instance variables
@@ -45,16 +45,11 @@ public class RollableDie : ScriptableObject, IRollable
 
 
     /*
-     * Interface methods
+     * Instance methods
      */
     public void SetRolledValue()
     {
         RolledValue = RandomGenerator.GetDieRoll();
-    }
-
-    public int GetRolledValue()
-    {
-        return RolledValue;
     }
 
     public void PlayAnimation()
