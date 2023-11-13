@@ -24,6 +24,9 @@ public class PlayerFighter : DiceFighter
     {
         base.OnEnable();
 
+        OnTurnEnd += _playerInputActions.DiceRolling.Disable;
+        OnTurnEnd += _playerInputActions.DiceAttack.Disable;
+
         _playerInputActions.DiceRolling.Enable();
         _playerInputActions.DiceAttack.Enable();
     }
@@ -41,6 +44,9 @@ public class PlayerFighter : DiceFighter
 
     private void OnDisable()
     {
+        OnTurnEnd -= _playerInputActions.DiceRolling.Disable;
+        OnTurnEnd -= _playerInputActions.DiceAttack.Disable;
+
         _playerInputActions.DiceRolling.Disable();
         _playerInputActions.DiceAttack.Disable();
     }
@@ -75,14 +81,6 @@ public class PlayerFighter : DiceFighter
         OnAttackPerformed?.Invoke();
 
         EndTurn();
-    }
-
-    public new void EndTurn()
-    {
-        base.EndTurn();
-
-        _playerInputActions.DiceRolling.Disable();
-        _playerInputActions.DiceAttack.Disable();
     }
 
     public override void DoAttack()
