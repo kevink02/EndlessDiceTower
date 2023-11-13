@@ -11,7 +11,7 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
     [SerializeField]
     private ElementType _elementType;
     [SerializeField]
-    private RollableDie[] _rollableDice;
+    private RollableDieWrapper[] _rollableDice;
     private int _currentHealth;
     private int _maxHealth;
 
@@ -42,7 +42,7 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
     // Key = attack element
     // Value = amount of total damage for corresponding element
     protected Dictionary<ElementType, int> FighterAttacks { get; private set; }
-    protected RollableDie[] FighterDice
+    protected RollableDieWrapper[] FighterDice
     {
         get
         {
@@ -80,9 +80,9 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
         }
         else
         {
-            foreach (RollableDie rollableDie in FighterDice)
+            foreach (RollableDieWrapper rollableDie in FighterDice)
             {
-                if (rollableDie == null)
+                if (rollableDie.WrappedDie == null)
                 {
                     throw new System.NullReferenceException("A fighter die is not set");
                 }
@@ -158,9 +158,10 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
 
     private void AddDieRollToCurrentAttacks(int index)
     {
-        if (index >= 0 && index < FighterDice.Length && FighterDice[index])
+        if (index >= 0 && index < FighterDice.Length && 
+            FighterDice[index].WrappedDie != null)
         {
-            ElementType key = FighterDice[index].DieElement;
+            ElementType key = FighterDice[index].WrappedDie.DieElement;
             if (FighterAttacks.ContainsKey(key))
             {
                 FighterAttacks[key] += FighterDice[index].RolledValue;
@@ -175,7 +176,7 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
 
     private void PlayAllDiceAnimations()
     {
-        foreach (RollableDie rollableDie in FighterDice)
+        foreach (RollableDieWrapper rollableDie in FighterDice)
         {
             rollableDie.PlayAnimation();
         }
@@ -187,9 +188,10 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
      */
     public void RollDie(int index)
     {
-        if (index >= 0 && index < FighterDice.Length && FighterDice[index])
+        if (index >= 0 && index < FighterDice.Length && 
+            FighterDice[index].WrappedDie != null)
         {
-            FighterDice[index].SetRolledValue();
+            FighterDice[index].RollDie();
             Debug.Log($"{name}: Rolled a {FighterDice[index].RolledValue} on die #{index}");
         }
     }
