@@ -190,7 +190,7 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
         if (index >= 0 && index < FighterDice.Length && FighterDice[index])
         {
             FighterDice[index].SetRolledValue();
-            Debug.Log($"{name}: Rolled a {FighterDice[index].GetRolledValue()} on die #{index}");
+            Debug.Log($"{name}: Rolled a {FighterDice[index].RolledValue} on die #{index}");
         }
     }
 
