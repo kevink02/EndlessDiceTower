@@ -39,7 +39,9 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
             return _elementType;
         }
     }
-    protected List<FighterAttack> FighterAttacks { get; private set; }
+    // Key = attack element
+    // Value = amount of total damage for corresponding element
+    protected Dictionary<ElementType, int> FighterAttacks { get; private set; }
     protected RollableDie[] FighterDice
     {
         get
@@ -89,13 +91,13 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
         GetComponent<SpriteRenderer>().sprite = FighterAssets.FighterTexture;
         _maxHealth = 100;
         _currentHealth = _maxHealth;
-        FighterAttacks = new List<FighterAttack>();
+        FighterAttacks = new Dictionary<ElementType, int>();
     }
 
     protected void OnEnable()
     {
         OnDieRolled += RollDie;
-        OnDieRolled += AddDieRollToAttackList;
+        OnDieRolled += AddDieRollToCurrentAttacks;
     }
 
     protected void Start()
@@ -105,7 +107,7 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
     private void OnDisable()
     {
         OnDieRolled -= RollDie;
-        OnDieRolled -= AddDieRollToAttackList;
+        OnDieRolled -= AddDieRollToCurrentAttacks;
     }
 
 
@@ -147,13 +149,20 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
         }
     }
 
-    private void AddDieRollToAttackList(int index)
+    private void AddDieRollToCurrentAttacks(int index)
     {
         if (index >= 0 && index < FighterDice.Length && FighterDice[index])
         {
-            FighterAttack fighterAttack = new FighterAttack(FighterDice[index].RolledValue, FighterDice[index].DieElement);
-            FighterAttacks.Add(fighterAttack);
-            Debug.Log($"{name}: Added attack {fighterAttack}: {fighterAttack.AttackStrength}, {fighterAttack.AttackElement}");
+            ElementType key = FighterDice[index].DieElement;
+            if (FighterAttacks.ContainsKey(key))
+            {
+                FighterAttacks[key] += FighterDice[index].RolledValue;
+            }
+            else
+            {
+                FighterAttacks.Add(key, FighterDice[index].RolledValue);
+            }
+            Debug.Log($"{name}: Added {FighterDice[index].RolledValue} damage with element {key}");
         }
     }
 

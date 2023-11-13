@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -84,13 +85,10 @@ public class PlayerFighter : DiceFighter
 
     public override void DoAttack()
     {
-        int totalDamage = 0;
-        foreach (FighterAttack fighterAttack in FighterAttacks)
+        foreach (KeyValuePair<ElementType, int> fighterAttack in FighterAttacks)
         {
-            totalDamage += fighterAttack.AttackStrength;
-            Debug.Log($"{name}: Added {fighterAttack.AttackStrength} {fighterAttack.AttackElement} damage");
+            BasicSingleton<FighterGenerator>.Instance.CurrentEnemyFighter.TakeDamage(fighterAttack.Value, fighterAttack.Key);
+            Debug.Log($"{name}: Added {fighterAttack.Value} {fighterAttack.Key} damage");
         }
-        Debug.Log($"{name}: Doing a total of {totalDamage} damage");
-        BasicSingleton<FighterGenerator>.Instance.CurrentEnemyFighter.TakeDamage(totalDamage, FighterElement);
     }
 }
