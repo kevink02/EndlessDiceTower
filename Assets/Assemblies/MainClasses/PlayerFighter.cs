@@ -72,7 +72,7 @@ public class PlayerFighter : DiceFighter
 
     public override void DoTurn()
     {
-        DoAttack();
+        OnAttackPerformed?.Invoke();
     }
 
     public new void EndTurn()

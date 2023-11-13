@@ -101,6 +101,7 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
         OnDieRolled += AddDieRollToCurrentAttacks;
 
         OnAttackPerformed += PlayAllDiceAnimations;
+        OnAttackPerformed += DoAttack;
     }
 
     protected void Start()
@@ -113,6 +114,7 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
         OnDieRolled -= AddDieRollToCurrentAttacks;
 
         OnAttackPerformed -= PlayAllDiceAnimations;
+        OnAttackPerformed -= DoAttack;
     }
 
 
