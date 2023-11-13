@@ -23,11 +23,28 @@ public class FighterGenerator : BasicSingleton<FighterGenerator>
     {
         get
         {
+            // If the enemy is active, then it is the current enemy
+            // All inactive enemies will become active when they are chosen to spawn on a new floor
             foreach (EnemyFighter enemyFighter in EnemyFighters)
             {
                 if (enemyFighter.gameObject.activeInHierarchy)
                 {
                     return enemyFighter;
+                }
+            }
+            return null;
+        }
+    }
+    public PlayerFighter CurrentPlayerFighter
+    {
+        get
+        {
+            // If the player is active, then it is the current player
+            foreach (PlayerFighter playerFighter in PlayerFighters)
+            {
+                if (playerFighter.gameObject.activeInHierarchy)
+                {
+                    return playerFighter;
                 }
             }
             return null;
