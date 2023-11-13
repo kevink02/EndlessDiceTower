@@ -59,7 +59,7 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
     protected delegate void AttackPerformedEvent();
     protected AttackPerformedEvent OnAttackPerformed;
     public delegate void FighterTurnEvent();
-    public static FighterTurnEvent OnFighterTurnEnd;
+    public static FighterTurnEvent OnTurnEnd;
 
 
     /*
@@ -129,7 +129,7 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
     public void EndTurn()
     {
         Debug.Log($"{name}: Ending turn...");
-        OnFighterTurnEnd?.Invoke();
+        OnTurnEnd?.Invoke();
     }
 
     public abstract void DoAttack();
