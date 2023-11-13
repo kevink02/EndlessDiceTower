@@ -30,6 +30,7 @@ public class RollableDieWrapper
     /*
      * Constructors
      */
+    // Constructor does not get called if its class is serializable
     public RollableDieWrapper(RollableDie rollableDie)
     {
         //WrappedDie = rollableDie;
@@ -41,7 +42,16 @@ public class RollableDieWrapper
      */
     public void RollDie()
     {
-        RolledValue = RandomGenerator.GetDieRoll();
+        // Only allow rolling the die once
+        if (!_wasRolledThisTurn)
+        {
+            RolledValue = RandomGenerator.GetDieRoll();
+            _wasRolledThisTurn = true;
+        }
+        else
+        {
+            Debug.Log($"You already rolled {WrappedDie.name}");
+        }
     }
 
     public void PlayAnimation()
