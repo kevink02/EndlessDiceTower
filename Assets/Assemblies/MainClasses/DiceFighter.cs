@@ -56,7 +56,8 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
      */
     protected delegate void DieRolledEvent(int index);
     protected DieRolledEvent OnDieRolled;
-    //private event System.Action<int> OnDieRolled;
+    protected delegate void AttackPerformedEvent();
+    protected AttackPerformedEvent OnAttackPerformed;
     public static event System.Action OnFighterTurnEnd;
 
 
@@ -98,6 +99,8 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
     {
         OnDieRolled += RollDie;
         OnDieRolled += AddDieRollToCurrentAttacks;
+
+        OnAttackPerformed += PlayAllDiceAnimations;
     }
 
     protected void Start()
@@ -108,6 +111,8 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
     {
         OnDieRolled -= RollDie;
         OnDieRolled -= AddDieRollToCurrentAttacks;
+
+        OnAttackPerformed -= PlayAllDiceAnimations;
     }
 
 
@@ -163,6 +168,14 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
                 FighterAttacks.Add(key, FighterDice[index].RolledValue);
             }
             Debug.Log($"{name}: Added {FighterDice[index].RolledValue} damage with element {key}");
+        }
+    }
+
+    private void PlayAllDiceAnimations()
+    {
+        foreach (RollableDie rollableDie in FighterDice)
+        {
+            rollableDie.PlayAnimation();
         }
     }
 
