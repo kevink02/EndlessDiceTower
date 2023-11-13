@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: NeutralDie
   m_EditorClassIdentifier: 
   _elementType: {fileID: 11400000, guid: 64f33cc2f53e31f40adf32cbaba34963, type: 2}
-  AttackAnimations:
-  - fire ball
-  - fire dragon
+  _attackAnimations:
+  - basic punch
+  - basic slash
