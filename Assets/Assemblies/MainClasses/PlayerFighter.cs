@@ -83,8 +83,6 @@ public class PlayerFighter : DiceFighter
 
         _playerInputActions.DiceRolling.Disable();
         _playerInputActions.DiceAttack.Disable();
-
-        OnFighterTurnEnd?.Invoke();
     }
 
     public override void DoAttack()
