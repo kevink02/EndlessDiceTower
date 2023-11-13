@@ -10,13 +10,21 @@ public class RollableDieWrapper
      * Instance variables
      */
     private bool _wasRolledThisTurn;
+    [SerializeField]
+    private RollableDie _wrappedRollableDie;
 
 
     /*
      * Properties
      */
     public int RolledValue { get; private set; }
-    public RollableDie WrappedDie { get; private set; }
+    public RollableDie WrappedDie
+    {
+        get
+        {
+            return _wrappedRollableDie;
+        }
+    }
 
 
     /*
@@ -24,7 +32,7 @@ public class RollableDieWrapper
      */
     public RollableDieWrapper(RollableDie rollableDie)
     {
-        WrappedDie = rollableDie;
+        //WrappedDie = rollableDie;
     }
 
     
