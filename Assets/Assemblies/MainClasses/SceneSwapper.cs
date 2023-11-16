@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SceneManager : BasicSingleton<SceneManager>
+public class SceneSwapper : BasicSingleton<SceneSwapper>
 {
     /*
      * Instance variables
