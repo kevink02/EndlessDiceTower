@@ -18,4 +18,10 @@ public class SceneSwapper : BasicSingleton<SceneSwapper>
     {
         Debug.Log($"{name}: Opening {sceneToSwitchTo}'s scene");
     }
+
+    public void QuitGame()
+    {
+        Debug.LogWarning($"{name}: Quitting the game...");
+        Application.Quit();
+    }
 }
