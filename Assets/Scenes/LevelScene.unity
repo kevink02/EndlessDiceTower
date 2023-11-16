@@ -513,8 +513,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7918fa51a0b02d142afe5a590e4c6eb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startScreen: {fileID: 0}
-  _gameScreen: {fileID: 0}
+  _startScene: {fileID: 11400000, guid: 6a0e51333a5c6904f8f5546c8b9b01ab, type: 2}
+  _levelScene: {fileID: 11400000, guid: 494018628e476984298c26021ddd8d68, type: 2}
 --- !u!1 &638772386
 GameObject:
   m_ObjectHideFlags: 0
