@@ -1,5 +1,6 @@
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// An SO class to represent a scene within the game
@@ -26,5 +27,26 @@ public class GameScene : ScriptableObject
         {
             return _scene;
         }
+    }
+
+
+    /*
+     * Unity methods
+     */
+    private void OnEnable()
+    {
+        if (_scene == null)
+        {
+            throw new System.NullReferenceException("Scene asset is not set");
+        }
+    }
+
+
+    /*
+     * Instance methods
+     */
+    public void SwitchScene()
+    {
+        SceneManager.LoadScene(SceneToSwitchTo.name);
     }
 }
