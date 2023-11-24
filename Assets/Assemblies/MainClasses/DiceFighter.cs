@@ -59,6 +59,7 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
     protected delegate void AttackPerformedEvent();
     protected AttackPerformedEvent OnAttackPerformed;
     public delegate void FighterTurnEvent();
+    public FighterTurnEvent OnTurnStart;
     public static FighterTurnEvent OnTurnEnd;
 
 
@@ -104,6 +105,8 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
 
     protected void OnEnable()
     {
+        OnTurnStart += UpdateDiceRollEligibility;
+
         OnDieRolled += RollDie;
         OnDieRolled += AddDieRollToCurrentAttacks;
 
@@ -117,6 +120,8 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
 
     private void OnDisable()
     {
+        OnTurnStart -= UpdateDiceRollEligibility;
+
         OnDieRolled -= RollDie;
         OnDieRolled -= AddDieRollToCurrentAttacks;
 
@@ -181,6 +186,14 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
                 FighterAttacks.Add(key, FighterDice[index].RolledValue);
             }
             Debug.Log($"{name}: Added {FighterDice[index].RolledValue} damage with element {key}");
+        }
+    }
+
+    public void UpdateDiceRollEligibility()
+    {
+        foreach (RollableDieWrapper rollableDieWrapper in FighterDice)
+        {
+            rollableDieWrapper.Reset();
         }
     }
 
