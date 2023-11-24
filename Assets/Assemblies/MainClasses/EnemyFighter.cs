@@ -40,9 +40,4 @@ public class EnemyFighter : DiceFighter
 
         EndTurn();
     }
-
-    public override void DoAttack()
-    {
-        throw new System.NotImplementedException();
-    }
 }
