@@ -94,6 +94,12 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
         _maxHealth = 100;
         _currentHealth = _maxHealth;
         FighterAttacks = new Dictionary<ElementType, int>();
+
+        // Reset the dice
+        foreach (RollableDieWrapper rollableDieWrapper in FighterDice)
+        {
+            rollableDieWrapper.Reset();
+        }
     }
 
     protected void OnEnable()
@@ -161,8 +167,10 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
     {
         if (index >= 0 && index < FighterDice.Length && 
             FighterDice[index].WrappedDie != null &&
-            !FighterDice[index].WasRolledThisTurn)
+            FighterDice[index].ShouldAddRoll)
         {
+            FighterDice[index].UpdateDiceRollEligibility();
+
             ElementType key = FighterDice[index].WrappedDie.DieElement;
             if (FighterAttacks.ContainsKey(key))
             {

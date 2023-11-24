@@ -16,7 +16,7 @@ public class RollableDieWrapper
     /*
      * Properties
      */
-    public bool WasRolledThisTurn { get; private set; }
+    public bool ShouldAddRoll { get; private set; }
     public int RolledValue { get; private set; }
     public RollableDie WrappedDie
     {
@@ -40,13 +40,27 @@ public class RollableDieWrapper
     /*
      * Instance methods
      */
+    public void Reset()
+    {
+        ShouldAddRoll = true;
+    }
+
+    /// <summary>
+    /// After rolling a die once, update whether future rolls should be added as well
+    /// </summary>
+    public void UpdateDiceRollEligibility()
+    {
+        // For now, only first rolls are eligible to be added
+        ShouldAddRoll = false;
+    }
+
     public void RollDie()
     {
         // Only allow rolling the die once
-        if (!WasRolledThisTurn)
+        if (!ShouldAddRoll)
         {
             RolledValue = RandomGenerator.GetDieRoll();
-            WasRolledThisTurn = true;
+            ShouldAddRoll = true;
         }
         else
         {
