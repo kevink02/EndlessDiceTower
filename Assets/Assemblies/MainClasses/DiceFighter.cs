@@ -160,7 +160,8 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
     private void AddDieRollToCurrentAttacks(int index)
     {
         if (index >= 0 && index < FighterDice.Length && 
-            FighterDice[index].WrappedDie != null)
+            FighterDice[index].WrappedDie != null &&
+            !FighterDice[index].WasRolledThisTurn)
         {
             ElementType key = FighterDice[index].WrappedDie.DieElement;
             if (FighterAttacks.ContainsKey(key))

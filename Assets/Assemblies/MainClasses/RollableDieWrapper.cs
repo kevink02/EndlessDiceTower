@@ -9,7 +9,6 @@ public class RollableDieWrapper
     /*
      * Instance variables
      */
-    private bool _wasRolledThisTurn;
     [SerializeField]
     private RollableDie _wrappedRollableDie;
 
@@ -17,6 +16,7 @@ public class RollableDieWrapper
     /*
      * Properties
      */
+    public bool WasRolledThisTurn { get; private set; }
     public int RolledValue { get; private set; }
     public RollableDie WrappedDie
     {
@@ -43,10 +43,10 @@ public class RollableDieWrapper
     public void RollDie()
     {
         // Only allow rolling the die once
-        if (!_wasRolledThisTurn)
+        if (!WasRolledThisTurn)
         {
             RolledValue = RandomGenerator.GetDieRoll();
-            _wasRolledThisTurn = true;
+            WasRolledThisTurn = true;
         }
         else
         {
