@@ -56,16 +56,7 @@ public class RollableDieWrapper
 
     public void RollDie()
     {
-        // Only allow rolling the die once
-        if (!ShouldAddRoll)
-        {
-            RolledValue = RandomGenerator.GetDieRoll();
-            ShouldAddRoll = true;
-        }
-        else
-        {
-            Debug.Log($"You already rolled {WrappedDie.name}");
-        }
+        RolledValue = RandomGenerator.GetDieRoll();
     }
 
     public void PlayAnimation()
