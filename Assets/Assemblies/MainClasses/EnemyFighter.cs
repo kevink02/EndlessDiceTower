@@ -24,12 +24,21 @@ public class EnemyFighter : DiceFighter
      */
     public override void StartTurn()
     {
-        throw new System.NotImplementedException();
+        DoTurn();
     }
 
     public override void DoTurn()
     {
-        throw new System.NotImplementedException();
+        // Roll all dice
+        for (int i = 0; i < 3; i++)
+        {
+            OnDieRolled?.Invoke(i);
+        }
+
+        // Perform the attack
+        OnAttackPerformed?.Invoke();
+
+        EndTurn();
     }
 
     public override void DoAttack()

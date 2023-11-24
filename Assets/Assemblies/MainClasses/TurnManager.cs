@@ -130,5 +130,8 @@ public class TurnManager : BasicSingleton<TurnManager>
             yield return new WaitForSeconds(2);
             _turnState = TurnState.PlayerTurn;
         }
+
+        // Start the next fighter's turn
+        FighterTurnQueue.Peek().StartTurn();
     }
 }
