@@ -222,7 +222,7 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
             FighterDice[index].WrappedDie != null)
         {
             FighterDice[index].RollDie();
-            Debug.Log($"{name}: Rolled a {FighterDice[index].RolledValue} on die #{index}");
+            //Debug.Log($"{name}: Rolled a {FighterDice[index].RolledValue} on die #{index}");
         }
     }
 
