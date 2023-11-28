@@ -55,11 +55,6 @@ public class EventHandlerTest : MonoBehaviour
     }
 }
 
-public abstract class EventArgs
-{
-    public string TestVar;
-}
-
 public class EventArgsA : EventArgs
 {
     public int TestVarA;
