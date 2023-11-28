@@ -8,16 +8,20 @@ public class TestMethods : MonoBehaviour
     /*
      * Unity methods
      */
+    // Object must be enabled
+    // Script component may or may not be enabled
     private void Awake()
     {
-        Debug.Log("OnAwake was called");
+        Debug.Log("Awake was called");
     }
 
+    // Object and script component must be enabled
     private void OnEnable()
     {
         Debug.Log("OnEnable was called");
     }
 
+    // Object and script component must be enabled
     private void Start()
     {
         Debug.Log("Start was called");
