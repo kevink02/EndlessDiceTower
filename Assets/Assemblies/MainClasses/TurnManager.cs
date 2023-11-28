@@ -58,7 +58,7 @@ public class TurnManager : BasicSingleton<TurnManager>
     /*
      * Instance methods
      */
-    private void AddFightersToTurnQueue()
+    private void AddFightersToTurnQueue(object sender, EventArgs eventArgs)
     {
         foreach (PlayerFighter pf in BasicSingleton<FighterGenerator>.Instance.PlayerFighters)
         {
@@ -70,7 +70,7 @@ public class TurnManager : BasicSingleton<TurnManager>
         }
     }
 
-    private void ResetTurnQueue()
+    private void ResetTurnQueue(object sender, EventArgs eventArgs)
     {
         Debug.Log($"{name}: Resetting turn queue...");
         if (FighterTurnQueue.Count == 0)

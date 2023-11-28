@@ -22,9 +22,9 @@ public class FloorManager : BasicSingleton<FloorManager>
      * Delegates
      */
     // Most delegates should be here to prevent risk of other classes' delegates invoking before these
-    public EventHandler<EventArgs> OnCreateFighters;
-    public event Action OnQueueFighters;
-    public event Action OnCreateNewFloor;
+    public event EventHandler<EventArgs> OnCreateFighters;
+    public event EventHandler<EventArgs> OnQueueFighters;
+    public event EventHandler<EventArgs> OnCreateNewFloor;
 
 
     /*
@@ -53,11 +53,11 @@ public class FloorManager : BasicSingleton<FloorManager>
     private void Start()
     {
         // Invoke when creating only the first floor
-        OnQueueFighters?.Invoke();
         OnCreateFighters?.Invoke(this, new DummyArgs());
+        OnQueueFighters?.Invoke(this, new DummyArgs());
 
         // Invoke when creating any new floor
-        OnCreateNewFloor?.Invoke();
+        OnCreateNewFloor?.Invoke(this, new DummyArgs());
     }
 
     private void OnDisable()
@@ -70,13 +70,13 @@ public class FloorManager : BasicSingleton<FloorManager>
     /*
      * Instance methods
      */
-    private void IncrementFloorNumber()
+    private void IncrementFloorNumber(object sender, EventArgs eventArgs)
     {
         _currentFloor++;
         _floorText.UpdateText($"Floor {_currentFloor}");
     }
 
-    private void AssignFighterPositions()
+    private void AssignFighterPositions(object sender, EventArgs eventArgs)
     {
         BasicSingleton<FighterGenerator>.Instance.CurrentPlayerFighter.transform.position = _leftFighterPosition.transform.position;
         BasicSingleton<FighterGenerator>.Instance.CurrentEnemyFighter.transform.position = _rightFighterPosition.transform.position;
