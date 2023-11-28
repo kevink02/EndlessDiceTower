@@ -53,8 +53,8 @@ public class FloorManager : BasicSingleton<FloorManager>
     private void Start()
     {
         // Invoke when creating only the first floor
-        OnCreateFighters?.Invoke(this, new EventArgsA());
         OnQueueFighters?.Invoke();
+        OnCreateFighters?.Invoke(this, new DummyArgs());
 
         // Invoke when creating any new floor
         OnCreateNewFloor?.Invoke();
