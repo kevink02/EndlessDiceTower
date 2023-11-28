@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,9 +22,9 @@ public class FloorManager : BasicSingleton<FloorManager>
      * Delegates
      */
     // Most delegates should be here to prevent risk of other classes' delegates invoking before these
-    public event System.Action OnCreateFighters;
-    public event System.Action OnQueueFighters;
-    public event System.Action OnCreateNewFloor;
+    public EventHandler<EventArgs> OnCreateFighters;
+    public event Action OnQueueFighters;
+    public event Action OnCreateNewFloor;
 
 
     /*
@@ -33,11 +34,11 @@ public class FloorManager : BasicSingleton<FloorManager>
     {
         if (_leftFighterPosition == null || _rightFighterPosition == null)
         {
-            throw new System.NullReferenceException("Fighter position objects are not set");
+            throw new NullReferenceException("Fighter position objects are not set");
         }
         if (_floorText == null)
         {
-            throw new System.NullReferenceException("Floor text object is not set");
+            throw new NullReferenceException("Floor text object is not set");
         }
 
         _currentFloor = 0;
@@ -52,7 +53,7 @@ public class FloorManager : BasicSingleton<FloorManager>
     private void Start()
     {
         // Invoke when creating only the first floor
-        OnCreateFighters?.Invoke();
+        OnCreateFighters?.Invoke(this, new EventArgsA());
         OnQueueFighters?.Invoke();
 
         // Invoke when creating any new floor

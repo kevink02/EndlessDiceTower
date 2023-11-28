@@ -126,7 +126,7 @@ public class FighterGenerator : BasicSingleton<FighterGenerator>
         }
     }
 
-    private void InitializePlayerFighter()
+    private void InitializePlayerFighter(object sender, EventArgs eventArgs)
     {
         // Assuming the player object is inactive, which it should be
         PlayerFighter playerFighter = PlayerFighters[0];
@@ -137,7 +137,7 @@ public class FighterGenerator : BasicSingleton<FighterGenerator>
         }
     }
 
-    private void InitializeEnemyFighter()
+    private void InitializeEnemyFighter(object sender, EventArgs eventArgs)
     {
         // Assuming all enemy objects are inactive, which they should be
         // Pick a random enemy to make active
