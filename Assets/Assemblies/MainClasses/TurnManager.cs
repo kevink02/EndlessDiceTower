@@ -20,6 +20,17 @@ public class TurnManager : BasicSingleton<TurnManager>
     /*
      * Properties
      */
+    public DiceFighter CurrentFighter
+    {
+        get
+        {
+            if (FighterTurnQueue != null && FighterTurnQueue.Count > 0)
+            {
+                return FighterTurnQueue.Peek();
+            }
+            return null;
+        }
+    }
     public Queue<DiceFighter> FighterTurnQueue { get; private set; }
 
 
