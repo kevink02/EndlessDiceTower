@@ -8,8 +8,7 @@ public class FighterGenerator : BasicSingleton<FighterGenerator>
     /*
      * Instance variables
      */
-    public const int MinFightersPerFloor = 2;
-    public const int MaxFightersPerFloor = 2;
+    public readonly IntRange FightersPerFloor = new IntRange(2, 2);
     [SerializeField]
     private GameObject _enemyFightersParent;
     [SerializeField]

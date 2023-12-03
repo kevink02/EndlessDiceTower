@@ -67,8 +67,7 @@ public class TurnManager : BasicSingleton<TurnManager>
         FighterTurnQueue.Enqueue(BasicSingleton<FighterGenerator>.Instance.CurrentEnemyFighter);
 
         // Check that the queue now has a valid amount of entries
-        if (FighterTurnQueue.Count < FighterGenerator.MinFightersPerFloor
-            || FighterTurnQueue.Count > FighterGenerator.MaxFightersPerFloor)
+        if (BasicSingleton<FighterGenerator>.Instance.FightersPerFloor.IsNotInRange(FighterTurnQueue.Count))
         {
             throw new System.Exception($"The turn queue has an invalid number of fighters, {FighterTurnQueue.Count}");
         }
