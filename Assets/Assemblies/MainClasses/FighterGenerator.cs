@@ -19,37 +19,8 @@ public class FighterGenerator : BasicSingleton<FighterGenerator>
      */
     public List<EnemyFighter> EnemyFighters { get; private set; }
     public List<PlayerFighter> PlayerFighters { get; private set; }
-    public EnemyFighter CurrentEnemyFighter
-    {
-        get
-        {
-            // If the enemy is active, then it is the current enemy
-            // All inactive enemies will become active when they are chosen to spawn on a new floor
-            foreach (EnemyFighter enemyFighter in EnemyFighters)
-            {
-                if (enemyFighter.gameObject.activeInHierarchy)
-                {
-                    return enemyFighter;
-                }
-            }
-            return null;
-        }
-    }
-    public PlayerFighter CurrentPlayerFighter
-    {
-        get
-        {
-            // If the player is active, then it is the current player
-            foreach (PlayerFighter playerFighter in PlayerFighters)
-            {
-                if (playerFighter.gameObject.activeInHierarchy)
-                {
-                    return playerFighter;
-                }
-            }
-            return null;
-        }
-    }
+    public EnemyFighter CurrentEnemyFighter { get; private set; }
+    public PlayerFighter CurrentPlayerFighter { get; private set; }
 
 
     /*
@@ -110,7 +81,7 @@ public class FighterGenerator : BasicSingleton<FighterGenerator>
         }
         if (PlayerFighters.Count != 1)
         {
-            throw new Exception($"There should only be 1 player fighter object present, not {PlayerFighters.Count}");
+            throw new Exception($"There should only be 1 player fighter present, not {PlayerFighters.Count}");
         }
     }
 
@@ -124,7 +95,7 @@ public class FighterGenerator : BasicSingleton<FighterGenerator>
         }
         if (EnemyFighters.Count == 0)
         {
-            throw new Exception("There should be at least 1 enemy fighter object present, not 0");
+            throw new Exception("There should be at least 1 enemy fighter present, not 0");
         }
     }
 
@@ -134,7 +105,11 @@ public class FighterGenerator : BasicSingleton<FighterGenerator>
         if (playerFighter != null)
         {
             playerFighter.gameObject.SetActive(true);
-            Debug.Log($"{name}: Activating player {playerFighter}");
+
+            // Set the reference to the current player fighter
+            CurrentPlayerFighter = playerFighter;
+
+            Debug.Log($"{name}: The current player is {playerFighter}");
         }
     }
 
@@ -152,7 +127,11 @@ public class FighterGenerator : BasicSingleton<FighterGenerator>
         if (enemyFighter != null)
         {
             enemyFighter.gameObject.SetActive(true);
-            Debug.Log($"{name}: Activating enemy {enemyFighter}");
+
+            // Set the reference to the current enemy fighter
+            CurrentEnemyFighter = enemyFighter;
+
+            Debug.Log($"{name}: The current enemy is {enemyFighter}");
         }
     }
 }
