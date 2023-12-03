@@ -84,16 +84,16 @@ public class FighterGenerator : BasicSingleton<FighterGenerator>
 
     private void OnEnable()
     {
-        BasicSingleton<FloorManager>.Instance.OnCreateFighters += InitializePlayerFighter;
-        BasicSingleton<FloorManager>.Instance.OnCreateFighters += DisableEnemyFighters;
-        BasicSingleton<FloorManager>.Instance.OnCreateFighters += InitializeRandomEnemyFighter;
+        BasicSingleton<FloorManager>.Instance.OnInitializeFighters += InitializePlayerFighter;
+        BasicSingleton<FloorManager>.Instance.OnInitializeFighters += DisableEnemyFighters;
+        BasicSingleton<FloorManager>.Instance.OnInitializeFighters += InitializeRandomEnemyFighter;
     }
 
     private void OnDisable()
     {
-        BasicSingleton<FloorManager>.Instance.OnCreateFighters -= InitializePlayerFighter;
-        BasicSingleton<FloorManager>.Instance.OnCreateFighters -= DisableEnemyFighters;
-        BasicSingleton<FloorManager>.Instance.OnCreateFighters -= InitializeRandomEnemyFighter;
+        BasicSingleton<FloorManager>.Instance.OnInitializeFighters -= InitializePlayerFighter;
+        BasicSingleton<FloorManager>.Instance.OnInitializeFighters -= DisableEnemyFighters;
+        BasicSingleton<FloorManager>.Instance.OnInitializeFighters -= InitializeRandomEnemyFighter;
     }
 
 
