@@ -38,7 +38,7 @@ public class TurnManager : BasicSingleton<TurnManager>
 
     private void OnEnable()
     {
-        BasicSingleton<FloorManager>.Instance.OnQueueFighters += AddFightersToTurnQueue;
+        BasicSingleton<FloorManager>.Instance.OnQueueFighters += ResetFighterTurnQueue;
 
         BasicSingleton<FloorManager>.Instance.OnCreateNewFloor += ResetTurnQueue;
 
@@ -47,7 +47,7 @@ public class TurnManager : BasicSingleton<TurnManager>
 
     private void OnDisable()
     {
-        BasicSingleton<FloorManager>.Instance.OnQueueFighters -= AddFightersToTurnQueue;
+        BasicSingleton<FloorManager>.Instance.OnQueueFighters -= ResetFighterTurnQueue;
 
         BasicSingleton<FloorManager>.Instance.OnCreateNewFloor -= ResetTurnQueue;
 
@@ -58,18 +58,23 @@ public class TurnManager : BasicSingleton<TurnManager>
     /*
      * Instance methods
      */
-    private void AddFightersToTurnQueue(object sender, EventArgs eventArgs)
+    private void ResetFighterTurnQueue(object sender, EventArgs eventArgs)
     {
-        foreach (PlayerFighter pf in BasicSingleton<FighterGenerator>.Instance.PlayerFighters)
-        {
-            FighterTurnQueue.Enqueue(pf);
-        }
-        foreach (EnemyFighter ef in BasicSingleton<FighterGenerator>.Instance.EnemyFighters)
-        {
-            FighterTurnQueue.Enqueue(ef);
-        }
+        FighterTurnQueue.Clear();
+
+        // Ensure the player is at the front of the queue
+        FighterTurnQueue.Enqueue(BasicSingleton<FighterGenerator>.Instance.CurrentPlayerFighter);
+        FighterTurnQueue.Enqueue(BasicSingleton<FighterGenerator>.Instance.CurrentEnemyFighter);
+
+
     }
 
+    /// <summary>
+    /// Use <seealso cref="ResetFighterTurnQueue(object, EventArgs)"/> instead
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="eventArgs"></param>
+    [System.Obsolete]
     private void ResetTurnQueue(object sender, EventArgs eventArgs)
     {
         Debug.Log($"{name}: Resetting turn queue...");
