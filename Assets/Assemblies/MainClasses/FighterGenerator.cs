@@ -85,13 +85,15 @@ public class FighterGenerator : BasicSingleton<FighterGenerator>
     private void OnEnable()
     {
         BasicSingleton<FloorManager>.Instance.OnCreateFighters += InitializePlayerFighter;
-        BasicSingleton<FloorManager>.Instance.OnCreateFighters += InitializeEnemyFighter;
+        BasicSingleton<FloorManager>.Instance.OnCreateFighters += DisableEnemyFighters;
+        BasicSingleton<FloorManager>.Instance.OnCreateFighters += InitializeRandomEnemyFighter;
     }
 
     private void OnDisable()
     {
         BasicSingleton<FloorManager>.Instance.OnCreateFighters -= InitializePlayerFighter;
-        BasicSingleton<FloorManager>.Instance.OnCreateFighters -= InitializeEnemyFighter;
+        BasicSingleton<FloorManager>.Instance.OnCreateFighters -= DisableEnemyFighters;
+        BasicSingleton<FloorManager>.Instance.OnCreateFighters -= InitializeRandomEnemyFighter;
     }
 
 
@@ -128,7 +130,6 @@ public class FighterGenerator : BasicSingleton<FighterGenerator>
 
     private void InitializePlayerFighter(object sender, EventArgs eventArgs)
     {
-        // Assuming the player object is inactive, which it should be
         PlayerFighter playerFighter = PlayerFighters[0];
         if (playerFighter != null)
         {
@@ -137,10 +138,16 @@ public class FighterGenerator : BasicSingleton<FighterGenerator>
         }
     }
 
-    private void InitializeEnemyFighter(object sender, EventArgs eventArgs)
+    private void DisableEnemyFighters(object sender, EventArgs eventArgs)
     {
-        // Assuming all enemy objects are inactive, which they should be
-        // Pick a random enemy to make active
+        foreach (EnemyFighter enemyFighter in EnemyFighters)
+        {
+            enemyFighter.gameObject.SetActive(false);
+        }
+    }
+
+    private void InitializeRandomEnemyFighter(object sender, EventArgs eventArgs)
+    {
         EnemyFighter enemyFighter = EnemyFighters[Random.Range(0, EnemyFighters.Count)];
         if (enemyFighter != null)
         {
