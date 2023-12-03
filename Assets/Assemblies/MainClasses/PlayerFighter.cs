@@ -69,6 +69,11 @@ public class PlayerFighter : DiceFighter
         }
     }
 
+    public override void ResetInstance()
+    {
+        throw new System.NotImplementedException();
+    }
+
     public override void StartTurn()
     {
         _playerInputActions.DiceRolling.Enable();

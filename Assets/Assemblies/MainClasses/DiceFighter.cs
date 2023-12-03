@@ -132,6 +132,11 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
     /*
      * Instance methods
      */
+    /// <summary>
+    /// Call to re-initialize the fighter to its starting "state"
+    /// </summary>
+    public abstract void ResetInstance();
+
     public abstract void StartTurn();
 
     public abstract void DoTurn();

@@ -16,6 +16,11 @@ public class EnemyFighter : DiceFighter
     /*
      * Instance methods
      */
+    public override void ResetInstance()
+    {
+        throw new System.NotImplementedException();
+    }
+
     public override void StartTurn()
     {
         DoTurn();
