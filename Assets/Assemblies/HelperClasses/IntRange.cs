@@ -36,4 +36,14 @@ public struct IntRange
     {
         return MinValue <= value && value <= MaxValue;
     }
+
+    /// <summary>
+    /// Checks if <paramref name="value"/> is not inclusive between the min and max values
+    /// </summary>
+    /// <param name="value"></param>
+    /// <returns></returns>
+    public bool IsNotInRange(int value)
+    {
+        return MinValue > value || value < MaxValue;
+    }
 }
