@@ -24,6 +24,8 @@ public class PlayerFighter : DiceFighter
     {
         base.OnEnable();
 
+        OnTurnStart += EnableDiceRolling;
+
         OnTurnEnd += _playerInputActions.DiceRolling.Disable;
         OnTurnEnd += _playerInputActions.DiceAttack.Disable;
 
@@ -36,8 +38,12 @@ public class PlayerFighter : DiceFighter
         _playerInputActions.DiceAttack.Enable();
     }
 
-    private void OnDisable()
+    private new void OnDisable()
     {
+        base.OnDisable();
+
+        OnTurnStart -= EnableDiceRolling;
+
         OnTurnEnd -= _playerInputActions.DiceRolling.Disable;
         OnTurnEnd -= _playerInputActions.DiceAttack.Disable;
 
@@ -54,6 +60,18 @@ public class PlayerFighter : DiceFighter
     /*
      * Instance methods
      */
+    private void EnableDiceRolling()
+    {
+        _playerInputActions.DiceRolling.Enable();
+        _playerInputActions.DiceAttack.Enable();
+    }
+
+    private void DisableDiceRolling()
+    {
+        _playerInputActions.DiceRolling.Disable();
+        _playerInputActions.DiceAttack.Disable();
+    }
+
     private void RollDie(InputAction.CallbackContext context)
     {
         Debug.Log($"key: {context}");
@@ -72,12 +90,6 @@ public class PlayerFighter : DiceFighter
     public override void ResetInstance(object sender, EventArgs eventArgs)
     {
         throw new System.NotImplementedException();
-    }
-
-    public override void StartTurn()
-    {
-        _playerInputActions.DiceRolling.Enable();
-        _playerInputActions.DiceAttack.Enable();
     }
 
     public override void DoTurn()

@@ -144,6 +144,6 @@ public class TurnManager : BasicSingleton<TurnManager>
         }
 
         // Start the next fighter's turn
-        FighterTurnQueue.Peek().StartTurn();
+        FighterTurnQueue.Peek().OnTurnStart?.Invoke();
     }
 }

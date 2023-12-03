@@ -13,17 +13,18 @@ public class EnemyFighter : DiceFighter
         base.OnEnable();
     }
 
+    private new void OnDisable()
+    {
+        base.OnDisable();
+    }
+
+
     /*
      * Instance methods
      */
     public override void ResetInstance(object sender, EventArgs eventArgs)
     {
         throw new System.NotImplementedException();
-    }
-
-    public override void StartTurn()
-    {
-        DoTurn();
     }
 
     public override void DoTurn()

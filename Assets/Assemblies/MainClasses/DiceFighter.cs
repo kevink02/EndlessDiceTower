@@ -119,7 +119,7 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
     // Do not implement Start() here
     // Want to ensure the arbitrary execution order of all classes' Start() does not mess anything up
 
-    private void OnDisable()
+    protected void OnDisable()
     {
         OnTurnStart -= UpdateDiceRollEligibility;
 
@@ -140,8 +140,6 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
     /// Call to re-initialize the fighter to its starting "state"
     /// </summary>
     public abstract void ResetInstance(object sender, EventArgs eventArgs);
-
-    public abstract void StartTurn();
 
     public abstract void DoTurn();
 
