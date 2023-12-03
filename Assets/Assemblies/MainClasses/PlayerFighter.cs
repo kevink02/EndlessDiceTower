@@ -26,8 +26,7 @@ public class PlayerFighter : DiceFighter
 
         OnTurnStart += EnableDiceRolling;
 
-        OnTurnEnd += _playerInputActions.DiceRolling.Disable;
-        OnTurnEnd += _playerInputActions.DiceAttack.Disable;
+        OnTurnEnd += DisableDiceRolling;
 
         _playerInputActions.DiceRolling.RollDie1.performed += cxt => OnDieRolled?.Invoke(0);
         _playerInputActions.DiceRolling.RollDie2.performed += cxt => OnDieRolled?.Invoke(1);
@@ -44,8 +43,7 @@ public class PlayerFighter : DiceFighter
 
         OnTurnStart -= EnableDiceRolling;
 
-        OnTurnEnd -= _playerInputActions.DiceRolling.Disable;
-        OnTurnEnd -= _playerInputActions.DiceAttack.Disable;
+        OnTurnEnd -= DisableDiceRolling;
 
         _playerInputActions.DiceRolling.RollDie1.performed -= cxt => OnDieRolled?.Invoke(0);
         _playerInputActions.DiceRolling.RollDie2.performed -= cxt => OnDieRolled?.Invoke(1);
