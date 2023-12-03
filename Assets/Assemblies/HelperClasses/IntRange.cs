@@ -1,9 +1,10 @@
 public struct IntRange
 {
     /*
-     * Instance variables
+     * Properties
      */
-    private int _minValue, _maxValue;
+    public int MinValue { get; private set; }
+    public int MaxValue { get; private set; }
 
     
     /*
@@ -11,16 +12,15 @@ public struct IntRange
      */
     public IntRange(int minValue, int maxValue)
     {
-        _minValue = minValue;
+        MinValue = minValue;
         if (maxValue >= minValue)
         {
-            _maxValue = maxValue;
+            MaxValue = maxValue;
         }
         else
         {
             throw new System.Exception("The given max value is not greater than or equal to the given min value");
         }
-        //_maxValue = (maxValue >= minValue) ? maxValue : minValue;
     }
 
 
@@ -34,6 +34,6 @@ public struct IntRange
     /// <returns></returns>
     public bool IsInRange(int value)
     {
-        return _minValue <= value && value <= _maxValue;
+        return MinValue <= value && value <= MaxValue;
     }
 }
