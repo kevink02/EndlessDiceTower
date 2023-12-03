@@ -27,6 +27,11 @@ public class PlayerFighter : DiceFighter
         OnTurnEnd += _playerInputActions.DiceRolling.Disable;
         OnTurnEnd += _playerInputActions.DiceAttack.Disable;
 
+        _playerInputActions.DiceRolling.RollDie1.performed += cxt => OnDieRolled?.Invoke(0);
+        _playerInputActions.DiceRolling.RollDie2.performed += cxt => OnDieRolled?.Invoke(1);
+        _playerInputActions.DiceRolling.RollDie3.performed += cxt => OnDieRolled?.Invoke(2);
+        _playerInputActions.DiceAttack.Attack.performed += cxt => DoTurn();
+
         _playerInputActions.DiceRolling.Enable();
         _playerInputActions.DiceAttack.Enable();
     }
@@ -34,18 +39,17 @@ public class PlayerFighter : DiceFighter
     private new void Start()
     {
         base.Start();
-
-        _playerInputActions.DiceRolling.RollDie1.performed += cxt => OnDieRolled?.Invoke(0);
-        _playerInputActions.DiceRolling.RollDie2.performed += cxt => OnDieRolled?.Invoke(1);
-        _playerInputActions.DiceRolling.RollDie3.performed += cxt => OnDieRolled?.Invoke(2);
-
-        _playerInputActions.DiceAttack.Attack.performed += cxt => DoTurn();
     }
 
     private void OnDisable()
     {
         OnTurnEnd -= _playerInputActions.DiceRolling.Disable;
         OnTurnEnd -= _playerInputActions.DiceAttack.Disable;
+
+        _playerInputActions.DiceRolling.RollDie1.performed -= cxt => OnDieRolled?.Invoke(0);
+        _playerInputActions.DiceRolling.RollDie2.performed -= cxt => OnDieRolled?.Invoke(1);
+        _playerInputActions.DiceRolling.RollDie3.performed -= cxt => OnDieRolled?.Invoke(2);
+        _playerInputActions.DiceAttack.Attack.performed -= cxt => DoTurn();
 
         _playerInputActions.DiceRolling.Disable();
         _playerInputActions.DiceAttack.Disable();
