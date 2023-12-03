@@ -36,11 +36,6 @@ public class PlayerFighter : DiceFighter
         _playerInputActions.DiceAttack.Enable();
     }
 
-    private new void Start()
-    {
-        base.Start();
-    }
-
     private void OnDisable()
     {
         OnTurnEnd -= _playerInputActions.DiceRolling.Disable;

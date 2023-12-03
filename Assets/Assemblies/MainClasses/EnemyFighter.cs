@@ -13,12 +13,6 @@ public class EnemyFighter : DiceFighter
         base.OnEnable();
     }
 
-    private new void Start()
-    {
-        base.Start();
-    }
-
-
     /*
      * Instance methods
      */

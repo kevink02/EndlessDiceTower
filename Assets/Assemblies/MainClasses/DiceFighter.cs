@@ -114,9 +114,8 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
         OnAttackPerformed += DoAttack;
     }
 
-    protected void Start()
-    {
-    }
+    // Do not implement Start() here
+    // Want to ensure the arbitrary execution order of all classes' Start() does not mess anything up
 
     private void OnDisable()
     {
