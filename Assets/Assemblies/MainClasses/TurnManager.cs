@@ -115,7 +115,7 @@ public class TurnManager : BasicSingleton<TurnManager>
 
     private void StartCurrentFighterTurn(object sender, EventArgs eventArgs)
     {
-        FighterTurnQueue.Peek().OnTurnStart?.Invoke();
+        CurrentFighter.OnTurnStart?.Invoke();
     }
 
     private void QueueNextFighter()
@@ -130,7 +130,7 @@ public class TurnManager : BasicSingleton<TurnManager>
         FighterTurnQueue.Enqueue(dequeuedFighter);
         // Check if the next fighter in the queue is a different alliance than the previous fighter
         // This indicates when it's time to swap which alliance's turn it is
-        if (dequeuedFighter.GetType() != FighterTurnQueue.Peek().GetType())
+        if (dequeuedFighter.GetType() != CurrentFighter.GetType())
         {
             Debug.Log($"{name}: {dequeuedFighter.GetType()} is a different alliance than {FighterTurnQueue.Peek().GetType()}");
             StartCoroutine(SwapTurns());
@@ -155,6 +155,6 @@ public class TurnManager : BasicSingleton<TurnManager>
         }
 
         // Start the next fighter's turn
-        FighterTurnQueue.Peek().OnTurnStart?.Invoke();
+        StartCurrentFighterTurn(this, new DummyArgs());
     }
 }
