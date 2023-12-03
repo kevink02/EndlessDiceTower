@@ -23,8 +23,9 @@ public class FloorManager : BasicSingleton<FloorManager>
      */
     // Most delegates should be here to prevent risk of other classes' delegates invoking before these
     public event EventHandler<EventArgs> OnInitializeFighters;
-    public event EventHandler<EventArgs> OnResetQueue;
     public event EventHandler<EventArgs> OnCreateNewFloor;
+    public event EventHandler<EventArgs> OnResetQueue;
+    public event EventHandler<EventArgs> OnResetCurrentFighters;
 
 
     /*
@@ -58,6 +59,7 @@ public class FloorManager : BasicSingleton<FloorManager>
         // Invoke when creating any new floor
         OnCreateNewFloor?.Invoke(this, new NewFloorArgs());
         OnResetQueue?.Invoke(this, new QueueFightersArgs());
+        OnResetCurrentFighters?.Invoke(this, new DummyArgs());
     }
 
     private void OnDisable()

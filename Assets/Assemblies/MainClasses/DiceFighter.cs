@@ -112,6 +112,8 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
 
         OnAttackPerformed += PlayAllDiceAnimations;
         OnAttackPerformed += DoAttack;
+
+        BasicSingleton<FloorManager>.Instance.OnResetCurrentFighters += ResetInstance;
     }
 
     // Do not implement Start() here
@@ -126,6 +128,8 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
 
         OnAttackPerformed -= PlayAllDiceAnimations;
         OnAttackPerformed -= DoAttack;
+
+        BasicSingleton<FloorManager>.Instance.OnResetCurrentFighters -= ResetInstance;
     }
 
 
@@ -135,7 +139,7 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
     /// <summary>
     /// Call to re-initialize the fighter to its starting "state"
     /// </summary>
-    public abstract void ResetInstance();
+    public abstract void ResetInstance(object sender, EventArgs eventArgs);
 
     public abstract void StartTurn();
 

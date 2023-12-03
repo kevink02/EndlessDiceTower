@@ -16,7 +16,7 @@ public class EnemyFighter : DiceFighter
     /*
      * Instance methods
      */
-    public override void ResetInstance()
+    public override void ResetInstance(object sender, EventArgs eventArgs)
     {
         throw new System.NotImplementedException();
     }

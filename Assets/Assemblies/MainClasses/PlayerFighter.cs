@@ -69,7 +69,7 @@ public class PlayerFighter : DiceFighter
         }
     }
 
-    public override void ResetInstance()
+    public override void ResetInstance(object sender, EventArgs eventArgs)
     {
         throw new System.NotImplementedException();
     }
