@@ -38,18 +38,14 @@ public class TurnManager : BasicSingleton<TurnManager>
 
     private void OnEnable()
     {
-        BasicSingleton<FloorManager>.Instance.OnQueueFighters += ResetFighterTurnQueue;
-
-        BasicSingleton<FloorManager>.Instance.OnCreateNewFloor += ResetTurnQueue;
+        BasicSingleton<FloorManager>.Instance.OnResetQueue += ResetFighterTurnQueue;
 
         DiceFighter.OnTurnEnd += QueueNextFighter;
     }
 
     private void OnDisable()
     {
-        BasicSingleton<FloorManager>.Instance.OnQueueFighters -= ResetFighterTurnQueue;
-
-        BasicSingleton<FloorManager>.Instance.OnCreateNewFloor -= ResetTurnQueue;
+        BasicSingleton<FloorManager>.Instance.OnResetQueue -= ResetFighterTurnQueue;
 
         DiceFighter.OnTurnEnd -= QueueNextFighter;
     }
