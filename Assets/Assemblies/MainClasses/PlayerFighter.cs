@@ -45,6 +45,7 @@ public class PlayerFighter : DiceFighter
 
         OnTurnEnd -= DisableDiceRolling;
 
+#warning This probably doesn't successfully unsubscribe from events since they have parameters
         _playerInputActions.DiceRolling.RollDie1.performed -= cxt => OnDieRolled?.Invoke(0);
         _playerInputActions.DiceRolling.RollDie2.performed -= cxt => OnDieRolled?.Invoke(1);
         _playerInputActions.DiceRolling.RollDie3.performed -= cxt => OnDieRolled?.Invoke(2);
