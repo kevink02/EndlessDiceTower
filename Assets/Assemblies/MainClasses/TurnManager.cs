@@ -169,11 +169,11 @@ public class TurnManager : BasicSingleton<TurnManager>
         _turnState = newTurnState;
         if (newTurnState == TurnState.PlayerTurn)
         {
-            _turnText.UpdateText("Turn: Enemy's turn");
+            _turnText.UpdateText("Turn: Player's turn");
         }
         else if (newTurnState == TurnState.EnemyTurn)
         {
-            _turnText.UpdateText("Turn: Player's turn");
+            _turnText.UpdateText("Turn: Enemy's turn");
         }
     }
 }
