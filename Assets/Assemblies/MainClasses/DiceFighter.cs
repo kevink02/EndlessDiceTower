@@ -225,7 +225,7 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
     {
         for (int i = 0; i < MaxDicePerFighter; i++)
         {
-            RollDie(i);
+            OnDieRolled?.Invoke(i);
         }
     }
 }

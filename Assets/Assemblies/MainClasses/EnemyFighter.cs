@@ -14,11 +14,15 @@ public class EnemyFighter : DiceFighter
     private new void OnEnable()
     {
         base.OnEnable();
+
+        OnTurnStart += DoTurn;
     }
 
     private new void OnDisable()
     {
         base.OnDisable();
+
+        OnTurnStart -= DoTurn;
     }
 
 
@@ -33,10 +37,7 @@ public class EnemyFighter : DiceFighter
     public override void DoTurn()
     {
         // Roll all dice
-        for (int i = 0; i < 3; i++)
-        {
-            OnDieRolled?.Invoke(i);
-        }
+        RollAllDice();
 
         // Perform the attack
         OnAttackPerformed?.Invoke();
