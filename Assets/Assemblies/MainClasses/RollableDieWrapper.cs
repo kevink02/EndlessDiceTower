@@ -35,6 +35,9 @@ public class RollableDieWrapper
     public void ResetInstance()
     {
         ShouldAddRoll = true;
+
+        // Prevents a previous die roll from counting if that die isn't rolled next turn
+        RolledValue = 0;
     }
 
     /// <summary>
