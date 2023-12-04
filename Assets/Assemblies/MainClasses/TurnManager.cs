@@ -60,6 +60,7 @@ public class TurnManager : BasicSingleton<TurnManager>
         BasicSingleton<FloorManager>.Instance.OnResetTurnQueue += StartCurrentFighterTurn;
 
         DiceFighter.OnTurnEnd += QueueNextFighter;
+        DiceFighter.OnTurnEnd += StartCurrentFighterTurn;
     }
 
     private void OnDisable()
@@ -68,6 +69,7 @@ public class TurnManager : BasicSingleton<TurnManager>
         BasicSingleton<FloorManager>.Instance.OnResetTurnQueue -= StartCurrentFighterTurn;
 
         DiceFighter.OnTurnEnd -= QueueNextFighter;
+        DiceFighter.OnTurnEnd -= StartCurrentFighterTurn;
     }
 
 
@@ -145,9 +147,6 @@ public class TurnManager : BasicSingleton<TurnManager>
             Debug.Log($"{name}: {dequeuedFighter.GetType()} is a different alliance than {FighterTurnQueue.Peek().GetType()}");
             SwapTurnState();
         }
-
-        // Start the next fighter's turn
-        StartCurrentFighterTurn(this, new DummyArgs());
     }
 
     /// <summary>
