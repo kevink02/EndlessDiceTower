@@ -88,12 +88,12 @@ public class PlayerFighter : DiceFighter
 
     public override void DoTurn(object sender, EventArgs eventArgs)
     {
-        OnAttackStart?.Invoke();
+        StartAttack();
 
         EndTurn();
     }
 
-    public override void DoAttack()
+    public override void DoAttack(object sender, EventArgs eventArgs)
     {
         foreach (KeyValuePair<ElementType, int> fighterAttack in FighterAttacks)
         {

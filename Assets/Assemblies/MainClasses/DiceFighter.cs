@@ -57,11 +57,11 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
      */
     protected delegate void DieRolledEvent(int index);
     protected DieRolledEvent OnDieRolled;
-    protected delegate void AttackPerformedEvent();
-    protected AttackPerformedEvent OnAttackStart;
-    public event EventHandler<EventArgs> OnTurnStart;
+    protected event EventHandler<EventArgs> OnAttackStart;
+    protected event EventHandler<EventArgs> OnTurnStart;
     public static event EventHandler<EventArgs> OnTurnEnd;
     public void StartTurn() => OnTurnStart?.Invoke(this, new DummyArgs());
+    public void StartAttack() => OnAttackStart?.Invoke(this, new DummyArgs());
     public void EndTurn() => OnTurnEnd?.Invoke(this, new DummyArgs());
 
 
@@ -143,7 +143,7 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
 
     public abstract void DoTurn(object sender, EventArgs eventArgs);
 
-    public abstract void DoAttack();
+    public abstract void DoAttack(object sender, EventArgs eventArgs);
 
     public void TakeDamage(int damageAmount, ElementType attackElement)
     {
@@ -194,7 +194,7 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
         FighterAttacks.Clear();
     }
 
-    private void PlayAllDiceAnimations()
+    private void PlayAllDiceAnimations(object sender, EventArgs eventArgs)
     {
         foreach (RollableDieWrapper rollableDie in FighterDice)
         {
