@@ -42,7 +42,7 @@ public class FighterStats : ScriptableObject
     /*
      * Unity methods
      */
-    private void OnEnable()
+    private void OnValidate()
     {
         if (_rollableDice.Length > MaxDicePerFighter)
         {
