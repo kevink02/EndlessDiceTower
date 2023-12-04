@@ -12,7 +12,7 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
     [SerializeField]
     private ElementType _elementType;
     [SerializeField]
-    private RollableDieWrapper[] _rollableDice;
+    private FighterStats _fighterStats;
     private int _currentHealth;
     private int _maxHealth;
 
@@ -37,13 +37,7 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
     // Key = attack element
     // Value = amount of total damage for corresponding element
     protected Dictionary<ElementType, int> FighterAttacks { get; private set; }
-    protected RollableDieWrapper[] FighterDice
-    {
-        get
-        {
-            return _rollableDice;
-        }
-    }
+    protected RollableDieWrapper[] FighterDice { get; private set; }
 
 
     /*
@@ -68,6 +62,10 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
         {
             throw new NullReferenceException("Fighter's assets is not set");
         }
+        if (_fighterStats == null)
+        {
+            throw new NullReferenceException("Fighter's stats SO is not set");
+        }
         if (_elementType == null)
         {
             throw new NullReferenceException("Element type is not set");
@@ -87,10 +85,7 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
             }
         }
 
-        GetComponent<SpriteRenderer>().sprite = FighterAssets.FighterTexture;
-        _maxHealth = 100;
-        _currentHealth = _maxHealth;
-        FighterAttacks = new Dictionary<ElementType, int>();
+        LoadInitialStats();
     }
 
     protected void OnEnable()
@@ -124,6 +119,33 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
     /*
      * Instance methods
      */
+    private void LoadInitialStats()
+    {
+        GetComponent<SpriteRenderer>().sprite = FighterAssets.FighterTexture;
+
+        _maxHealth = _fighterStats.MaximumHealth;
+        _currentHealth = _maxHealth;
+
+        FighterDice = new RollableDieWrapper[_fighterStats.RollableDice.Length];
+        for (int i = 0; i < _fighterStats.RollableDice.Length; i++)
+        {
+            FighterDice[i] = new RollableDieWrapper(_fighterStats.RollableDice[i]);
+        }
+
+        FighterAttacks = new Dictionary<ElementType, int>();
+    }
+
+    protected void ResetStats(object sender, EventArgs eventArgs)
+    {
+        _maxHealth = _fighterStats.MaximumHealth;
+        _currentHealth = _maxHealth;
+
+        for (int i = 0; i < _fighterStats.RollableDice.Length; i++)
+        {
+            FighterDice[i].UpdateDie(_fighterStats.RollableDice[i]);
+        }
+    }
+
     /// <summary>
     /// Call to re-initialize the fighter's dice
     /// </summary>

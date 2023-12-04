@@ -7,24 +7,11 @@ using UnityEngine;
 public class RollableDieWrapper
 {
     /*
-     * Instance variables
-     */
-    [SerializeField]
-    private RollableDie _wrappedRollableDie;
-
-
-    /*
      * Properties
      */
     public bool ShouldAddRoll { get; private set; }
     public int RolledValue { get; private set; }
-    public RollableDie WrappedDie
-    {
-        get
-        {
-            return _wrappedRollableDie;
-        }
-    }
+    public RollableDie WrappedDie { get; private set; }
 
 
     /*
@@ -33,13 +20,18 @@ public class RollableDieWrapper
     // Constructor does not get called if its class is serializable
     public RollableDieWrapper(RollableDie rollableDie)
     {
-        //WrappedDie = rollableDie;
+        WrappedDie = rollableDie;
     }
 
     
     /*
      * Instance methods
      */
+    public void UpdateDie(RollableDie newRollableDie)
+    {
+        WrappedDie = newRollableDie;
+    }
+
     public void ResetInstance()
     {
         ShouldAddRoll = true;
