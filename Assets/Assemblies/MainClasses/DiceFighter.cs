@@ -102,6 +102,7 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
     protected void OnEnable()
     {
         OnTurnStart += ResetDiceInstances;
+        OnTurnStart += RemoveAllCurrentAttacks;
 
         OnDieRolled += RollDie;
         OnDieRolled += AddDieRollToCurrentAttacks;
@@ -116,6 +117,7 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
     protected void OnDisable()
     {
         OnTurnStart -= ResetDiceInstances;
+        OnTurnStart -= RemoveAllCurrentAttacks;
 
         OnDieRolled -= RollDie;
         OnDieRolled -= AddDieRollToCurrentAttacks;
@@ -185,6 +187,11 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
             }
             Debug.Log($"{name}: Added {FighterDice[index].RolledValue} damage with element {key}");
         }
+    }
+
+    private void RemoveAllCurrentAttacks(object sender, EventArgs eventArgs)
+    {
+        FighterAttacks.Clear();
     }
 
     private void PlayAllDiceAnimations()
