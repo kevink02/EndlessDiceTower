@@ -18,12 +18,6 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
 
 
     /*
-     * Constant variables
-     */
-    private const int MaxDicePerFighter = 3;
-
-
-    /*
      * Properties
      */
     protected DiceFighterAssets FighterAssets
@@ -218,7 +212,7 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
 
     public void RollAllDice()
     {
-        for (int i = 0; i < MaxDicePerFighter; i++)
+        for (int i = 0; i < FighterStats.MaxDicePerFighter; i++)
         {
             OnDieRolled?.Invoke(i);
         }
