@@ -7,5 +7,21 @@ public abstract class EventArgs
 
 public class DummyArgs : EventArgs
 {
-    public string TestVar;
+}
+
+public class IndexArgs : EventArgs
+{
+    /*
+     * Properties
+     */
+    public int Index { get; private set; }
+
+
+    /*
+     * Constructors
+     */
+    public IndexArgs(int index)
+    {
+        Index = index;
+    }
 }
