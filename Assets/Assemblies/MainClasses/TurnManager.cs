@@ -127,7 +127,7 @@ public class TurnManager : BasicSingleton<TurnManager>
 
     private void StartCurrentFighterTurn(object sender, EventArgs eventArgs)
     {
-        CurrentFighter.OnTurnStart?.Invoke();
+        CurrentFighter.StartTurn();
     }
 
     private void QueueNextFighter(object sender, EventArgs eventArgs)

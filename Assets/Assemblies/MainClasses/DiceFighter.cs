@@ -59,9 +59,9 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
     protected DieRolledEvent OnDieRolled;
     protected delegate void AttackPerformedEvent();
     protected AttackPerformedEvent OnAttackStart;
-    public delegate void FighterTurnEvent();
-    public FighterTurnEvent OnTurnStart;
+    public event EventHandler<EventArgs> OnTurnStart;
     public static event EventHandler<EventArgs> OnTurnEnd;
+    public void StartTurn() => OnTurnStart?.Invoke(this, new DummyArgs());
     public void EndTurn() => OnTurnEnd?.Invoke(this, new DummyArgs());
 
 
@@ -97,17 +97,11 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
         _maxHealth = 100;
         _currentHealth = _maxHealth;
         FighterAttacks = new Dictionary<ElementType, int>();
-
-        // Reset the dice
-        foreach (RollableDieWrapper rollableDieWrapper in FighterDice)
-        {
-            rollableDieWrapper.Reset();
-        }
     }
 
     protected void OnEnable()
     {
-        OnTurnStart += UpdateDiceRollEligibility;
+        OnTurnStart += ResetDiceInstances;
 
         OnDieRolled += RollDie;
         OnDieRolled += AddDieRollToCurrentAttacks;
@@ -121,7 +115,7 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
 
     protected void OnDisable()
     {
-        OnTurnStart -= UpdateDiceRollEligibility;
+        OnTurnStart -= ResetDiceInstances;
 
         OnDieRolled -= RollDie;
         OnDieRolled -= AddDieRollToCurrentAttacks;
@@ -135,14 +129,17 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
      * Instance methods
      */
     /// <summary>
-    /// Call to re-initialize the fighter to its starting "state"
+    /// Call to re-initialize the fighter's dice
     /// </summary>
     protected void ResetDiceInstances(object sender, EventArgs eventArgs)
     {
-
+        foreach (RollableDieWrapper rollableDieWrapper in FighterDice)
+        {
+            rollableDieWrapper.Reset();
+        }
     }
 
-    public abstract void DoTurn();
+    public abstract void DoTurn(object sender, EventArgs eventArgs);
 
     public abstract void DoAttack();
 
@@ -187,14 +184,6 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
                 FighterAttacks.Add(key, FighterDice[index].RolledValue);
             }
             Debug.Log($"{name}: Added {FighterDice[index].RolledValue} damage with element {key}");
-        }
-    }
-
-    public void UpdateDiceRollEligibility()
-    {
-        foreach (RollableDieWrapper rollableDieWrapper in FighterDice)
-        {
-            rollableDieWrapper.Reset();
         }
     }
 

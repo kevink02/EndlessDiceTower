@@ -29,7 +29,7 @@ public class EnemyFighter : DiceFighter
     /*
      * Instance methods
      */
-    public override void DoTurn()
+    public override void DoTurn(object sender, EventArgs eventArgs)
     {
         // Roll all dice
         RollAllDice();

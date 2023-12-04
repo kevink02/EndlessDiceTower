@@ -58,7 +58,7 @@ public class PlayerFighter : DiceFighter
     /*
      * Instance methods
      */
-    private void EnableDiceRolling()
+    private void EnableDiceRolling(object sender, EventArgs eventArgs)
     {
         _playerInputActions.DiceRolling.Enable();
         _playerInputActions.DiceAttack.Enable();
@@ -85,7 +85,7 @@ public class PlayerFighter : DiceFighter
         }
     }
 
-    public override void DoTurn()
+    public override void DoTurn(object sender, EventArgs eventArgs)
     {
         OnAttackStart?.Invoke();
 
