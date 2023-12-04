@@ -91,7 +91,7 @@ public class TurnManager : BasicSingleton<TurnManager>
         }
 
         // Set the indicator to be the player's turn
-        _turnState = TurnState.PlayerTurn;
+        UpdateTurnState(TurnState.PlayerTurn);
     }
 
     /// <summary>
