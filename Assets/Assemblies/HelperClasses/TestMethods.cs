@@ -6,6 +6,13 @@ using UnityEngine;
 public class TestMethods : MonoBehaviour
 {
     /*
+     * Instance variables
+     */
+    [SerializeField]
+    private TestSOMethods _testSOMethods;
+
+
+    /*
      * Unity methods
      */
     // Object must be enabled
