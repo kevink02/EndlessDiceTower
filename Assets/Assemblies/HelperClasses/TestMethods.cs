@@ -19,6 +19,12 @@ public class TestMethods : MonoBehaviour
     // Script component may or may not be enabled
     private void Awake()
     {
+        if (_testSOMethods == null)
+        {
+            throw new System.NullReferenceException("Test SO Methods object is not set");
+        }
+
+
         Debug.Log("Awake was called");
     }
 
