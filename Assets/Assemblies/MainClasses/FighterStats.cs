@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,8 @@ public class FighterStats : ScriptableObject
     /*
      * Instance variables
      */
+    [SerializeField]
+    private ElementType _elementType;
     [SerializeField]
     private int _maximumHealth;
     [SerializeField]
@@ -23,6 +26,13 @@ public class FighterStats : ScriptableObject
     /*
      * Properties
      */
+    public ElementType FighterElement
+    {
+        get
+        {
+            return _elementType;
+        }
+    }
     public int MaximumHealth
     {
         get
@@ -44,13 +54,21 @@ public class FighterStats : ScriptableObject
      */
     private void OnValidate()
     {
+        if (_elementType == null)
+        {
+            throw new NullReferenceException("Element type is not set");
+        }
+        if (_maximumHealth <= 0)
+        {
+            throw new Exception("The fighter's health is too low");
+        }
         if (_rollableDice.Length > MaxDicePerFighter)
         {
-            throw new System.Exception("The fighter has too many dice equipped");
+            throw new Exception("The fighter has too many dice equipped");
         }
         else if (_rollableDice.Length == 0)
         {
-            throw new System.Exception("The fighter has no dice equipped");
+            throw new Exception("The fighter has no dice equipped");
         }
     }
 }

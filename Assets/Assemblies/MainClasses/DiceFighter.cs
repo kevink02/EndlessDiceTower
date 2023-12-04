@@ -10,8 +10,6 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
     [SerializeField]
     private DiceFighterAssets _diceRollerAssets;
     [SerializeField]
-    private ElementType _elementType;
-    [SerializeField]
     private FighterStats _fighterStats;
     private int _currentHealth;
     private int _maxHealth;
@@ -25,13 +23,6 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
         get
         {
             return _diceRollerAssets;
-        }
-    }
-    protected ElementType FighterElement
-    {
-        get
-        {
-            return _elementType;
         }
     }
     // Key = attack element
@@ -65,24 +56,6 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
         if (_fighterStats == null)
         {
             throw new NullReferenceException("Fighter's stats SO is not set");
-        }
-        if (_elementType == null)
-        {
-            throw new NullReferenceException("Element type is not set");
-        }
-        if (FighterDice == null)
-        {
-            throw new NullReferenceException("Fighter's dice is not set");
-        }
-        else
-        {
-            foreach (RollableDieWrapper rollableDie in FighterDice)
-            {
-                if (rollableDie.WrappedDie == null)
-                {
-                    throw new NullReferenceException("A fighter die is not set");
-                }
-            }
         }
 
         LoadInitialStats();
@@ -166,12 +139,12 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
     public void TakeDamage(int damageAmount, ElementType attackElement)
     {
         // Current element is the incoming attack's strength
-        if (_elementType == attackElement.ElementStrength)
+        if (_fighterStats.FighterElement == attackElement.ElementStrength)
         {
             _currentHealth -= 2 * damageAmount;
         }
         // Current element is the incoming attack's weakness
-        else if (_elementType.ElementStrength == attackElement)
+        else if (_fighterStats.FighterElement.ElementStrength == attackElement)
         {
             _currentHealth -= damageAmount / 2;
         }
