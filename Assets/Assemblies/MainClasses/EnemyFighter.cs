@@ -29,11 +29,6 @@ public class EnemyFighter : DiceFighter
     /*
      * Instance methods
      */
-    public override void ResetInstance(object sender, EventArgs eventArgs)
-    {
-        Debug.Log($"Resetting {name}'s instance");
-    }
-
     public override void DoTurn()
     {
         // Roll all dice

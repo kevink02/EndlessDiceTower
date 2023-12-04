@@ -72,15 +72,15 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
     {
         if (FighterAssets == null)
         {
-            throw new System.NullReferenceException("Fighter's assets is not set");
+            throw new NullReferenceException("Fighter's assets is not set");
         }
         if (_elementType == null)
         {
-            throw new System.NullReferenceException("Element type is not set");
+            throw new NullReferenceException("Element type is not set");
         }
         if (FighterDice == null)
         {
-            throw new System.NullReferenceException("Fighter's dice is not set");
+            throw new NullReferenceException("Fighter's dice is not set");
         }
         else
         {
@@ -88,7 +88,7 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
             {
                 if (rollableDie.WrappedDie == null)
                 {
-                    throw new System.NullReferenceException("A fighter die is not set");
+                    throw new NullReferenceException("A fighter die is not set");
                 }
             }
         }
@@ -141,7 +141,10 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
     /// <summary>
     /// Call to re-initialize the fighter to its starting "state"
     /// </summary>
-    public abstract void ResetInstance(object sender, EventArgs eventArgs);
+    protected void ResetDiceInstances(object sender, EventArgs eventArgs)
+    {
+
+    }
 
     public abstract void DoTurn();
 

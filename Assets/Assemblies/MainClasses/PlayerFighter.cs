@@ -85,11 +85,6 @@ public class PlayerFighter : DiceFighter
         }
     }
 
-    public override void ResetInstance(object sender, EventArgs eventArgs)
-    {
-        Debug.Log($"Resetting {name}'s instance");
-    }
-
     public override void DoTurn()
     {
         OnAttackStart?.Invoke();
