@@ -128,7 +128,7 @@ public class TurnManager : BasicSingleton<TurnManager>
         CurrentFighter.OnTurnStart?.Invoke();
     }
 
-    private void QueueNextFighter()
+    private void QueueNextFighter(object sender, EventArgs eventArgs)
     {
         Debug.Log($"{name}: Getting next fighter in queue...");
         if (FighterTurnQueue.Count == 0)

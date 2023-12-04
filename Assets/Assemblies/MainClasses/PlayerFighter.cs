@@ -64,7 +64,7 @@ public class PlayerFighter : DiceFighter
         _playerInputActions.DiceAttack.Enable();
     }
 
-    private void DisableDiceRolling()
+    private void DisableDiceRolling(object sender, EventArgs eventArgs)
     {
         _playerInputActions.DiceRolling.Disable();
         _playerInputActions.DiceAttack.Disable();

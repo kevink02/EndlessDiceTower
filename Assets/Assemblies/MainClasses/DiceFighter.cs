@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -60,7 +61,7 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
     protected AttackPerformedEvent OnAttackPerformed;
     public delegate void FighterTurnEvent();
     public FighterTurnEvent OnTurnStart;
-    public static FighterTurnEvent OnTurnEnd;
+    public static event EventHandler<EventArgs> OnTurnEnd;
 
 
     /*
@@ -146,7 +147,7 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
     public void EndTurn()
     {
         Debug.Log($"{name}: Ending turn...");
-        OnTurnEnd?.Invoke();
+        OnTurnEnd?.Invoke(this, new DummyArgs());
     }
 
     public void DoAttack()
