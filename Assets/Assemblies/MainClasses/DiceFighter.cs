@@ -62,6 +62,7 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
     public delegate void FighterTurnEvent();
     public FighterTurnEvent OnTurnStart;
     public static event EventHandler<EventArgs> OnTurnEnd;
+    public void EndTurn() => OnTurnEnd?.Invoke(this, new DummyArgs());
 
 
     /*
@@ -143,12 +144,6 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
     public abstract void ResetInstance(object sender, EventArgs eventArgs);
 
     public abstract void DoTurn();
-
-    public void EndTurn()
-    {
-        Debug.Log($"{name}: Ending turn...");
-        OnTurnEnd?.Invoke(this, new DummyArgs());
-    }
 
     public void DoAttack()
     {
