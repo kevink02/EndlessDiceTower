@@ -53,11 +53,11 @@ public class FloorManager : BasicSingleton<FloorManager>
     private void Start()
     {
         // Invoke when creating only the first floor
-        OnInitializeFighters?.Invoke(this, new DummyArgs());
+        OnInitializeFighters?.Invoke(this, new EmptyArgs());
 
         // Invoke when creating any new floor
-        OnCreateNewFloor?.Invoke(this, new DummyArgs());
-        OnResetTurnQueue?.Invoke(this, new DummyArgs());
+        OnCreateNewFloor?.Invoke(this, new EmptyArgs());
+        OnResetTurnQueue?.Invoke(this, new EmptyArgs());
     }
 
     private void OnDisable()

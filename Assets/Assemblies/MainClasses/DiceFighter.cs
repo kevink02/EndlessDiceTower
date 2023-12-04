@@ -60,9 +60,9 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
     protected event EventHandler<EventArgs> OnAttackStart;
     protected event EventHandler<EventArgs> OnTurnStart;
     public static event EventHandler<EventArgs> OnTurnEnd;
-    public void StartTurn() => OnTurnStart?.Invoke(this, new DummyArgs());
-    public void StartAttack() => OnAttackStart?.Invoke(this, new DummyArgs());
-    public void EndTurn() => OnTurnEnd?.Invoke(this, new DummyArgs());
+    public void StartTurn() => OnTurnStart?.Invoke(this, new EmptyArgs());
+    public void StartAttack() => OnAttackStart?.Invoke(this, new EmptyArgs());
+    public void EndTurn() => OnTurnEnd?.Invoke(this, new EmptyArgs());
 
 
     /*
