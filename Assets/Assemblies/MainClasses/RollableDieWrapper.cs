@@ -40,7 +40,7 @@ public class RollableDieWrapper
     /*
      * Instance methods
      */
-    public void Reset()
+    public void ResetInstance()
     {
         ShouldAddRoll = true;
     }
@@ -48,7 +48,7 @@ public class RollableDieWrapper
     /// <summary>
     /// After rolling a die once, update whether future rolls should be added as well
     /// </summary>
-    public void UpdateDiceRollEligibility()
+    public void UpdateDiceEligibilityForReRolling()
     {
         // For now, only first rolls are eligible to be added
         ShouldAddRoll = false;

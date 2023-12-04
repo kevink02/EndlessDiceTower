@@ -135,7 +135,7 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
     {
         foreach (RollableDieWrapper rollableDieWrapper in FighterDice)
         {
-            rollableDieWrapper.Reset();
+            rollableDieWrapper.ResetInstance();
         }
     }
 
@@ -172,7 +172,7 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
             FighterDice[index].WrappedDie != null &&
             FighterDice[index].ShouldAddRoll)
         {
-            FighterDice[index].UpdateDiceRollEligibility();
+            FighterDice[index].UpdateDiceEligibilityForReRolling();
 
             ElementType key = FighterDice[index].WrappedDie.DieElement;
             if (FighterAttacks.ContainsKey(key))
