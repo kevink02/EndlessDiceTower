@@ -58,7 +58,7 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
     protected delegate void DieRolledEvent(int index);
     protected DieRolledEvent OnDieRolled;
     protected delegate void AttackPerformedEvent();
-    protected AttackPerformedEvent OnAttackPerformed;
+    protected AttackPerformedEvent OnAttackStart;
     public delegate void FighterTurnEvent();
     public FighterTurnEvent OnTurnStart;
     public static event EventHandler<EventArgs> OnTurnEnd;
@@ -112,8 +112,8 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
         OnDieRolled += RollDie;
         OnDieRolled += AddDieRollToCurrentAttacks;
 
-        OnAttackPerformed += PlayAllDiceAnimations;
-        OnAttackPerformed += DoAttack;
+        OnAttackStart += PlayAllDiceAnimations;
+        OnAttackStart += DoAttack;
 
         BasicSingleton<FloorManager>.Instance.OnResetCurrentFighters += ResetInstance;
     }
@@ -128,8 +128,8 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
         OnDieRolled -= RollDie;
         OnDieRolled -= AddDieRollToCurrentAttacks;
 
-        OnAttackPerformed -= PlayAllDiceAnimations;
-        OnAttackPerformed -= DoAttack;
+        OnAttackStart -= PlayAllDiceAnimations;
+        OnAttackStart -= DoAttack;
 
         BasicSingleton<FloorManager>.Instance.OnResetCurrentFighters -= ResetInstance;
     }

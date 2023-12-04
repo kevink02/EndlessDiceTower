@@ -40,7 +40,7 @@ public class EnemyFighter : DiceFighter
         RollAllDice();
 
         // Perform the attack
-        OnAttackPerformed?.Invoke();
+        OnAttackStart?.Invoke();
 
         EndTurn();
     }
