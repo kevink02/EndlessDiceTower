@@ -25,7 +25,6 @@ public class FloorManager : BasicSingleton<FloorManager>
     public event EventHandler<EventArgs> OnInitializeFighters;
     public event EventHandler<EventArgs> OnCreateNewFloor;
     public event EventHandler<EventArgs> OnResetTurnQueue;
-    public event EventHandler<EventArgs> OnResetCurrentFighters;
 
 
     /*
@@ -58,7 +57,6 @@ public class FloorManager : BasicSingleton<FloorManager>
 
         // Invoke when creating any new floor
         OnCreateNewFloor?.Invoke(this, new DummyArgs());
-        OnResetCurrentFighters?.Invoke(this, new DummyArgs());
         OnResetTurnQueue?.Invoke(this, new DummyArgs());
     }
 

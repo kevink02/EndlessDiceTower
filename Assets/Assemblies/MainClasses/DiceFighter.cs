@@ -114,8 +114,6 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
 
         OnAttackStart += PlayAllDiceAnimations;
         OnAttackStart += DoAttack;
-
-        BasicSingleton<FloorManager>.Instance.OnResetCurrentFighters += ResetInstance;
     }
 
     // Do not implement Start() here
@@ -130,8 +128,6 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
 
         OnAttackStart -= PlayAllDiceAnimations;
         OnAttackStart -= DoAttack;
-
-        BasicSingleton<FloorManager>.Instance.OnResetCurrentFighters -= ResetInstance;
     }
 
 
