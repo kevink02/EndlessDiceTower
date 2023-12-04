@@ -537,10 +537,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _diceRollerAssets: {fileID: 11400000, guid: f694cf877653c464b973521db401a7de, type: 2}
   _elementType: {fileID: 11400000, guid: 64f33cc2f53e31f40adf32cbaba34963, type: 2}
-  _rollableDice:
-  - _wrappedRollableDie: {fileID: 11400000, guid: 5f389430f5d725f478a1d672dcf05432, type: 2}
-  - _wrappedRollableDie: {fileID: 11400000, guid: 5f389430f5d725f478a1d672dcf05432, type: 2}
-  - _wrappedRollableDie: {fileID: 11400000, guid: 5f389430f5d725f478a1d672dcf05432, type: 2}
+  _fighterStats: {fileID: 11400000, guid: 806faa0f22886404ba1b7866002972c4, type: 2}
 --- !u!212 &812516654
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -761,10 +758,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _diceRollerAssets: {fileID: 11400000, guid: 26a47128333912e46a6abc44d6a8a49d, type: 2}
   _elementType: {fileID: 11400000, guid: 64f33cc2f53e31f40adf32cbaba34963, type: 2}
-  _rollableDice:
-  - _wrappedRollableDie: {fileID: 11400000, guid: 5f389430f5d725f478a1d672dcf05432, type: 2}
-  - _wrappedRollableDie: {fileID: 11400000, guid: 5f389430f5d725f478a1d672dcf05432, type: 2}
-  - _wrappedRollableDie: {fileID: 11400000, guid: 5f389430f5d725f478a1d672dcf05432, type: 2}
+  _fighterStats: {fileID: 11400000, guid: c869719884032cb48b88cf053943f17c, type: 2}
 --- !u!212 &1027007073
 SpriteRenderer:
   m_ObjectHideFlags: 0
