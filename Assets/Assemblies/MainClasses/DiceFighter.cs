@@ -135,8 +135,10 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
         FighterAttacks = new Dictionary<ElementType, int>();
     }
 
-    protected void ResetStats(object sender, EventArgs eventArgs)
+    protected void UpdateStats(FighterStats newFighterStats)
     {
+        _fighterStats = newFighterStats;
+
         _maxHealth = _fighterStats.MaximumHealth;
         _currentHealth = _maxHealth;
 
