@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class EnemyFighter : DiceFighter
 {
     /*
@@ -24,7 +26,7 @@ public class EnemyFighter : DiceFighter
      */
     public override void ResetInstance(object sender, EventArgs eventArgs)
     {
-        throw new System.NotImplementedException();
+        Debug.Log($"Resetting {name}'s instance");
     }
 
     public override void DoTurn()
