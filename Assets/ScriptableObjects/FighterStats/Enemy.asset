@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa846b47a44d2b44b86edc0ae6d633ef, type: 3}
   m_Name: Enemy
   m_EditorClassIdentifier: 
+  _elementType: {fileID: 11400000, guid: 64f33cc2f53e31f40adf32cbaba34963, type: 2}
   _maximumHealth: 20
   _rollableDice:
   - {fileID: 11400000, guid: 5f389430f5d725f478a1d672dcf05432, type: 2}
