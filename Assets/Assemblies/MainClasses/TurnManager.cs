@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -32,6 +33,12 @@ public class TurnManager : BasicSingleton<TurnManager>
         }
     }
     public Queue<DiceFighter> FighterTurnQueue { get; private set; }
+
+
+    /*
+     * Delegates
+     */
+    public event EventHandler<EventArgs> OnQueueNextFighter;
 
 
     /*
@@ -78,8 +85,11 @@ public class TurnManager : BasicSingleton<TurnManager>
         // Check that the queue now has a valid amount of entries
         if (BasicSingleton<FighterGenerator>.Instance.FightersPerFloor.IsNotInRange(FighterTurnQueue.Count))
         {
-            throw new System.Exception($"The turn queue has an invalid number of fighters, {FighterTurnQueue.Count}");
+            throw new Exception($"The turn queue has an invalid number of fighters, {FighterTurnQueue.Count}");
         }
+
+        // Set the indicator to be the player's turn
+        _turnState = TurnState.PlayerTurn;
     }
 
     /// <summary>
@@ -133,28 +143,38 @@ public class TurnManager : BasicSingleton<TurnManager>
         if (dequeuedFighter.GetType() != CurrentFighter.GetType())
         {
             Debug.Log($"{name}: {dequeuedFighter.GetType()} is a different alliance than {FighterTurnQueue.Peek().GetType()}");
-            StartCoroutine(SwapTurns());
-        }
-    }
-
-    private IEnumerator SwapTurns()
-    {
-        // Set to enemy's turn
-        if (_turnState == TurnState.PlayerTurn)
-        {
-            _turnText.UpdateText("Turn: Enemy's turn");
-            yield return new WaitForSeconds(2);
-            _turnState = TurnState.EnemyTurn;
-        }
-        // Set to player's turn
-        else if (_turnState == TurnState.EnemyTurn)
-        {
-            _turnText.UpdateText("Turn: Player's turn");
-            yield return new WaitForSeconds(2);
-            _turnState = TurnState.PlayerTurn;
+            SwapTurnState();
         }
 
         // Start the next fighter's turn
         StartCurrentFighterTurn(this, new DummyArgs());
+    }
+
+    /// <summary>
+    /// Swaps the state between the player and enemy turn states
+    /// </summary>
+    private void SwapTurnState()
+    {
+        if (_turnState == TurnState.PlayerTurn)
+        {
+            UpdateTurnState(TurnState.EnemyTurn);
+        }
+        else if (_turnState == TurnState.EnemyTurn)
+        {
+            UpdateTurnState(TurnState.PlayerTurn);
+        }
+    }
+
+    private void UpdateTurnState(TurnState newTurnState)
+    {
+        _turnState = newTurnState;
+        if (newTurnState == TurnState.PlayerTurn)
+        {
+            _turnText.UpdateText("Turn: Enemy's turn");
+        }
+        else if (newTurnState == TurnState.EnemyTurn)
+        {
+            _turnText.UpdateText("Turn: Player's turn");
+        }
     }
 }
