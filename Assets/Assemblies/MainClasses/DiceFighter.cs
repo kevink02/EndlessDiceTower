@@ -145,14 +145,7 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
 
     public abstract void DoTurn();
 
-    public void DoAttack()
-    {
-        foreach (KeyValuePair<ElementType, int> fighterAttack in FighterAttacks)
-        {
-            BasicSingleton<FighterGenerator>.Instance.CurrentEnemyFighter.TakeDamage(fighterAttack.Value, fighterAttack.Key);
-            Debug.Log($"{name}: Added {fighterAttack.Value} {fighterAttack.Key} damage");
-        }
-    }
+    public abstract void DoAttack();
 
     public void TakeDamage(int damageAmount, ElementType attackElement)
     {

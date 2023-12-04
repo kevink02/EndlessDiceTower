@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyFighter : DiceFighter
@@ -41,5 +42,14 @@ public class EnemyFighter : DiceFighter
         OnAttackPerformed?.Invoke();
 
         EndTurn();
+    }
+
+    public override void DoAttack()
+    {
+        foreach (KeyValuePair<ElementType, int> fighterAttack in FighterAttacks)
+        {
+            BasicSingleton<FighterGenerator>.Instance.CurrentPlayerFighter.TakeDamage(fighterAttack.Value, fighterAttack.Key);
+            Debug.Log($"{name}: Added {fighterAttack.Value} {fighterAttack.Key} damage");
+        }
     }
 }
