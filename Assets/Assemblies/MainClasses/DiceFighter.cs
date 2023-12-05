@@ -110,7 +110,7 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
         FighterAttacks = new Dictionary<ElementType, int>();
     }
 
-    protected void UpdateStats(FighterStats newFighterStats)
+    public void UpdateStats(FighterStats newFighterStats)
     {
         _fighterStats = newFighterStats;
 

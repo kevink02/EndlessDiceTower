@@ -63,6 +63,6 @@ public class FighterGenerator : BasicSingleton<FighterGenerator>
     private void LoadRandomEnemyStats()
     {
         FighterStats newEnemyStats = RandomGetter<FighterStats>.GetRandomItem(_fighterStatsAssets);
-        //CurrentEnemyFighter.
+        CurrentEnemyFighter.UpdateStats(newEnemyStats);
     }
 }
