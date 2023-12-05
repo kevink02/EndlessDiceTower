@@ -53,6 +53,16 @@ public class FighterGenerator : BasicSingleton<FighterGenerator>
         }
     }
 
+    private void OnEnable()
+    {
+        BasicSingleton<FloorManager>.Instance.OnCreateNewFloor += LoadRandomEnemyStats;
+    }
+
+    private void OnDisable()
+    {
+        BasicSingleton<FloorManager>.Instance.OnCreateNewFloor -= LoadRandomEnemyStats;
+    }
+
 
     /*
      * Instance methods
@@ -60,8 +70,9 @@ public class FighterGenerator : BasicSingleton<FighterGenerator>
     /// <summary>
     /// When "creating a new enemy" load the SO stats of another enemy to apply to an existing enemy object
     /// </summary>
-    private void LoadRandomEnemyStats()
+    private void LoadRandomEnemyStats(object sender, EventArgs eventArgs)
     {
+        Debug.Log($"{name}: Loading random enemy stats...");
         FighterStats newEnemyStats = RandomGetter<FighterStats>.GetRandomItem(_fighterStatsAssets);
         CurrentEnemyFighter.UpdateStats(newEnemyStats);
     }
