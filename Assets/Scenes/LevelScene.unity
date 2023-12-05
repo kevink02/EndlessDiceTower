@@ -1086,8 +1086,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemyFightersParent: {fileID: 0}
   _playerFightersParent: {fileID: 0}
-  _playerFighter: {fileID: 0}
-  _enemyFighter: {fileID: 0}
+  _playerFighter: {fileID: 1027007072}
+  _enemyFighter: {fileID: 812516652}
 --- !u!1001 &1878091059
 PrefabInstance:
   m_ObjectHideFlags: 0
