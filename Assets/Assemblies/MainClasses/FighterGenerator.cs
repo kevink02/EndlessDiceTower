@@ -13,6 +13,8 @@ public class FighterGenerator : BasicSingleton<FighterGenerator>
     private PlayerFighter _playerFighter;
     [SerializeField]
     private EnemyFighter _enemyFighter;
+    [SerializeField]
+    private FighterStats[] _fighterStatsAssets;
 
 
     /*
@@ -47,5 +49,20 @@ public class FighterGenerator : BasicSingleton<FighterGenerator>
         {
             throw new NullReferenceException("Player fighter is not set");
         }
+        if (_fighterStatsAssets == null)
+        {
+            throw new NullReferenceException("Figher stats are not set");
+        }
+    }
+
+
+    /*
+     * Instance methods
+     */
+    /// <summary>
+    /// When "creating a new enemy" load the SO stats of another enemy to apply to an existing enemy object
+    /// </summary>
+    private void LoadRandomEnemyStats()
+    {
     }
 }
