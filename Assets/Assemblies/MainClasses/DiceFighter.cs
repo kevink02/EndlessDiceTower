@@ -57,8 +57,6 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
         {
             throw new NullReferenceException("Fighter's stats SO is not set");
         }
-
-        LoadInitialStats();
     }
 
     protected void OnEnable()
@@ -71,6 +69,8 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
 
         OnAttackStart += PlayAllDiceAnimations;
         OnAttackStart += DoAttack;
+
+        BasicSingleton<FloorManager>.Instance.OnInitializeFighters += LoadInitialStats;
     }
 
     // Do not implement Start() here
@@ -86,13 +86,15 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
 
         OnAttackStart -= PlayAllDiceAnimations;
         OnAttackStart -= DoAttack;
+
+        BasicSingleton<FloorManager>.Instance.OnInitializeFighters -= LoadInitialStats;
     }
 
 
     /*
      * Instance methods
      */
-    private void LoadInitialStats()
+    private void LoadInitialStats(object sender, EventArgs eventArgs)
     {
         GetComponent<SpriteRenderer>().sprite = FighterAssets.FighterTexture;
 
