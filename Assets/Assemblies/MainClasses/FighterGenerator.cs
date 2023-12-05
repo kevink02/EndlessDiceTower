@@ -13,6 +13,10 @@ public class FighterGenerator : BasicSingleton<FighterGenerator>
     private GameObject _enemyFightersParent;
     [SerializeField]
     private GameObject _playerFightersParent;
+    [SerializeField]
+    private PlayerFighter _playerFighter;
+    [SerializeField]
+    private EnemyFighter _enemyFighter;
 
 
     /*
@@ -20,8 +24,20 @@ public class FighterGenerator : BasicSingleton<FighterGenerator>
      */
     public List<EnemyFighter> EnemyFighters { get; private set; }
     public List<PlayerFighter> PlayerFighters { get; private set; }
-    public EnemyFighter CurrentEnemyFighter { get; private set; }
-    public PlayerFighter CurrentPlayerFighter { get; private set; }
+    public EnemyFighter CurrentEnemyFighter
+    {
+        get
+        {
+            return _enemyFighter;
+        }
+    }
+    public PlayerFighter CurrentPlayerFighter
+    {
+        get
+        {
+            return _playerFighter;
+        }
+    }
 
 
     /*
@@ -45,6 +61,15 @@ public class FighterGenerator : BasicSingleton<FighterGenerator>
         if (_playerFightersParent.transform.childCount == 0)
         {
             throw new Exception("The player fighters parent object contains no child objects");
+        }
+
+        if (CurrentEnemyFighter == null)
+        {
+            throw new NullReferenceException("Enemy fighter is not set");
+        }
+        if (CurrentPlayerFighter == null)
+        {
+            throw new NullReferenceException("Player fighter is not set");
         }
 
         EnemyFighters = new List<EnemyFighter>();
@@ -107,9 +132,6 @@ public class FighterGenerator : BasicSingleton<FighterGenerator>
         {
             playerFighter.gameObject.SetActive(true);
 
-            // Set the reference to the current player fighter
-            CurrentPlayerFighter = playerFighter;
-
             Debug.Log($"{name}: The current player is {playerFighter}");
         }
     }
@@ -121,16 +143,13 @@ public class FighterGenerator : BasicSingleton<FighterGenerator>
             enemyFighter.gameObject.SetActive(false);
         }
     }
-
+#warning Make enemy fighter initialization similar to players, loading a random enemy stats SO instead of a random enemy gameobject
     private void InitializeRandomEnemyFighter(object sender, EventArgs eventArgs)
     {
         EnemyFighter enemyFighter = EnemyFighters[Random.Range(0, EnemyFighters.Count)];
         if (enemyFighter != null)
         {
             enemyFighter.gameObject.SetActive(true);
-
-            // Set the reference to the current enemy fighter
-            CurrentEnemyFighter = enemyFighter;
 
             Debug.Log($"{name}: The current enemy is {enemyFighter}");
         }
