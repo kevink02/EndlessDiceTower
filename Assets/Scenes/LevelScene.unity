@@ -1084,10 +1084,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b6fa52c9c53f334ba2a2b2083efc852, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyFightersParent: {fileID: 0}
-  _playerFightersParent: {fileID: 0}
   _playerFighter: {fileID: 1027007072}
   _enemyFighter: {fileID: 812516652}
+  _fighterStatsAssets:
+  - {fileID: 11400000, guid: 806faa0f22886404ba1b7866002972c4, type: 2}
 --- !u!1001 &1878091059
 PrefabInstance:
   m_ObjectHideFlags: 0
