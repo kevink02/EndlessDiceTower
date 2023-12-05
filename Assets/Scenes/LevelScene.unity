@@ -300,7 +300,7 @@ RectTransform:
   - {fileID: 267703322}
   - {fileID: 2101661298}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -503,7 +503,7 @@ Transform:
   - {fileID: 1774125615}
   - {fileID: 1134731198}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &812516651
 GameObject:
@@ -536,7 +536,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _diceRollerAssets: {fileID: 11400000, guid: f694cf877653c464b973521db401a7de, type: 2}
-  _elementType: {fileID: 11400000, guid: 64f33cc2f53e31f40adf32cbaba34963, type: 2}
   _fighterStats: {fileID: 11400000, guid: 806faa0f22886404ba1b7866002972c4, type: 2}
 --- !u!212 &812516654
 SpriteRenderer:
@@ -600,7 +599,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1132579978}
+  m_Father: {fileID: 2097835567}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &923014268
@@ -757,7 +756,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _diceRollerAssets: {fileID: 11400000, guid: 26a47128333912e46a6abc44d6a8a49d, type: 2}
-  _elementType: {fileID: 11400000, guid: 64f33cc2f53e31f40adf32cbaba34963, type: 2}
   _fighterStats: {fileID: 11400000, guid: c869719884032cb48b88cf053943f17c, type: 2}
 --- !u!212 &1027007073
 SpriteRenderer:
@@ -821,8 +819,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1927150283}
-  m_RootOrder: 0
+  m_Father: {fileID: 2097835567}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1086773746
 GameObject:
@@ -899,37 +897,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1086773746}
   m_CullTransparentMesh: 1
---- !u!1 &1132579977
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1132579978}
-  m_Layer: 0
-  m_Name: EnemyFighters
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1132579978
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1132579977}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 812516655}
-  m_Father: {fileID: 0}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1134731197
 GameObject:
   m_ObjectHideFlags: 0
@@ -1041,7 +1008,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1755746287
 GameObject:
@@ -1072,7 +1039,7 @@ Transform:
   m_Children:
   - {fileID: 1005324073}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1774125614
 GameObject:
@@ -1117,8 +1084,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b6fa52c9c53f334ba2a2b2083efc852, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyFightersParent: {fileID: 1132579977}
-  _playerFightersParent: {fileID: 1927150282}
+  _enemyFightersParent: {fileID: 0}
+  _playerFightersParent: {fileID: 0}
+  _playerFighter: {fileID: 0}
+  _enemyFighter: {fileID: 0}
 --- !u!1001 &1878091059
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1233,7 +1202,7 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7846158777967966887, guid: 1fa7770b1a07c2445ab6b3c78154434f, type: 3}
   m_PrefabInstance: {fileID: 1878091059}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1927150282
+--- !u!1 &2097835566
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1241,28 +1210,29 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1927150283}
+  - component: {fileID: 2097835567}
   m_Layer: 0
-  m_Name: PlayerFighters
+  m_Name: Fighters
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1927150283
+--- !u!4 &2097835567
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1927150282}
+  m_GameObject: {fileID: 2097835566}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 812516655}
   - {fileID: 1027007074}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2101661297
 GameObject:
