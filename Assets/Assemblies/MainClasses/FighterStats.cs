@@ -1,7 +1,23 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+
+
+public class FighterStatsArgs : EventArgs
+{
+    /*
+     * Properties
+     */
+    public FighterStats NewFighterStats { get; private set; }
+
+    /*
+     * Constructors
+     */
+    public FighterStatsArgs(FighterStats fighterStats)
+    {
+        NewFighterStats = fighterStats;
+    }
+}
+
 
 [CreateAssetMenu(menuName = "New Fighter's Stats")]
 public class FighterStats : ScriptableObject
