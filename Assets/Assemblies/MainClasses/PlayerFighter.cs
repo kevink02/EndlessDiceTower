@@ -8,6 +8,7 @@ public class PlayerFighter : DiceFighter
      * Instance variables
      */
     private PlayerInputActions _playerInputActions;
+    private PlayerDebugging _playerDebugging;
 
 
     /*
@@ -18,6 +19,7 @@ public class PlayerFighter : DiceFighter
         base.Awake();
 
         _playerInputActions = new PlayerInputActions();
+        _playerDebugging = new PlayerDebugging();
     }
 
     private new void OnEnable()
@@ -35,9 +37,12 @@ public class PlayerFighter : DiceFighter
         _playerInputActions.DiceRolling.RollDie3.performed += cxt => RollThirdDie();
         _playerInputActions.DiceAttack.Attack.performed += cxt => StartAttack();
         _playerInputActions.DiceAttack.Attack.performed += cxt => EndTurn();
+        _playerInputActions.Debugging.EnemyDefeat.performed += cxt => _playerDebugging.DefeatEnemy();
+        _playerInputActions.Debugging.PlayerDefeat.performed += cxt => _playerDebugging.DefeatPlayer();
 
         _playerInputActions.DiceRolling.Enable();
         _playerInputActions.DiceAttack.Enable();
+        _playerInputActions.Debugging.Enable();
     }
 
     private new void OnDisable()
@@ -55,9 +60,12 @@ public class PlayerFighter : DiceFighter
         _playerInputActions.DiceRolling.RollDie3.performed -= cxt => RollThirdDie();
         _playerInputActions.DiceAttack.Attack.performed -= cxt => StartAttack();
         _playerInputActions.DiceAttack.Attack.performed -= cxt => EndTurn();
+        _playerInputActions.Debugging.EnemyDefeat.performed -= cxt => _playerDebugging.DefeatEnemy();
+        _playerInputActions.Debugging.PlayerDefeat.performed -= cxt => _playerDebugging.DefeatPlayer();
 
         _playerInputActions.DiceRolling.Disable();
         _playerInputActions.DiceAttack.Disable();
+        _playerInputActions.Debugging.Disable();
     }
 
 
