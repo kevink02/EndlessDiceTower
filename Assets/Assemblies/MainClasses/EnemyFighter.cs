@@ -16,6 +16,8 @@ public class EnemyFighter : DiceFighter
         base.OnEnable();
 
         OnTurnStart += DoTurn;
+
+        OnSelfDefeated += EventManager.Instance.CreateNewFloor;
     }
 
     private new void OnDisable()
@@ -23,6 +25,8 @@ public class EnemyFighter : DiceFighter
         base.OnDisable();
 
         OnTurnStart -= DoTurn;
+
+        OnSelfDefeated -= EventManager.Instance.CreateNewFloor;
     }
 
 
