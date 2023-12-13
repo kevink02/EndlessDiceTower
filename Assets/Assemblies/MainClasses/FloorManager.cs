@@ -44,11 +44,11 @@ public class FloorManager : BasicSingleton<FloorManager>
     private void Start()
     {
         // Invoke when creating only the first floor
-        EventManager.Instance.InitializeFighters();
+        EventManager.Instance.InitializeFighters(this, new EmptyArgs());
 
         // Invoke when creating any new floor
-        EventManager.Instance.CreateNewFloor();
-        EventManager.Instance.ResetTurnQueue();
+        EventManager.Instance.CreateNewFloor(this, new EmptyArgs());
+        EventManager.Instance.ResetTurnQueue(this, new EmptyArgs());
     }
 
     private void OnDisable()
