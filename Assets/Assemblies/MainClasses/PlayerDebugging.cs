@@ -17,10 +17,12 @@ public class PlayerDebugging
     public void DefeatEnemy()
     {
         Debug.Log($"{DebugMessageHeader}: Defeating current enemy...");
+        FighterGenerator.Instance.CurrentEnemyFighter.TakeDamage(999999, ElementManager.Instance.NeutralElement);
     }
 
     public void DefeatPlayer()
     {
         Debug.Log($"{DebugMessageHeader}: Defeating current player...");
+        FighterGenerator.Instance.CurrentPlayerFighter.TakeDamage(999999, ElementManager.Instance.NeutralElement);
     }
 }
