@@ -39,6 +39,7 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
     protected event EventHandler<EventArgs> OnAttackStart;
     protected event EventHandler<EventArgs> OnTurnStart;
     public static event EventHandler<EventArgs> OnTurnEnd;
+    protected event EventHandler<EventArgs> OnSelfDefeated;
     public void StartTurn() => OnTurnStart?.Invoke(this, new EmptyArgs());
     public void StartAttack() => OnAttackStart?.Invoke(this, new EmptyArgs());
     public void EndTurn() => OnTurnEnd?.Invoke(this, new EmptyArgs());
@@ -161,6 +162,7 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
         if (_currentHealth <= 0)
         {
             Debug.Log($"{name}: I am dead");
+            OnSelfDefeated?.Invoke(this, new EmptyArgs());
         }
     }
 
