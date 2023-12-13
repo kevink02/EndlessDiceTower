@@ -24,14 +24,14 @@ public class PlayerFighter : DiceFighter
     {
         base.OnEnable();
 
-        EventManager.Instance.OnTurnStart += EnableDiceRolling;
+        OnTurnStart += EnableDiceRolling;
 
         OnTurnEnd += DisableDiceRolling;
 
         _playerInputActions.DiceRolling.RollDie1.performed += cxt => RollFirstDie();
         _playerInputActions.DiceRolling.RollDie2.performed += cxt => RollSecondDie();
         _playerInputActions.DiceRolling.RollDie3.performed += cxt => RollThirdDie();
-        _playerInputActions.DiceAttack.Attack.performed += cxt => EventManager.Instance.StartAttack();
+        _playerInputActions.DiceAttack.Attack.performed += cxt => StartAttack();
         _playerInputActions.DiceAttack.Attack.performed += cxt => EndTurn();
 
         _playerInputActions.DiceRolling.Enable();
@@ -42,14 +42,14 @@ public class PlayerFighter : DiceFighter
     {
         base.OnDisable();
 
-        EventManager.Instance.OnTurnStart -= EnableDiceRolling;
+        OnTurnStart -= EnableDiceRolling;
 
         OnTurnEnd -= DisableDiceRolling;
 
         _playerInputActions.DiceRolling.RollDie1.performed -= cxt => RollFirstDie();
         _playerInputActions.DiceRolling.RollDie2.performed -= cxt => RollSecondDie();
         _playerInputActions.DiceRolling.RollDie3.performed -= cxt => RollThirdDie();
-        _playerInputActions.DiceAttack.Attack.performed -= cxt => EventManager.Instance.StartAttack();
+        _playerInputActions.DiceAttack.Attack.performed -= cxt => StartAttack();
         _playerInputActions.DiceAttack.Attack.performed -= cxt => EndTurn();
 
         _playerInputActions.DiceRolling.Disable();

@@ -36,7 +36,11 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
      */
     protected delegate void DieRolledEvent(int index);
     protected DieRolledEvent OnDieRolled;
+    protected event EventHandler<EventArgs> OnAttackStart;
+    protected event EventHandler<EventArgs> OnTurnStart;
     public static event EventHandler<EventArgs> OnTurnEnd;
+    public void StartTurn() => OnTurnStart?.Invoke(this, new EmptyArgs());
+    public void StartAttack() => OnAttackStart?.Invoke(this, new EmptyArgs());
     public void EndTurn() => OnTurnEnd?.Invoke(this, new EmptyArgs());
     protected void RollFirstDie() => OnDieRolled?.Invoke(0);
     protected void RollSecondDie() => OnDieRolled?.Invoke(1);
@@ -60,14 +64,14 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
 
     protected void OnEnable()
     {
-        EventManager.Instance.OnTurnStart += ResetDiceInstances;
-        EventManager.Instance.OnTurnStart += RemoveAllCurrentAttacks;
+        OnTurnStart += ResetDiceInstances;
+        OnTurnStart += RemoveAllCurrentAttacks;
 
         OnDieRolled += RollDie;
         OnDieRolled += AddDieRollToCurrentAttacks;
 
-        EventManager.Instance.OnAttackStart += PlayAllDiceAnimations;
-        EventManager.Instance.OnAttackStart += DoAttack;
+        OnAttackStart += PlayAllDiceAnimations;
+        OnAttackStart += DoAttack;
 
         EventManager.Instance.OnInitializeFighters += LoadInitialStats;
     }
@@ -77,14 +81,14 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
 
     protected void OnDisable()
     {
-        EventManager.Instance.OnTurnStart -= ResetDiceInstances;
-        EventManager.Instance.OnTurnStart -= RemoveAllCurrentAttacks;
+        OnTurnStart -= ResetDiceInstances;
+        OnTurnStart -= RemoveAllCurrentAttacks;
 
         OnDieRolled -= RollDie;
         OnDieRolled -= AddDieRollToCurrentAttacks;
 
-        EventManager.Instance.OnAttackStart -= PlayAllDiceAnimations;
-        EventManager.Instance.OnAttackStart -= DoAttack;
+        OnAttackStart -= PlayAllDiceAnimations;
+        OnAttackStart -= DoAttack;
 
         EventManager.Instance.OnInitializeFighters -= LoadInitialStats;
     }
