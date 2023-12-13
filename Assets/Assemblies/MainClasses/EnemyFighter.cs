@@ -15,14 +15,14 @@ public class EnemyFighter : DiceFighter
     {
         base.OnEnable();
 
-        OnTurnStart += DoTurn;
+        EventManager.Instance.OnTurnStart += DoTurn;
     }
 
     private new void OnDisable()
     {
         base.OnDisable();
 
-        OnTurnStart -= DoTurn;
+        EventManager.Instance.OnTurnStart -= DoTurn;
     }
 
 
@@ -34,7 +34,7 @@ public class EnemyFighter : DiceFighter
         // Roll all dice
         RollAllDice();
 
-        StartAttack();
+        //StartAttack();
 
         EndTurn();
     }
