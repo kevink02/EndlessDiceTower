@@ -28,6 +28,8 @@ public class PlayerFighter : DiceFighter
 
         OnTurnEnd += DisableDiceRolling;
 
+        OnSelfDefeated += EndGame;
+
         _playerInputActions.DiceRolling.RollDie1.performed += cxt => RollFirstDie();
         _playerInputActions.DiceRolling.RollDie2.performed += cxt => RollSecondDie();
         _playerInputActions.DiceRolling.RollDie3.performed += cxt => RollThirdDie();
@@ -45,6 +47,8 @@ public class PlayerFighter : DiceFighter
         OnTurnStart -= EnableDiceRolling;
 
         OnTurnEnd -= DisableDiceRolling;
+
+        OnSelfDefeated -= EndGame;
 
         _playerInputActions.DiceRolling.RollDie1.performed -= cxt => RollFirstDie();
         _playerInputActions.DiceRolling.RollDie2.performed -= cxt => RollSecondDie();
@@ -99,5 +103,11 @@ public class PlayerFighter : DiceFighter
             BasicSingleton<FighterGenerator>.Instance.CurrentEnemyFighter.TakeDamage(fighterAttack.Value, fighterAttack.Key);
             Debug.Log($"{name}: Added {fighterAttack.Value} {fighterAttack.Key} damage");
         }
+    }
+
+#warning This is a placeholder. Move this method eventually to another more appropriate class.
+    private void EndGame(object sender, EventArgs eventArgs)
+    {
+        Debug.Log($"{name}: You lost!");
     }
 }
