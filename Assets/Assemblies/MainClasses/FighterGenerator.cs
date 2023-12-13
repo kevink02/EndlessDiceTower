@@ -55,12 +55,12 @@ public class FighterGenerator : BasicSingleton<FighterGenerator>
 
     private void OnEnable()
     {
-        BasicSingleton<FloorManager>.Instance.OnCreateNewFloor += LoadRandomEnemyStats;
+        EventManager.Instance.OnCreateNewFloor += LoadRandomEnemyStats;
     }
 
     private void OnDisable()
     {
-        BasicSingleton<FloorManager>.Instance.OnCreateNewFloor -= LoadRandomEnemyStats;
+        EventManager.Instance.OnCreateNewFloor -= LoadRandomEnemyStats;
     }
 
 

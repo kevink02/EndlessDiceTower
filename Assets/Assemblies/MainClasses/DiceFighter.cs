@@ -73,7 +73,7 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
         OnAttackStart += PlayAllDiceAnimations;
         OnAttackStart += DoAttack;
 
-        BasicSingleton<FloorManager>.Instance.OnInitializeFighters += LoadInitialStats;
+        EventManager.Instance.OnInitializeFighters += LoadInitialStats;
     }
 
     // Do not implement Start() here
@@ -90,7 +90,7 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
         OnAttackStart -= PlayAllDiceAnimations;
         OnAttackStart -= DoAttack;
 
-        BasicSingleton<FloorManager>.Instance.OnInitializeFighters -= LoadInitialStats;
+        EventManager.Instance.OnInitializeFighters -= LoadInitialStats;
     }
 
 

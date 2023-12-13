@@ -19,15 +19,6 @@ public class FloorManager : BasicSingleton<FloorManager>
 
 
     /*
-     * Delegates
-     */
-    // Most delegates should be here to prevent risk of other classes' delegates invoking before these
-    public event EventHandler<EventArgs> OnInitializeFighters;
-    public event EventHandler<EventArgs> OnCreateNewFloor;
-    public event EventHandler<EventArgs> OnResetTurnQueue;
-
-
-    /*
      * Unity methods
      */
     private void Awake()
@@ -46,24 +37,24 @@ public class FloorManager : BasicSingleton<FloorManager>
 
     private void OnEnable()
     {
-        OnCreateNewFloor += IncrementFloorNumber;
-        OnCreateNewFloor += AssignFighterPositions;
+        EventManager.Instance.OnCreateNewFloor += IncrementFloorNumber;
+        EventManager.Instance.OnCreateNewFloor += AssignFighterPositions;
     }
 
     private void Start()
     {
         // Invoke when creating only the first floor
-        OnInitializeFighters?.Invoke(this, new EmptyArgs());
+        EventManager.Instance.InitializeFighters();
 
         // Invoke when creating any new floor
-        OnCreateNewFloor?.Invoke(this, new EmptyArgs());
-        OnResetTurnQueue?.Invoke(this, new EmptyArgs());
+        EventManager.Instance.CreateNewFloor();
+        EventManager.Instance.ResetTurnQueue();
     }
 
     private void OnDisable()
     {
-        OnCreateNewFloor -= IncrementFloorNumber;
-        OnCreateNewFloor -= AssignFighterPositions;
+        EventManager.Instance.OnCreateNewFloor -= IncrementFloorNumber;
+        EventManager.Instance.OnCreateNewFloor -= AssignFighterPositions;
     }
 
 
