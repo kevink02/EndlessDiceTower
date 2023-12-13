@@ -42,6 +42,9 @@ public abstract class DiceFighter : MonoBehaviour, IDiceRoller
     public void StartTurn() => OnTurnStart?.Invoke(this, new EmptyArgs());
     public void StartAttack() => OnAttackStart?.Invoke(this, new EmptyArgs());
     public void EndTurn() => OnTurnEnd?.Invoke(this, new EmptyArgs());
+    protected void RollFirstDie() => OnDieRolled?.Invoke(0);
+    protected void RollSecondDie() => OnDieRolled?.Invoke(1);
+    protected void RollThirdDie() => OnDieRolled?.Invoke(2);
 
 
     /*

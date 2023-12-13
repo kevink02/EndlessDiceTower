@@ -28,10 +28,11 @@ public class PlayerFighter : DiceFighter
 
         OnTurnEnd += DisableDiceRolling;
 
-        _playerInputActions.DiceRolling.RollDie1.performed += cxt => OnDieRolled?.Invoke(0);
-        _playerInputActions.DiceRolling.RollDie2.performed += cxt => OnDieRolled?.Invoke(1);
-        _playerInputActions.DiceRolling.RollDie3.performed += cxt => OnDieRolled?.Invoke(2);
-        _playerInputActions.DiceAttack.Attack.performed += cxt => DoTurn(this, new EmptyArgs());
+        _playerInputActions.DiceRolling.RollDie1.performed += cxt => RollFirstDie();
+        _playerInputActions.DiceRolling.RollDie2.performed += cxt => RollSecondDie();
+        _playerInputActions.DiceRolling.RollDie3.performed += cxt => RollThirdDie();
+        _playerInputActions.DiceAttack.Attack.performed += cxt => StartAttack();
+        _playerInputActions.DiceAttack.Attack.performed += cxt => EndTurn();
 
         _playerInputActions.DiceRolling.Enable();
         _playerInputActions.DiceAttack.Enable();
@@ -45,11 +46,11 @@ public class PlayerFighter : DiceFighter
 
         OnTurnEnd -= DisableDiceRolling;
 
-#warning This probably doesn't successfully unsubscribe from events since they have parameters
-        _playerInputActions.DiceRolling.RollDie1.performed -= cxt => OnDieRolled?.Invoke(0);
-        _playerInputActions.DiceRolling.RollDie2.performed -= cxt => OnDieRolled?.Invoke(1);
-        _playerInputActions.DiceRolling.RollDie3.performed -= cxt => OnDieRolled?.Invoke(2);
-        _playerInputActions.DiceAttack.Attack.performed -= cxt => DoTurn(this, new EmptyArgs());
+        _playerInputActions.DiceRolling.RollDie1.performed -= cxt => RollFirstDie();
+        _playerInputActions.DiceRolling.RollDie2.performed -= cxt => RollSecondDie();
+        _playerInputActions.DiceRolling.RollDie3.performed -= cxt => RollThirdDie();
+        _playerInputActions.DiceAttack.Attack.performed -= cxt => StartAttack();
+        _playerInputActions.DiceAttack.Attack.performed -= cxt => EndTurn();
 
         _playerInputActions.DiceRolling.Disable();
         _playerInputActions.DiceAttack.Disable();
@@ -88,9 +89,7 @@ public class PlayerFighter : DiceFighter
 
     public override void DoTurn(object sender, EventArgs eventArgs)
     {
-        StartAttack();
-
-        EndTurn();
+        throw new System.NotImplementedException();
     }
 
     public override void DoAttack(object sender, EventArgs eventArgs)
