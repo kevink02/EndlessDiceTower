@@ -96,6 +96,54 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Debugging",
+            "id": "c974e3b1-ac32-49f7-a132-a6d26a164c45",
+            "actions": [
+                {
+                    "name": "EnemyDefeat",
+                    "type": "Button",
+                    "id": "477be3c5-78ca-4d0d-8215-9824b9b2ac94",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "PlayerDefeat",
+                    "type": "Button",
+                    "id": "bbd38c41-81d6-454d-847b-71e5b31b2d28",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "29bb9fe8-f3ff-4da0-9a38-5db7b7607411",
+                    "path": "<Keyboard>/0",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "EnemyDefeat",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "38b0d51a-2819-46a7-a182-006555b24d00",
+                    "path": "<Keyboard>/9",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PlayerDefeat",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []

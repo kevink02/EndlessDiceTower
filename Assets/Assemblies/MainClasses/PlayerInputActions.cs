@@ -118,6 +118,54 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Debugging"",
+            ""id"": ""c974e3b1-ac32-49f7-a132-a6d26a164c45"",
+            ""actions"": [
+                {
+                    ""name"": ""EnemyDefeat"",
+                    ""type"": ""Button"",
+                    ""id"": ""477be3c5-78ca-4d0d-8215-9824b9b2ac94"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PlayerDefeat"",
+                    ""type"": ""Button"",
+                    ""id"": ""bbd38c41-81d6-454d-847b-71e5b31b2d28"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""29bb9fe8-f3ff-4da0-9a38-5db7b7607411"",
+                    ""path"": ""<Keyboard>/0"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""EnemyDefeat"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""38b0d51a-2819-46a7-a182-006555b24d00"",
+                    ""path"": ""<Keyboard>/9"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PlayerDefeat"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -130,6 +178,10 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         // DiceAttack
         m_DiceAttack = asset.FindActionMap("DiceAttack", throwIfNotFound: true);
         m_DiceAttack_Attack = m_DiceAttack.FindAction("Attack", throwIfNotFound: true);
+        // Debugging
+        m_Debugging = asset.FindActionMap("Debugging", throwIfNotFound: true);
+        m_Debugging_EnemyDefeat = m_Debugging.FindAction("EnemyDefeat", throwIfNotFound: true);
+        m_Debugging_PlayerDefeat = m_Debugging.FindAction("PlayerDefeat", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -267,6 +319,47 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         }
     }
     public DiceAttackActions @DiceAttack => new DiceAttackActions(this);
+
+    // Debugging
+    private readonly InputActionMap m_Debugging;
+    private IDebuggingActions m_DebuggingActionsCallbackInterface;
+    private readonly InputAction m_Debugging_EnemyDefeat;
+    private readonly InputAction m_Debugging_PlayerDefeat;
+    public struct DebuggingActions
+    {
+        private @PlayerInputActions m_Wrapper;
+        public DebuggingActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @EnemyDefeat => m_Wrapper.m_Debugging_EnemyDefeat;
+        public InputAction @PlayerDefeat => m_Wrapper.m_Debugging_PlayerDefeat;
+        public InputActionMap Get() { return m_Wrapper.m_Debugging; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(DebuggingActions set) { return set.Get(); }
+        public void SetCallbacks(IDebuggingActions instance)
+        {
+            if (m_Wrapper.m_DebuggingActionsCallbackInterface != null)
+            {
+                @EnemyDefeat.started -= m_Wrapper.m_DebuggingActionsCallbackInterface.OnEnemyDefeat;
+                @EnemyDefeat.performed -= m_Wrapper.m_DebuggingActionsCallbackInterface.OnEnemyDefeat;
+                @EnemyDefeat.canceled -= m_Wrapper.m_DebuggingActionsCallbackInterface.OnEnemyDefeat;
+                @PlayerDefeat.started -= m_Wrapper.m_DebuggingActionsCallbackInterface.OnPlayerDefeat;
+                @PlayerDefeat.performed -= m_Wrapper.m_DebuggingActionsCallbackInterface.OnPlayerDefeat;
+                @PlayerDefeat.canceled -= m_Wrapper.m_DebuggingActionsCallbackInterface.OnPlayerDefeat;
+            }
+            m_Wrapper.m_DebuggingActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @EnemyDefeat.started += instance.OnEnemyDefeat;
+                @EnemyDefeat.performed += instance.OnEnemyDefeat;
+                @EnemyDefeat.canceled += instance.OnEnemyDefeat;
+                @PlayerDefeat.started += instance.OnPlayerDefeat;
+                @PlayerDefeat.performed += instance.OnPlayerDefeat;
+                @PlayerDefeat.canceled += instance.OnPlayerDefeat;
+            }
+        }
+    }
+    public DebuggingActions @Debugging => new DebuggingActions(this);
     public interface IDiceRollingActions
     {
         void OnRollDie1(InputAction.CallbackContext context);
@@ -276,5 +369,10 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
     public interface IDiceAttackActions
     {
         void OnAttack(InputAction.CallbackContext context);
+    }
+    public interface IDebuggingActions
+    {
+        void OnEnemyDefeat(InputAction.CallbackContext context);
+        void OnPlayerDefeat(InputAction.CallbackContext context);
     }
 }
