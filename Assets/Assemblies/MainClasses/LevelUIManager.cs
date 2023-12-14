@@ -44,4 +44,24 @@ public class LevelUIManager : BasicSingleton<LevelUIManager>
             return _currentFloorText;
         }
     }
+
+
+    /*
+     * Unity methods
+     */
+    private void Awake()
+    {
+        if (PlayerPosition == null)
+        {
+            throw new System.NullReferenceException("Player position object is not set");
+        }
+        if (EnemyPosition == null)
+        {
+            throw new System.NullReferenceException("Enemy position object is not set");
+        }
+        if (CurrentFloorText == null)
+        {
+            throw new System.NullReferenceException("Current floor text is not set");
+        }
+    }
 }
