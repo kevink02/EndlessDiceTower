@@ -64,12 +64,12 @@ public class FloorManager : BasicSingleton<FloorManager>
     private void IncrementFloorNumber(object sender, EventArgs eventArgs)
     {
         _currentFloor++;
-        _floorText.UpdateText($"Floor {_currentFloor}");
+        LevelUIManager.Instance.CurrentFloorText.UpdateText($"Floor {_currentFloor}");
     }
 
     private void AssignFighterPositions(object sender, EventArgs eventArgs)
     {
-        BasicSingleton<FighterGenerator>.Instance.CurrentPlayerFighter.transform.position = _leftFighterPosition.transform.position;
-        BasicSingleton<FighterGenerator>.Instance.CurrentEnemyFighter.transform.position = _rightFighterPosition.transform.position;
+        BasicSingleton<FighterGenerator>.Instance.CurrentPlayerFighter.transform.position = LevelUIManager.Instance.PlayerPosition.transform.position;
+        BasicSingleton<FighterGenerator>.Instance.CurrentEnemyFighter.transform.position = LevelUIManager.Instance.EnemyPosition.transform.position;
     }
 }
