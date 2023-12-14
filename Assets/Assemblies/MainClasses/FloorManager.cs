@@ -10,11 +10,6 @@ public class FloorManager : BasicSingleton<FloorManager>
     /*
      * Instance variables
      */
-    [SerializeField]
-    [Tooltip("The gameobjects that fighters will be positioned at in the scene view")]
-    private GameObject _leftFighterPosition, _rightFighterPosition;
-    [SerializeField]
-    private Text _floorText;
     private int _currentFloor;
 
 
@@ -23,15 +18,6 @@ public class FloorManager : BasicSingleton<FloorManager>
      */
     private void Awake()
     {
-        if (_leftFighterPosition == null || _rightFighterPosition == null)
-        {
-            throw new NullReferenceException("Fighter position objects are not set");
-        }
-        if (_floorText == null)
-        {
-            throw new NullReferenceException("Floor text object is not set");
-        }
-
         _currentFloor = 0;
     }
 
