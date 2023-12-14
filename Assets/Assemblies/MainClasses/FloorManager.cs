@@ -1,7 +1,3 @@
-using System;
-using UnityEngine;
-using UnityEngine.UI;
-
 /// <summary>
 /// Manages the floors or levels of the game
 /// </summary>
